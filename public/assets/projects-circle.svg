@@ -1,5 +1,16 @@
 <svg preserveAspectRatio="xMidYMid meet" overflow="visible" style="display: block;" width="82" height="30" viewBox="-2 -2 82 30" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="projects-circle">
+<defs>
+<style>
+  .draw-guide { stroke-dasharray:180; stroke-dashoffset:180; animation:draw-ring .5s cubic-bezier(.55,.05,.2,1) forwards; }
+  @keyframes draw-ring { to { stroke-dashoffset:0; } }
+  @media (prefers-reduced-motion:reduce) { .draw-guide { animation:none; stroke-dashoffset:0; } }
+</style>
+<mask id="draw-ring-mask" maskUnits="userSpaceOnUse" x="-4" y="-4" width="86" height="36">
+  <rect x="-4" y="-4" width="86" height="36" fill="black"/>
+  <use xlink:href="#stroke0_0_362_ref" class="draw-guide" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</mask>
+</defs>
+<g id="projects-circle" mask="url(#draw-ring-mask)">
 <use xlink:href="#stroke0_0_362" transform="translate(67.1105 5.56871) scale(0.00308219) rotate(-161.807)"/>
 <use xlink:href="#stroke0_0_362" transform="translate(66.7488 3.94644) scale(0.00308776) rotate(67.0335)"/>
 <use xlink:href="#stroke0_0_362" transform="translate(65.5175 5.04093) scale(0.0030989) rotate(-84.4335)"/>
