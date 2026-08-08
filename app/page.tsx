@@ -81,10 +81,12 @@ function Header({ language, setLanguage, theme, setTheme, onWechat }: { language
   ];
   return <header className={`site-header state-${hovered ?? "default"}`} onMouseLeave={() => setHovered(null)}>
     <nav className="nav-scene" aria-label="主导航">
-      <a className="home-link" href="/" aria-current="page" aria-label="首页" onMouseEnter={() => setHovered("home")}>
-        <img className="home-default" src="/assets/home-face.svg" alt=""/>
-        <img className="home-hover" src="/assets/home-hover.png" alt=""/>
-      </a>
+      <div className="home-zone" onMouseEnter={() => setHovered("home")}>
+        <a className="home-link" href="/" aria-current="page" aria-label="首页">
+          <span className="home-default"><img src="/assets/home-face.svg" alt=""/></span>
+          <span className="home-hover"><img src="/assets/home-hover.png" alt=""/></span>
+        </a>
+      </div>
       {nav.map(item => <div className={`nav-zone nav-${item.id}`} key={item.id} onMouseEnter={() => setHovered(item.id)}>
         <div className="nav-reveal">
           <img className="nav-illustration" src={item.art} alt=""/>
