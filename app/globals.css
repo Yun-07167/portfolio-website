@@ -11,10 +11,13 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .site-header { position:absolute; z-index:100; top:48px; left:150px; right:138px; height:148px; display:flex; align-items:flex-end; justify-content:space-between; pointer-events:none; will-change:transform; }
 .nav-scene,.mode-switcher { pointer-events:auto; }
 .nav-scene { display:flex; gap:12px; align-items:flex-end; height:148px; }
-.home-link { position:relative; display:grid; place-items:center; width:40px; height:40px; margin-bottom:4px; }
-.home-link>img { width:22px; height:14px; filter:var(--asset-filter); }
-.home-ring { position:absolute; inset:1px; border:2px solid currentColor; border-radius:48% 54% 45% 51%; opacity:0; transform:scale(.75) rotate(-12deg); transition:.36s cubic-bezier(.22,1,.36,1); }
-.state-home .home-ring { opacity:1; transform:scale(1) rotate(2deg); }
+.home-link { position:relative; flex:0 0 40px; width:40px; height:40px; margin-bottom:4px; overflow:hidden; }
+.home-link>img { position:absolute; display:block; object-fit:contain; pointer-events:none; }
+.home-default { left:50%; top:50%; width:19.372px; height:8.776px; transform:translate(-50%,-50%); filter:var(--asset-filter); opacity:1; transition:opacity .12s ease; }
+.home-hover { inset:0; width:40px; height:40px; object-position:center; mix-blend-mode:multiply; opacity:0; transform:scale(.82); transition:opacity .12s ease,transform .38s cubic-bezier(.22,1,.36,1); }
+.state-home .home-default { opacity:0; }
+.state-home .home-hover { opacity:1; transform:scale(1); }
+:root[data-theme="dark"] .home-hover { filter:invert(1); mix-blend-mode:screen; }
 .nav-zone { position:relative; width:116px; height:148px; padding:4px 8px; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; overflow:visible; }
 .nav-reveal { position:absolute; top:0; left:7px; width:102px; height:72px; display:grid; place-items:center; opacity:0; transform:translateY(15px) scale(.84); transition:opacity .18s,transform .42s cubic-bezier(.22,1,.36,1); pointer-events:none; }
 .nav-zone:hover .nav-reveal { opacity:1; transform:none; }
