@@ -11,7 +11,7 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .site-header { position:absolute; z-index:100; top:48px; left:150px; right:138px; height:148px; display:flex; align-items:flex-end; justify-content:space-between; pointer-events:none; will-change:transform; }
 .nav-scene,.mode-switcher { pointer-events:auto; }
 .nav-scene { display:flex; gap:12px; align-items:flex-end; height:148px; }
-.home-link { position:relative; flex:0 0 40px; width:40px; height:40px; margin-bottom:4px; overflow:hidden; }
+.home-link { position:relative; flex:0 0 40px; width:40px; height:40px; margin-bottom:-1px; overflow:hidden; }
 .home-link>img { position:absolute; display:block; object-fit:contain; pointer-events:none; }
 .home-default { left:50%; top:50%; width:19.372px; height:8.776px; transform:translate(-50%,-50%); filter:var(--asset-filter); opacity:1; transition:opacity .12s ease; }
 .home-hover { inset:0; width:40px; height:40px; object-position:center; mix-blend-mode:multiply; opacity:0; transform:scale(.82); transition:opacity .12s ease,transform .38s cubic-bezier(.22,1,.36,1); }
