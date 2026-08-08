@@ -91,8 +91,8 @@ function Header({ language, setLanguage, theme, setTheme, onWechat }: { language
         <div className="nav-reveal">
           <img className="nav-illustration" src={item.art} alt=""/>
           {item.id === "connect" && <div className="social-actions">
-            <button type="button" onClick={onWechat}><img src="/assets/icon-wechat.svg" alt=""/><span>{t.wechat}</span></button>
-            <a href="mailto:hello@example.com"><img src="/assets/icon-email.svg" alt=""/><span>{t.email}</span></a>
+            <button type="button" onClick={onWechat}><img className="social-icon social-icon-wechat" src="/assets/icon-wechat.svg" alt=""/><span>{t.wechat}</span></button>
+            <a href="mailto:hello@example.com"><img className="social-icon social-icon-email" src="/assets/icon-email.svg" alt=""/><span>{t.email}</span></a>
           </div>}
         </div>
         <a className="nav-label" href={item.href} onFocus={() => setHovered(item.id)} onClick={item.id === "connect" ? e => e.preventDefault() : undefined}><span className="drawn-ring">{hovered === item.id && <img src={item.id === "about" ? "/assets/connects-circle.svg" : "/assets/projects-circle.svg"} alt=""/>}</span>{item.label}<img className="drawn-underline" src="/assets/projects-underline.svg" alt=""/></a>
