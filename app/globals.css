@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
-:root { --background:#fffdfd; --foreground:#2a2a2a; --surface:#fff; --focus:#196f78; --asset-filter:none; }
+@font-face { font-family:"Swei B2 Sugar CJK SC"; src:url("/fonts/Swei-B2-Sugar-CJK-SC-Regular.woff2") format("woff2"); font-style:normal; font-weight:400; font-display:swap; }
+@font-face { font-family:"Swei B2 Sugar CJK SC"; src:url("/fonts/Swei-B2-Sugar-CJK-SC-Medium.woff2") format("woff2"); font-style:normal; font-weight:500; font-display:swap; }
+@font-face { font-family:"HarmonyOS Sans SC"; src:url("/fonts/HarmonyOS-Sans-SC-Regular.woff2") format("woff2"); font-style:normal; font-weight:400; font-display:swap; }
+
+:root { --background:#fffdfd; --foreground:#2a2a2a; --surface:#fff; --focus:#196f78; --asset-filter:none; --font-display:"Swei B2 Sugar CJK SC","Microsoft YaHei",sans-serif; --font-ui:"HarmonyOS Sans SC","Microsoft YaHei",sans-serif; }
 :root[data-theme="dark"] { --background:#1c1c1d; --foreground:#f4eeee; --surface:#29292b; --asset-filter:invert(1) brightness(1.55); color-scheme:dark; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-body { margin:0; background:var(--background); color:var(--foreground); font-family:"Swei B2 Sugar CJK SC","HarmonyOS Sans SC","Microsoft YaHei",sans-serif; transition:background .35s,color .35s; }
+body { margin:0; background:var(--background); color:var(--foreground); font-family:var(--font-display); font-weight:400; transition:background .35s,color .35s; }
 button,a { color:inherit; font:inherit; } a { text-decoration:none; } button { cursor:pointer; }
 button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px solid var(--focus); outline-offset:4px; }
 .page-shell { position:relative; width:min(100%,1280px); min-height:1658px; margin:auto; padding-inline:150px; }
@@ -28,14 +32,14 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .nav-projects .nav-reveal { left:-2px; width:120px; }
 .nav-projects .nav-illustration { width:72px; height:64px; padding:0; }
 .nav-connect .nav-illustration { display:none; }
-.nav-label { position:relative; width:84px; height:30px; display:grid; place-items:center; font-family:"HYQiHeiY3","Microsoft YaHei",sans-serif; font-size:16px; line-height:1.03; letter-spacing:-.045em; white-space:nowrap; }
+.nav-label { position:relative; width:84px; height:30px; display:grid; place-items:center; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; white-space:nowrap; }
 .drawn-ring { position:absolute; inset:0; opacity:0; transition:opacity .08s; pointer-events:none; }
 .drawn-ring img { position:absolute; left:50%; top:50%; width:104px; height:40px; object-fit:contain; transform:translate(-50%,-50%); filter:var(--asset-filter); }
 .nav-zone:hover .drawn-ring,.state-projects .nav-projects .drawn-ring,.state-connect .nav-connect .drawn-ring,.state-resume .nav-resume .drawn-ring,.state-about .nav-about .drawn-ring { opacity:1; }
 .drawn-underline { position:absolute; left:0; top:29px; width:84px; height:3px; opacity:0; clip-path:inset(0 100% 0 0); transition:clip-path .42s .1s,opacity .08s; filter:var(--asset-filter); }
 .nav-zone:hover .drawn-underline,.state-projects .nav-projects .drawn-underline,.state-connect .nav-connect .drawn-underline,.state-resume .nav-resume .drawn-underline,.state-about .nav-about .drawn-underline { opacity:1; clip-path:inset(0); }
 .social-actions { width:102px; display:grid; gap:3px; }
-.social-actions button,.social-actions a { height:30px; padding:0; border:0; background:transparent; display:flex; justify-content:center; align-items:center; gap:5px; font-size:12px; pointer-events:auto; }
+.social-actions button,.social-actions a { height:30px; padding:0; border:0; background:transparent; display:flex; justify-content:center; align-items:center; gap:5px; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.25; letter-spacing:-.045em; pointer-events:auto; }
 .social-actions img { width:24px; height:24px; filter:var(--asset-filter); }
 .mode-switcher { display:flex; gap:12px; padding:8px 12px; border-radius:100px; box-shadow:0 4px 2px rgba(127,126,126,.25); background:color-mix(in srgb,var(--surface) 78%,transparent); }
 .mode-switcher button { width:30px; height:30px; border:0; padding:0; background:none; }
@@ -43,8 +47,8 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .hero { position:absolute; top:216px; left:150px; width:819px; }
 .hero-title-row { display:flex; align-items:center; gap:24px; }
 .avatar { width:60px; height:60px; border-radius:50%; object-fit:cover; background:#fff; }
-.hero h1 { margin:0; padding:10px; font-size:50px; font-weight:300; line-height:1.2; letter-spacing:-.045em; white-space:nowrap; }
-.hero p { margin:8px 0 0; width:819px; min-height:108px; font-size:24px; font-weight:500; line-height:1.52; letter-spacing:-.045em; }
+.hero h1 { margin:0; padding:10px; font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; white-space:nowrap; }
+.hero p { margin:8px 0 0; width:819px; min-height:108px; font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; }
 .portfolio-stage { position:absolute; top:465px; left:224px; width:906px; height:854px; }
 .canvas { position:sticky; top:108px; width:100%; height:854px; overflow:visible; touch-action:pan-y; }
 .card-scroll-wrapper { position:absolute; left:var(--x); top:var(--y); width:var(--w); z-index:var(--order); will-change:transform,opacity; }
@@ -52,7 +56,7 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .draggable-card[data-dragging="true"] { cursor:grabbing; filter:drop-shadow(0 15px 16px rgba(0,0,0,.2)); }
 .draggable-card img { display:block; width:100%; border-radius:12px; pointer-events:none; }
 .decorative-card img { border-radius:0; }
-footer { position:absolute; top:1482px; left:150px; width:980px; height:176px; padding-bottom:128px; display:flex; align-items:flex-start; justify-content:space-between; font-family:"HarmonyOS Sans SC",sans-serif; font-size:16px; line-height:1.03; letter-spacing:-.045em; }
+footer { position:absolute; top:1482px; left:150px; width:980px; height:176px; padding-bottom:128px; display:flex; align-items:flex-start; justify-content:space-between; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; }
 footer p { margin:16px 0 0; }
 .back-top { width:48px; height:48px; border:0; padding:0; background:none; }
 .back-top img { width:34px; height:48px; transform:rotate(180deg); filter:var(--asset-filter); }
