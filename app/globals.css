@@ -61,7 +61,7 @@ footer p { margin:16px 0 0; }
 .qr-placeholder span { display:grid; place-items:center; width:62px; height:62px; background:#fff; color:#222; border-radius:12px; font-weight:800; }
 .qr-modal h2 { margin:20px 0 6px; } .qr-modal p { margin:0; }
 .placeholder-page { min-height:100vh; padding:12vw; background:var(--background); color:var(--foreground); }
-@media (max-width:900px) {
+@media (max-width:600px) {
   .page-shell { min-height:auto; padding:0 24px; }
   .site-header { position:fixed; top:0; left:0; right:0; height:78px; padding:14px 24px; align-items:center; background:color-mix(in srgb,var(--background) 88%,transparent); backdrop-filter:blur(10px); }
   .nav-scene { height:auto; gap:2px; } .home-zone { height:44px; } .nav-zone { width:auto; height:44px; padding:0 7px; } .nav-reveal { display:none; } .nav-label { width:auto; font-size:13px; } .drawn-ring,.drawn-underline { display:none; }
