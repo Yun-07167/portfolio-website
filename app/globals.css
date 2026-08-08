@@ -38,11 +38,14 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .nav-zone:hover .drawn-ring,.state-projects .nav-projects .drawn-ring,.state-connect .nav-connect .drawn-ring,.state-resume .nav-resume .drawn-ring,.state-about .nav-about .drawn-ring { opacity:1; }
 .drawn-underline { position:absolute; left:0; top:29px; width:84px; height:3px; opacity:0; clip-path:inset(0 100% 0 0); transition:clip-path .42s .1s,opacity .08s; filter:var(--asset-filter); }
 .nav-zone:hover .drawn-underline,.state-projects .nav-projects .drawn-underline,.state-connect .nav-connect .drawn-underline,.state-resume .nav-resume .drawn-underline,.state-about .nav-about .drawn-underline { opacity:1; clip-path:inset(0); }
-.social-actions { width:102px; display:grid; gap:3px; }
-.social-actions button,.social-actions a { height:30px; padding:0; border:0; background:transparent; display:flex; justify-content:center; align-items:center; gap:5px; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.25; letter-spacing:-.045em; pointer-events:auto; }
-.social-actions .social-icon { display:block; width:auto; height:auto; object-fit:contain; flex:none; filter:var(--asset-filter); }
-.social-actions .social-icon-wechat { width:28px; height:24px; }
-.social-actions .social-icon-email { width:26px; height:20px; margin-inline:1px; }
+.social-actions { width:30px; display:grid; gap:3px; }
+.social-action { position:relative; width:30px; height:30px; padding:0; border:0; background:transparent; display:block; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; pointer-events:auto; overflow:visible; }
+.social-icon-frame { width:30px; height:30px; display:grid; place-items:center; }
+.social-actions .social-icon { display:block; object-fit:contain; flex:none; filter:var(--asset-filter); }
+.social-actions .social-icon-wechat { width:26.5px; height:22.32px; }
+.social-actions .social-icon-email { width:22px; height:16px; }
+.social-label { position:absolute; left:34px; top:50%; width:max-content; opacity:0; visibility:hidden; transform:translate(-4px,-50%); transition:opacity .16s ease,transform .3s cubic-bezier(.22,1,.36,1),visibility 0s .3s; pointer-events:none; }
+.social-action:hover .social-label,.social-action:focus-visible .social-label { opacity:1; visibility:visible; transform:translate(0,-50%); transition-delay:0s; }
 .mode-switcher { display:flex; gap:12px; padding:8px 12px; border-radius:100px; box-shadow:0 4px 2px rgba(127,126,126,.25); background:color-mix(in srgb,var(--surface) 78%,transparent); }
 .mode-switcher button { width:30px; height:30px; border:0; padding:0; background:none; }
 .mode-switcher img { width:100%; height:100%; filter:var(--asset-filter); }
