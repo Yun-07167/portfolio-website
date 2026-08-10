@@ -3,6 +3,7 @@ locale: "zh-CN"
 
 navigation:
   works: "我的作品"
+  notes: "笔记"
   contact: "联系我"
   resume: "查看简历"
   about: "关于我"
@@ -26,4 +27,3 @@ contact_options:
 footer:
   copyright: "© 杨天韵 2026"
 ---
-

@@ -1,40 +1,13 @@
 ---
 locale: "zh-CN"
 
-projects:
-  - id: "project-01"
-    title: "[填写项目名称]"
-    description: |
-      [填写项目简介。]
-    cover: "[填写项目封面素材路径]"
-    href: "[填写项目详情页或外部链接]"
-
-  - id: "project-02"
-    title: "[填写项目名称]"
-    description: |
-      [填写项目简介。]
-    cover: "[填写项目封面素材路径]"
-    href: "[填写项目详情页或外部链接]"
-
-  - id: "project-03"
-    title: "[填写项目名称]"
-    description: |
-      [填写项目简介。]
-    cover: "[填写项目封面素材路径]"
-    href: "[填写项目详情页或外部链接]"
-
-  - id: "project-04"
-    title: "[填写项目名称]"
-    description: |
-      [填写项目简介。]
-    cover: "[填写项目封面素材路径]"
-    href: "[填写项目详情页或外部链接]"
-
-  - id: "project-05"
-    title: "[填写项目名称]"
-    description: |
-      [填写项目简介。]
-    cover: "[填写项目封面素材路径]"
-    href: "[填写项目详情页或外部链接]"
+# Works 页面只维护项目顺序。
+# 卡片标题、简介和封面由对应的项目详情 Markdown 自动提供。
+project_order:
+  - "project-01"
+  - "project-02"
+  - "project-03"
+  - "project-04"
+  - "project-05"
 ---
 

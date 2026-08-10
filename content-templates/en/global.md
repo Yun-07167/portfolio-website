@@ -3,6 +3,7 @@ locale: "en"
 
 navigation:
   works: "Projects"
+  notes: "Notes"
   contact: "Contact"
   resume: "Resume"
   about: "About"
@@ -26,4 +27,3 @@ contact_options:
 footer:
   copyright: "© Tianyun Yang 2026. All rights reserved."
 ---
-
