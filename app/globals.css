@@ -4,8 +4,8 @@
 @font-face { font-family:"Swei B2 Sugar CJK SC"; src:url("/fonts/Swei-B2-Sugar-CJK-SC-Medium.woff2") format("woff2"); font-style:normal; font-weight:500; font-display:swap; }
 @font-face { font-family:"HarmonyOS Sans SC"; src:url("/fonts/HarmonyOS-Sans-SC-Regular.woff2") format("woff2"); font-style:normal; font-weight:400; font-display:swap; }
 
-:root { --background:#fffdfd; --foreground:#2a2a2a; --surface:#fff; --focus:#196f78; --asset-filter:none; --mode-icon-filter:none; --mode-icon-hover-filter:brightness(2.024); --nav-text:#2a2a2a; --nav-hover:#555; --font-display:"Swei B2 Sugar CJK SC","Microsoft YaHei",sans-serif; --font-ui:"HarmonyOS Sans SC","Microsoft YaHei",sans-serif; }
-:root[data-theme="dark"] { --background:#1c1c1d; --foreground:#f4eeee; --surface:#29292b; --asset-filter:invert(1) brightness(1.55); --mode-icon-filter:invert(1) brightness(1.145); --mode-icon-hover-filter:invert(1) brightness(.93); --nav-text:#f4eeee; --nav-hover:color-mix(in srgb,#f4eeee 78%,#1c1c1d); color-scheme:dark; }
+:root { --background:#fffdfd; --foreground:#2a2a2a; --surface:#fff; --focus:#196f78; --neutral-700:#555555; --asset-filter:none; --mode-icon-filter:none; --mode-icon-hover-filter:brightness(2.02381); --nav-text:#2a2a2a; --nav-hover:var(--neutral-700); --font-display:"Swei B2 Sugar CJK SC","Microsoft YaHei",sans-serif; --font-ui:"HarmonyOS Sans SC","Microsoft YaHei",sans-serif; }
+:root[data-theme="dark"] { --background:#1c1c1d; --foreground:#f4eeee; --surface:#29292b; --asset-filter:invert(1) brightness(1.55); --mode-icon-filter:invert(1) brightness(1.145); --mode-icon-hover-filter:brightness(2.02381); --nav-text:#f4eeee; --nav-hover:color-mix(in srgb,#f4eeee 78%,#1c1c1d); color-scheme:dark; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; background:var(--background); color:var(--foreground); font-family:var(--font-display); font-weight:400; transition:background .35s,color .35s; }
