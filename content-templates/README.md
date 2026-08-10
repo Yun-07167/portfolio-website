@@ -1,5 +1,7 @@
 # 网站内容模板使用说明
 
+网站实际读取 `content/zh` 与 `content/en` 中的 Markdown。本目录 `content-templates/` 只用于复制新页面、Project 或 Note 的结构，不会直接显示在网站上。
+
 这套模板根据 Figma 文件 `PortfolioWebsite` 中 `theSite` 页面现有的四个 Desktop 界面整理：
 
 1. Home
@@ -54,6 +56,8 @@ content/
 - 可重复内容可以复制整个 `- id: ...` 区块进行增加。
 - 删除可重复内容时，删除完整区块，不要只删除其中一个字段。
 - `href` 和 `icon` 不作为文字显示，但决定按钮跳转和图标素材。
+- Contact 中 `action: dialog` 会打开弹层，`href: null` 不会显示；`dialog_image` 填入二维码路径后才会显示图片。
+- Contact 中 `action: link` 会使用 `href` 执行跳转。邮箱使用 `mailto:邮箱地址`，访客点击后由系统打开默认邮件应用。
 - 中英文内容不互相回退。若英文内容缺失，构建应报错，避免网站出现中英混排。
 
 ## 模板入口

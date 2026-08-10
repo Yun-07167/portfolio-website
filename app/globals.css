@@ -27,7 +27,7 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 :root[data-theme="dark"] .home-hover img { filter:invert(1); mix-blend-mode:screen; }
 .nav-zone { position:relative; width:116px; height:148px; padding:4px 8px; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; overflow:visible; }
 .nav-reveal { position:absolute; top:42px; left:7px; z-index:2; width:102px; height:64px; display:grid; place-items:center; opacity:0; visibility:hidden; transform:translateY(12px) scale(.86); transition:opacity .18s,transform .42s cubic-bezier(.22,1,.36,1),visibility 0s .42s; pointer-events:none; }
-.nav-zone:hover .nav-reveal,.state-projects .nav-projects .nav-reveal,.state-connect .nav-connect .nav-reveal,.state-resume .nav-resume .nav-reveal,.state-about .nav-about .nav-reveal { opacity:1; visibility:visible; transform:none; transition-delay:0s; }
+.nav-zone:hover .nav-reveal,.state-projects .nav-projects .nav-reveal,.state-notes .nav-notes .nav-reveal,.state-connect .nav-connect .nav-reveal,.state-resume .nav-resume .nav-reveal,.state-about .nav-about .nav-reveal { opacity:1; visibility:visible; transform:none; transition-delay:0s; }
 .nav-connect:hover .nav-reveal,.state-connect .nav-connect .nav-reveal { pointer-events:auto; }
 .nav-illustration { display:block; width:60px; height:60px; padding:2px; object-fit:contain; overflow:visible; filter:var(--asset-filter); }
 .nav-projects .nav-reveal { left:-2px; width:120px; }
@@ -35,12 +35,14 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .nav-connect .nav-illustration { display:none; }
 .nav-about .nav-reveal { top:44px; }
 .nav-about .nav-illustration { width:88px; height:56px; padding:0; }
+.nav-notes .nav-reveal { top:44px; }
+.nav-notes .nav-illustration { width:88px; height:56px; padding:0; }
 .nav-label { position:relative; width:84px; height:30px; display:grid; place-items:center; color:var(--nav-text); font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; white-space:nowrap; transition:color .18s ease; }
-.nav-zone:hover .nav-label,.nav-label:focus-visible,.state-projects .nav-projects .nav-label,.state-connect .nav-connect .nav-label,.state-resume .nav-resume .nav-label,.state-about .nav-about .nav-label { color:var(--nav-hover); }
+.nav-zone:hover .nav-label,.nav-label:focus-visible,.state-projects .nav-projects .nav-label,.state-notes .nav-notes .nav-label,.state-connect .nav-connect .nav-label,.state-resume .nav-resume .nav-label,.state-about .nav-about .nav-label { color:var(--nav-hover); }
 .drawn-ring { position:absolute; inset:0; opacity:0; transition:opacity .08s; pointer-events:none; }
 .drawn-ring img { position:absolute; left:50%; top:50%; width:104px; height:40px; object-fit:contain; transform:translate(-50%,-50%); filter:var(--asset-filter); }
 .nav-about .drawn-ring img { width:104px; height:43px; }
-.nav-zone:hover .drawn-ring,.state-projects .nav-projects .drawn-ring,.state-connect .nav-connect .drawn-ring,.state-resume .nav-resume .drawn-ring,.state-about .nav-about .drawn-ring { opacity:1; }
+.nav-zone:hover .drawn-ring,.state-projects .nav-projects .drawn-ring,.state-notes .nav-notes .drawn-ring,.state-connect .nav-connect .drawn-ring,.state-resume .nav-resume .drawn-ring,.state-about .nav-about .drawn-ring { opacity:1; }
 .social-actions { width:102px; display:grid; gap:3px; }
 .social-action { position:relative; width:102px; height:30px; padding:0; border:0; background:transparent; display:flex; justify-content:center; align-items:center; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; pointer-events:auto; overflow:visible; }
 .social-icon-frame { flex:0 0 30px; width:30px; height:30px; display:grid; place-items:center; }
@@ -86,10 +88,19 @@ footer p { margin:16px 0 0; }
 .modal-backdrop { position:fixed; inset:0; z-index:300; display:grid; place-items:center; background:rgba(10,10,10,.56); backdrop-filter:blur(8px); }
 .qr-modal { position:relative; width:360px; padding:32px; border-radius:24px; background:var(--surface); text-align:center; }
 .modal-close { position:absolute; top:10px; right:14px; border:0; background:none; font-size:30px; }
-.qr-placeholder { width:190px; aspect-ratio:1; margin:auto; display:grid; place-items:center; background:repeating-conic-gradient(#222 0 25%,#fff 0 50%) 0 0/18px 18px; border:12px solid #fff; }
-.qr-placeholder span { display:grid; place-items:center; width:62px; height:62px; background:#fff; color:#222; border-radius:12px; font-weight:800; }
+.qr-image { display:block; width:190px; height:190px; margin:auto; object-fit:contain; }
+.qr-missing { width:190px; aspect-ratio:1; margin:auto; display:grid; place-items:center; border:2px dashed var(--neutral-700); border-radius:16px; color:var(--neutral-700); font-family:var(--font-ui); font-size:30px; letter-spacing:.08em; }
 .qr-modal h2 { margin:20px 0 6px; } .qr-modal p { margin:0; }
 .placeholder-page { min-height:100vh; padding:12vw; background:var(--background); color:var(--foreground); }
+.notes-placeholder-page { min-height:100vh; max-width:1280px; margin:auto; padding:48px 150px; background:var(--background); color:var(--foreground); }
+.notes-placeholder-header { height:148px; display:flex; align-items:flex-end; gap:32px; font-family:var(--font-ui); font-size:16px; }
+.notes-placeholder-header > a { width:40px; height:40px; display:grid; place-items:center; }
+.notes-placeholder-header > a img { width:24px; height:auto; filter:var(--asset-filter); }
+.notes-placeholder-header nav { display:flex; gap:28px; padding-bottom:11px; }
+.notes-placeholder-header button { width:40px; height:40px; margin-left:auto; border:0; background:transparent; font-family:var(--font-ui); }
+.notes-placeholder-page section { margin-top:20px; }
+.notes-placeholder-page h1 { margin:0; font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
+.notes-placeholder-page section p { margin:8px 0 0; color:var(--neutral-700); font-size:24px; line-height:1.52; letter-spacing:-.045em; }
 @media (max-width:600px) {
   .page-shell { min-height:auto; padding:0 24px; }
   .site-header { position:fixed; top:0; left:0; right:0; height:78px; padding:14px 24px; align-items:center; background:color-mix(in srgb,var(--background) 88%,transparent); backdrop-filter:blur(10px); }

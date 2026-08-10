@@ -22,12 +22,12 @@ contact_options:
     href: null
     icon: "/assets/icon-wechat.svg"
     dialog_title: "微信联系"
-    dialog_body: "[填写二维码弹层中的说明文字]"
+    dialog_body: "微信二维码尚未配置。添加二维码素材后，只需在本文件中填写 dialog_image。"
     dialog_image: null
   - id: "email"
     label: "邮箱"
     action: "link"
-    href: "mailto:[填写邮箱地址]"
+    href: "mailto:yangtianyun7@foxmail.com"
     icon: "/assets/icon-email.svg"
     dialog_title: null
     dialog_body: null

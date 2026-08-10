@@ -4,14 +4,14 @@ locale: "en"
 navigation:
   works: "Projects"
   notes: "Notes"
-  contact: "Contact"
+  contact: "Connect"
   resume: "Resume"
-  about: "About"
+  about: "About me"
 
 controls:
   home_label: "Home"
   switch_to_other_language: "Switch to Chinese"
-  switch_theme: "Switch light or dark mode"
+  switch_theme: "Toggle light or dark mode"
   back_to_top: "Back to top"
   close_dialog: "Close"
 
@@ -22,12 +22,12 @@ contact_options:
     href: null
     icon: "/assets/icon-wechat.svg"
     dialog_title: "Contact me on WeChat"
-    dialog_body: "[Add the message displayed in the QR-code dialog]"
+    dialog_body: "The WeChat QR code has not been added yet. Once the image is ready, only dialog_image in this file needs to be updated."
     dialog_image: null
   - id: "email"
     label: "Email"
     action: "link"
-    href: "mailto:[Add email address]"
+    href: "mailto:yangtianyun7@foxmail.com"
     icon: "/assets/icon-email.svg"
     dialog_title: null
     dialog_body: null

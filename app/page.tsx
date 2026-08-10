@@ -3,25 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { siteContent } from "./generated-content";
 
 type Language = "zh" | "en";
-type NavId = "home" | "projects" | "connect" | "resume" | "about";
+type NavId = "home" | "projects" | "notes" | "connect" | "resume" | "about";
 type Card = { id: string; src: string; alt: string; x: number; y: number; w: number; rot: number; decorative?: boolean };
-
-const copy = {
-  zh: {
-    projects: "我的作品", connect: "联系我", resume: "查看简历", about: "关于我",
-    greeting: "你好，我叫杨天韵",
-    intro: "我是一名游戏交互设计师。拥有完整的独立游戏落地UI和交互设计经验，同时也拥有本地化游戏运营视角。具备出海手游UI设计经验，熟悉Figma和Unity UGUI.",
-    email: "邮件联系", wechat: "微信", backTop: "返回顶部", switchLanguage: "切换至英文", switchTheme: "切换明暗模式",
-  },
-  en: {
-    projects: "Projects", connect: "Connect", resume: "Resume", about: "About me",
-    greeting: "Hi, I’m Tianyun Yang",
-    intro: "I’m a game interaction designer with end-to-end UI and interaction experience, a localization operations perspective, and hands-on knowledge of Figma and Unity UGUI.",
-    email: "Email", wechat: "WeChat", backTop: "Back to top", switchLanguage: "切换至中文", switchTheme: "Toggle light or dark mode",
-  },
-} as const;
+type LocaleContent = (typeof siteContent)[Language];
+type ContactOption = LocaleContent["global"]["contact_options"][number];
 
 const cards: Card[] = [
   { id: "skill", src: "/assets/raw/raw-13.png", alt: "游戏技能界面设计", x: 7, y: 3, w: 31, rot: -8.6 },
@@ -70,19 +58,20 @@ function DraggableCard({ card, order }: { card: Card; order: number }) {
   </div>;
 }
 
-function Header({ language, setLanguage, theme, setTheme, onWechat }: { language: Language; setLanguage: (v: Language) => void; theme: "light" | "dark"; setTheme: (v: "light" | "dark") => void; onWechat: () => void }) {
+function Header({ language, setLanguage, theme, setTheme, content, onDialog }: { language: Language; setLanguage: (v: Language) => void; theme: "light" | "dark"; setTheme: (v: "light" | "dark") => void; content: LocaleContent; onDialog: (option: ContactOption) => void }) {
   const [hovered, setHovered] = useState<NavId | null>(null);
-  const t = copy[language];
+  const t = content.global;
   const nav = [
-    { id: "projects" as const, label: t.projects, href: "/work", art: "/assets/projects-illustration.svg" },
-    { id: "connect" as const, label: t.connect, href: "#contact", art: "/assets/icon-wechat.svg" },
-    { id: "resume" as const, label: t.resume, href: "/resume", art: "/assets/resume-illustration.svg" },
-    { id: "about" as const, label: t.about, href: "/about", art: "/assets/about-illustration.svg" },
+    { id: "projects" as const, label: t.navigation.works, href: "/work", art: "/assets/projects-illustration.svg" },
+    { id: "notes" as const, label: t.navigation.notes, href: "/notes", art: "/assets/about-illustration.svg" },
+    { id: "connect" as const, label: t.navigation.contact, href: "#contact", art: "/assets/icon-wechat.svg" },
+    { id: "resume" as const, label: t.navigation.resume, href: "/resume", art: "/assets/resume-illustration.svg" },
+    { id: "about" as const, label: t.navigation.about, href: "/about", art: "/assets/about-illustration.svg" },
   ];
   return <header className={`site-header state-${hovered ?? "default"}`} onMouseLeave={() => setHovered(null)}>
-    <nav className="nav-scene" aria-label="主导航">
+    <nav className="nav-scene" aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
       <div className="home-zone" onMouseEnter={() => setHovered("home")}>
-        <a className="home-link" href="/" aria-current="page" aria-label="首页">
+        <a className="home-link" href="/" aria-current="page" aria-label={t.controls.home_label}>
           <span className="home-default"><img src="/assets/home-face.svg" alt=""/></span>
           <span className="home-hover"><img src="/assets/home-hover.png" alt=""/></span>
         </a>
@@ -91,26 +80,27 @@ function Header({ language, setLanguage, theme, setTheme, onWechat }: { language
         <div className="nav-reveal">
           <img className="nav-illustration" src={item.art} alt=""/>
           {item.id === "connect" && <div className="social-actions">
-            <button className="social-action" type="button" onClick={onWechat} aria-label={t.wechat}>
-              <span className="social-icon-frame"><img className="social-icon social-icon-wechat" src="/assets/icon-wechat.svg" alt=""/></span>
-              <span className="social-label" aria-hidden="true">{t.wechat}</span>
-            </button>
-            <a className="social-action" href="mailto:hello@example.com" aria-label={t.email}>
-              <span className="social-icon-frame"><img className="social-icon social-icon-email" src="/assets/icon-email.svg" alt=""/></span>
-              <span className="social-label" aria-hidden="true">{t.email}</span>
-            </a>
+            {t.contact_options.map(option => option.action === "dialog" ?
+              <button className="social-action" type="button" key={option.id} onClick={() => onDialog(option)} aria-label={option.label}>
+                <span className="social-icon-frame"><img className={`social-icon social-icon-${option.id}`} src={option.icon} alt=""/></span>
+                <span className="social-label" aria-hidden="true">{option.label}</span>
+              </button> :
+              <a className="social-action" key={option.id} href={option.href ?? undefined} aria-label={option.label}>
+                <span className="social-icon-frame"><img className={`social-icon social-icon-${option.id}`} src={option.icon} alt=""/></span>
+                <span className="social-label" aria-hidden="true">{option.label}</span>
+              </a>)}
           </div>}
         </div>
         <a className="nav-label" href={item.href} onFocus={() => setHovered(item.id)} onClick={item.id === "connect" ? e => e.preventDefault() : undefined}><span className="drawn-ring">{hovered === item.id && <img src={item.id === "about" ? "/assets/connects-circle.svg" : "/assets/projects-circle.svg"} alt=""/>}</span>{item.label}</a>
       </div>)}
     </nav>
     <div className="mode-switcher">
-      <button className="mode-language" type="button" onClick={() => setLanguage(language === "zh" ? "en" : "zh")} aria-label={t.switchLanguage}>
+      <button className="mode-language" type="button" onClick={() => setLanguage(language === "zh" ? "en" : "zh")} aria-label={t.controls.switch_to_other_language}>
         {language === "zh"
           ? <span className="switch-icon-language-en"><img src="/assets/icon-language-en.svg" alt=""/></span>
           : <span className="switch-icon-language-sc"><img src="/assets/icon-language-sc.svg" alt=""/></span>}
       </button>
-      <button className="mode-theme" type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.switchTheme}>
+      <button className="mode-theme" type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.controls.switch_theme}>
         {theme === "light"
           ? <span className="switch-icon-theme-moon"><img src="/assets/icon-theme-moon.svg" alt=""/></span>
           : <span className="switch-icon-theme-sun"><img src="/assets/icon-theme-sun.svg" alt=""/></span>}
@@ -122,9 +112,9 @@ function Header({ language, setLanguage, theme, setTheme, onWechat }: { language
 export default function Home() {
   const [language, setLanguage] = useState<Language>("zh");
   const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [qrOpen, setQrOpen] = useState(false);
+  const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
   const stage = useRef<HTMLElement>(null);
-  const t = copy[language];
+  const content = siteContent[language];
   useEffect(() => { document.documentElement.dataset.theme = theme; document.documentElement.lang = language === "zh" ? "zh-CN" : "en"; }, [theme, language]);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -140,11 +130,11 @@ export default function Home() {
   }, []);
   return <main>
     <div className="page-shell">
-      <Header language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} onWechat={() => setQrOpen(true)}/>
-      <section className="hero" aria-labelledby="home-title"><div className="hero-title-row"><span className="avatar" role="img" aria-label="杨天韵的头像" tabIndex={0}><span className="avatar-art"><img className="avatar-base" src="/assets/avatar.png" alt=""/><span className="avatar-hover-layer"><img src="/assets/avatar-hover.png" alt=""/></span></span></span><h1 id="home-title">{t.greeting}</h1></div><p>{t.intro}</p></section>
+      <Header language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption}/>
+      <section className="hero" aria-labelledby="home-title"><div className="hero-title-row"><span className="avatar" role="img" aria-label={language === "zh" ? "杨天韵的头像" : "Portrait of Tianyun Yang"} tabIndex={0}><span className="avatar-art"><img className="avatar-base" src="/assets/avatar.png" alt=""/><span className="avatar-hover-layer"><img src="/assets/avatar-hover.png" alt=""/></span></span></span><h1 id="home-title">{content.home.hero_title}</h1></div><p>{content.home.short_description}</p></section>
       <section className="portfolio-stage" ref={stage} aria-label="可拖拽作品画布"><div className="canvas">{cards.map((card, i) => <DraggableCard key={card.id} card={card} order={i + 1}/>)}</div></section>
-      <footer><p>© 杨天韵 2026</p><button type="button" className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={t.backTop}><img src="/assets/arrow.svg" alt=""/></button></footer>
+      <footer><p>{content.global.footer.copyright}</p><button type="button" className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={content.global.controls.back_to_top}><img src="/assets/arrow.svg" alt=""/></button></footer>
     </div>
-    {qrOpen && <div className="modal-backdrop" onMouseDown={() => setQrOpen(false)}><section className="qr-modal" role="dialog" aria-modal="true" onMouseDown={e => e.stopPropagation()}><button className="modal-close" onClick={() => setQrOpen(false)}>×</button><div className="qr-placeholder"><span>YY</span></div><h2>微信二维码</h2><p>请在这里替换正式二维码</p></section></div>}
+    {dialogOption && <div className="modal-backdrop" onMouseDown={() => setDialogOption(null)}><section className="qr-modal" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title" onMouseDown={e => e.stopPropagation()}><button className="modal-close" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}>×</button>{dialogOption.dialog_image ? <img className="qr-image" src={dialogOption.dialog_image} alt={dialogOption.dialog_title}/> : <div className="qr-missing" aria-hidden="true">QR</div>}<h2 id="contact-dialog-title">{dialogOption.dialog_title}</h2><p>{dialogOption.dialog_body}</p></section></div>}
   </main>;
 }
