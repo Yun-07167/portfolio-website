@@ -39,6 +39,7 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .nav-zone:hover .nav-label,.nav-label:focus-visible,.state-projects .nav-projects .nav-label,.state-connect .nav-connect .nav-label,.state-resume .nav-resume .nav-label,.state-about .nav-about .nav-label { color:var(--nav-hover); }
 .drawn-ring { position:absolute; inset:0; opacity:0; transition:opacity .08s; pointer-events:none; }
 .drawn-ring img { position:absolute; left:50%; top:50%; width:104px; height:40px; object-fit:contain; transform:translate(-50%,-50%); filter:var(--asset-filter); }
+.nav-about .drawn-ring img { width:104px; height:43px; }
 .nav-zone:hover .drawn-ring,.state-projects .nav-projects .drawn-ring,.state-connect .nav-connect .drawn-ring,.state-resume .nav-resume .drawn-ring,.state-about .nav-about .drawn-ring { opacity:1; }
 .social-actions { width:102px; display:grid; gap:3px; }
 .social-action { position:relative; width:102px; height:30px; padding:0; border:0; background:transparent; display:flex; justify-content:center; align-items:center; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; pointer-events:auto; overflow:visible; }
