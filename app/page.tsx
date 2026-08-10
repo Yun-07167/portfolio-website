@@ -105,8 +105,16 @@ function Header({ language, setLanguage, theme, setTheme, onWechat }: { language
       </div>)}
     </nav>
     <div className="mode-switcher">
-      <button className="mode-language" type="button" onClick={() => setLanguage(language === "zh" ? "en" : "zh")} aria-label={t.switchLanguage}><img src="/assets/icon-language.svg" alt=""/></button>
-      <button className="mode-theme" type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.switchTheme}><img src="/assets/icon-light.svg" alt=""/></button>
+      <button className="mode-language" type="button" onClick={() => setLanguage(language === "zh" ? "en" : "zh")} aria-label={t.switchLanguage}>
+        {language === "zh"
+          ? <span className="switch-icon-language-en"><img src="/assets/icon-language-en.svg" alt=""/></span>
+          : <span className="switch-icon-language-sc"><img src="/assets/icon-language-sc.svg" alt=""/></span>}
+      </button>
+      <button className="mode-theme" type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.switchTheme}>
+        {theme === "light"
+          ? <span className="switch-icon-theme-moon"><img src="/assets/icon-theme-moon.svg" alt=""/></span>
+          : <span className="switch-icon-theme-sun"><img src="/assets/icon-theme-sun.svg" alt=""/></span>}
+      </button>
     </div>
   </header>;
 }

@@ -53,8 +53,15 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .mode-switcher button { width:30px; height:30px; border:0; padding:0; background:none; display:grid; place-items:center; }
 .mode-switcher img { display:block; object-fit:contain; filter:var(--mode-icon-filter); transition:filter .18s ease; }
 .mode-switcher button:hover img,.mode-switcher button:focus-visible img { filter:var(--mode-icon-hover-filter); }
-.mode-language img { width:17.371px; height:17.184px; }
-.mode-theme img { width:30px; height:30px; }
+.switch-icon-language-sc,.switch-icon-language-en,.switch-icon-theme-moon,.switch-icon-theme-sun { position:relative; display:block; overflow:visible; }
+.switch-icon-language-sc { width:17.371px; height:17.184px; }
+.switch-icon-language-sc img { position:absolute; left:-1.296px; top:-1.481px; width:20.175px; height:20.192px; max-width:none; }
+.switch-icon-language-en { width:20.771px; height:14.598px; }
+.switch-icon-language-en img { position:absolute; left:-4px; top:-9px; width:30px; height:30px; max-width:none; }
+.switch-icon-theme-moon { width:19px; height:19px; }
+.switch-icon-theme-moon img { position:absolute; left:-5.5px; top:-5.5px; width:30px; height:30px; max-width:none; }
+.switch-icon-theme-sun { width:21px; height:21px; }
+.switch-icon-theme-sun img { position:absolute; left:-1.487px; top:-1.508px; width:23.995px; height:23.995px; max-width:none; }
 .hero { position:absolute; top:216px; left:150px; width:819px; }
 .hero-title-row { display:flex; align-items:center; gap:24px; }
 .avatar { width:60px; height:60px; border-radius:50%; object-fit:cover; background:#fff; }
@@ -82,7 +89,7 @@ footer p { margin:16px 0 0; }
   .page-shell { min-height:auto; padding:0 24px; }
   .site-header { position:fixed; top:0; left:0; right:0; height:78px; padding:14px 24px; align-items:center; background:color-mix(in srgb,var(--background) 88%,transparent); backdrop-filter:blur(10px); }
   .nav-scene { height:auto; gap:2px; } .home-zone { height:44px; } .nav-zone { width:auto; height:44px; padding:0 7px; } .nav-reveal { display:none; } .nav-label { width:auto; font-size:13px; } .drawn-ring { display:none; }
-  .mode-switcher { gap:4px; padding:5px; } .mode-switcher button { width:26px; height:26px; } .mode-theme img { width:26px; height:26px; }
+  .mode-switcher { gap:4px; padding:5px; } .mode-switcher button { width:26px; height:26px; }
   .hero,.portfolio-stage,footer { position:relative; top:auto; left:auto; width:auto; }
   .hero { padding-top:130px; } .hero h1 { font-size:clamp(30px,7vw,46px); white-space:normal; } .hero p { width:auto; font-size:20px; }
   .portfolio-stage { margin-top:60px; height:auto; } .canvas { position:relative; top:auto; height:auto; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
