@@ -141,7 +141,7 @@ export default function Home() {
   return <main>
     <div className="page-shell">
       <Header language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} onWechat={() => setQrOpen(true)}/>
-      <section className="hero" aria-labelledby="home-title"><div className="hero-title-row"><img className="avatar" src="/assets/avatar.png" alt="杨天韵的头像"/><h1 id="home-title">{t.greeting}</h1></div><p>{t.intro}</p></section>
+      <section className="hero" aria-labelledby="home-title"><div className="hero-title-row"><span className="avatar" role="img" aria-label="杨天韵的头像" tabIndex={0}><span className="avatar-art"><img className="avatar-base" src="/assets/avatar.png" alt=""/><span className="avatar-hover-layer"><img src="/assets/avatar-hover.png" alt=""/></span></span></span><h1 id="home-title">{t.greeting}</h1></div><p>{t.intro}</p></section>
       <section className="portfolio-stage" ref={stage} aria-label="可拖拽作品画布"><div className="canvas">{cards.map((card, i) => <DraggableCard key={card.id} card={card} order={i + 1}/>)}</div></section>
       <footer><p>© 杨天韵 2026</p><button type="button" className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={t.backTop}><img src="/assets/arrow.svg" alt=""/></button></footer>
     </div>
