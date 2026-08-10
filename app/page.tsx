@@ -105,8 +105,8 @@ function Header({ language, setLanguage, theme, setTheme, onWechat }: { language
       </div>)}
     </nav>
     <div className="mode-switcher">
-      <button type="button" onClick={() => setLanguage(language === "zh" ? "en" : "zh")} aria-label={t.switchLanguage}><img src="/assets/icon-language.svg" alt=""/></button>
-      <button type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.switchTheme}><img src="/assets/icon-light.svg" alt=""/></button>
+      <button className="mode-language" type="button" onClick={() => setLanguage(language === "zh" ? "en" : "zh")} aria-label={t.switchLanguage}><img src="/assets/icon-language.svg" alt=""/></button>
+      <button className="mode-theme" type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.switchTheme}><img src="/assets/icon-light.svg" alt=""/></button>
     </div>
   </header>;
 }
