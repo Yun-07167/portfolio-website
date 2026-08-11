@@ -123,35 +123,36 @@ footer p { margin:16px 0 0; }
 .content-page-title { padding-bottom:74px; border-bottom:1px solid color-mix(in srgb,var(--foreground) 22%,transparent); }
 .content-page-title p,.section-index { margin:0 0 16px; color:var(--neutral-600); font-family:var(--font-ui); font-size:15px; letter-spacing:-.03em; }
 .content-page-title h1,.about-section h1 { margin:0; font-size:clamp(52px,7vw,88px); font-weight:500; line-height:1.05; letter-spacing:-.055em; }
-.resume-page { padding-top:168px; color:var(--foreground); }
+.resume-page { padding-top:168px; display:flex; flex-direction:column; gap:24px; color:var(--foreground); }
 .resume-page .content-page-title { padding:12px 0; border:0; }
 .resume-page .content-page-title h1 { margin:0; color:var(--neutral-900); font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
-.resume-section { display:block; padding:0; border:0; }
-.resume-section > h2 { min-height:44px; margin:0; padding:4px; display:flex; align-items:center; gap:4px; color:var(--foreground); font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; }
+.resume-section { display:flex; flex-direction:column; gap:2px; padding:0; border:0; }
+.resume-section > h2 { min-height:44px; margin:0; padding:4px; display:flex; align-items:center; gap:12px; color:var(--foreground); font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; }
 .resume-section > h2::before { content:""; flex:0 0 28px; width:28px; height:28px; border-radius:50%; background:var(--primary-500); }
 .resume-section > p,.resume-section > .resume-entry,.resume-section > .skill-groups { margin-left:10px; margin-right:10px; }
-.resume-entry { padding-bottom:24px; }
+.resume-entry { padding:10px 0; }
 .resume-entry:last-child { padding-bottom:0; }
 .resume-entry-heading { display:flex; justify-content:space-between; gap:30px; align-items:flex-start; }
 .resume-entry h3,.skill-groups h3 { margin:0; font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; }
 .resume-entry time { flex:0 0 auto; color:var(--foreground); font-family:var(--font-display); font-size:24px; line-height:1.52; letter-spacing:-.045em; text-align:right; }
-.resume-entry-body p,.resume-profile p,.resume-gaming p,.skill-groups p { margin:0; font-family:var(--font-display); font-size:24px; line-height:1.52; letter-spacing:-.045em; }
-.resume-entry-body p + p,.resume-profile p + p,.resume-gaming p + p { margin-top:8px; }
+.resume-entry-body p,.resume-profile p,.resume-gaming p,.skill-groups p { margin:0; font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:-.045em; }
+.resume-entry-body p + p,.resume-profile p + p,.resume-gaming p + p { margin-top:10px; }
 .resume-labels { display:flex; flex-wrap:wrap; gap:0; width:max-content; max-width:100%; margin:0; padding:0; list-style:none; }
-.resume-labels li { min-height:36px; padding:0 10px; display:flex; align-items:center; border:0; border-right:1px solid #e0dede; border-radius:0; background:var(--primary-500); color:#2a2a2a; font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; }
+.resume-labels li { min-height:20px; padding:0 10px; display:flex; align-items:center; border:0; border-right:1px solid #e0dede; border-radius:0; background:var(--primary-500); color:#2a2a2a; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.25; letter-spacing:-.045em; }
 .resume-labels li:last-child { border-right:0; }
 .skill-groups { display:grid; gap:0; }
-.skill-groups > div { display:grid; grid-template-columns:160px minmax(0,1fr); gap:0; }
-.skill-groups p { margin:0; }
-.about-page { padding-top:264px; }
-.about-section { padding:0 0 128px; }
-.about-section + .about-section { padding-top:96px; border-top:1px solid color-mix(in srgb,var(--foreground) 22%,transparent); }
-.about-copy { width:min(100%,710px); margin:64px 0 0 auto; }
-.about-copy p { margin:0 0 28px; font-size:21px; line-height:1.82; letter-spacing:-.035em; }
-.about-links { width:min(100%,710px); margin:48px 0 0 auto; display:flex; gap:32px; font-family:var(--font-ui); }
-.about-links a { padding-bottom:6px; border-bottom:1px solid currentColor; }
-.about-links span { margin-left:8px; }
-.subpage-footer { position:static; width:100%; height:176px; padding-bottom:128px; display:flex; align-items:flex-start; justify-content:space-between; }
+.skill-groups > div { display:grid; grid-template-columns:max-content minmax(0,1fr); gap:10px; align-items:center; }
+.skill-groups h3 { padding-right:10px; font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:-.045em; }
+.skill-groups p { margin:0; padding-block:10px; }
+.about-page { padding-top:168px; display:flex; flex-direction:column; gap:48px; }
+.about-section { display:flex; flex-direction:column; gap:24px; padding:0; }
+.about-section + .about-section { padding:0; border:0; }
+.about-section h1 { margin:0; color:var(--foreground); font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
+.about-copy { width:100%; margin:0; }
+.about-copy p { margin:0; color:var(--foreground); font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:-.045em; }
+.about-copy p + p { margin-top:20px; }
+.about-site-illustration { display:block; width:219.119px; height:184.865px; margin-left:auto; object-fit:fill; filter:var(--asset-filter); }
+.subpage-footer { position:static; width:100%; height:176px; margin-top:48px; padding-bottom:128px; display:flex; align-items:flex-start; justify-content:space-between; }
 .subpage-footer button { width:48px; height:48px; border:0; padding:0; background:none; }
 .subpage-footer button img { width:34px; height:48px; transform:rotate(180deg); filter:var(--asset-filter); }
 @media (max-width:800px) {

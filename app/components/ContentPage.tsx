@@ -31,9 +31,9 @@ function Resume({ language }: { language: Language }) {
 
 function About({ language }: { language: Language }) {
   const about = siteContent[language].about;
-  return <div className="content-page about-page">{about.sections.map((section, index) => <section key={section.id} className="about-section">
-    <p className="section-index">0{index + 1}</p><h1>{section.title}</h1><div className="about-copy"><Paragraphs text={section.body}/></div>
-    {section.id === "about-me" && <div className="about-links"><a href="/resume">{about.resume_link_text}<span aria-hidden="true">↗</span></a><a href="mailto:yangtianyun7@foxmail.com">{about.contact_link_text}<span aria-hidden="true">↗</span></a></div>}
+  return <div className="content-page about-page">{about.sections.map(section => <section key={section.id} className="about-section">
+    <h1>{section.title}</h1><div className="about-copy"><Paragraphs text={section.body}/></div>
+    {section.id === "about-site" && <img className="about-site-illustration" src="/assets/about-site-illustration.svg" alt=""/>}
   </section>)}</div>;
 }
 
