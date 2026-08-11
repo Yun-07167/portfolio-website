@@ -162,7 +162,7 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
       <div className="home-zone" onMouseEnter={() => setHovered("home")}>
         <Link className="home-link" href="/" aria-current="page" aria-label={t.controls.home_label}>
           <span className="home-default"><img src="/assets/home-face.svg" alt=""/></span>
-          <span className="home-hover"><img src="/assets/home-hover.png" alt=""/></span>
+          <span className="home-hover"><img src="/assets/home-hover-transparent.png" alt=""/></span>
         </Link>
       </div>
       {nav.map(item => <div className={`nav-zone nav-${item.id}`} key={item.id} onMouseEnter={() => setHovered(item.id)}>
