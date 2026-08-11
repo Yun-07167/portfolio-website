@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import matter from "gray-matter";
+import { loadHomeShowcase } from "./home-showcase-data.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -26,6 +27,7 @@ async function readLocale(locale) {
 const content = {
   zh: await readLocale("zh"),
   en: await readLocale("en"),
+  homeShowcase: await loadHomeShowcase(),
 };
 
 const outputPath = resolve(root, "app/generated-content.ts");

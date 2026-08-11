@@ -13,7 +13,7 @@ type CardLayout = { x: number; y: number; w: number; h: number; rot: number };
 type Card = {
   id: string;
   src: string;
-  alt: string;
+  alt: Record<Language, string>;
   kind: CardKind;
   href?: string;
   initial: CardLayout;
@@ -35,18 +35,27 @@ function getAssembledScale() {
   return Math.min(1, Math.max(MIN_ASSEMBLED_SCALE, (window.innerHeight - STAGE_SAFE_GUTTER * 2) / ASSEMBLED_HEIGHT));
 }
 
-const cards: Card[] = [
-  { id: "map", src: "/assets/raw/raw-01.png", alt: "地图界面重构设计案例", kind: "project", href: "/work?project=undying-map", initial: { x: 377.5, y: 175.7, w: 250.934, h: 145.247, rot: 0 }, assembled: { x: 15.5, y: 0, w: 425, h: 246, rot: -2.2 } },
-  { id: "art", src: "/assets/raw/raw-05.png", alt: "游戏美术作品展示", kind: "project", href: "/work?project=undying-art", initial: { x: 595.542, y: 79.739, w: 269.935, h: 182.617, rot: 9.13 }, assembled: { x: 464.5, y: 133, w: 425, h: 246, rot: 2.1 } },
-  { id: "skill", src: "/assets/raw/raw-13.png", alt: "游戏技能界面设计", kind: "snapshot", initial: { x: 299.5, y: 91.392, w: 277.747, h: 186.317, rot: -8.61 }, assembled: { x: 101.5, y: 270, w: 339, h: 196, rot: 1.2 } },
-  { id: "wireframe", src: "/assets/raw/raw-15.png", alt: "拆解与背包界面线框图", kind: "snapshot", initial: { x: 513.424, y: 233.739, w: 280.13, h: 191.514, rot: 9.9 }, assembled: { x: 101.5, y: 490, w: 339, h: 196, rot: -1.5 } },
-  { id: "illustration", src: "/assets/raw/raw-11.png", alt: "游戏叙事插画", kind: "snapshot", initial: { x: 530.351, y: 171.067, w: 258.308, h: 149.346, rot: 0 }, assembled: { x: 464.5, y: 403, w: 339, h: 196, rot: -1.1 } },
-  { id: "icons", src: "/assets/raw/raw-06.png", alt: "角色头像图标设计", kind: "snapshot", initial: { x: 334.5, y: 276.246, w: 278.086, h: 187.043, rot: -8.78 }, assembled: { x: 464.5, y: 623, w: 339, h: 196, rot: 1.8 } },
-  { id: "shovel", src: "/assets/raw/raw-16.png", alt: "", kind: "decorative", initial: { x: 270.005, y: 330.12, w: 97.628, h: 97.532, rot: 0 }, assembled: { x: 446.5, y: -5, w: 128, h: 128, rot: 2.7 } },
-  { id: "tools", src: "/assets/raw/raw-04.png", alt: "", kind: "decorative", initial: { x: 691.788, y: 414.135, w: 86.95, h: 86.865, rot: 0 }, assembled: { x: 323.5, y: 710, w: 114, h: 114, rot: -2.4 } },
-];
+const slotLayouts: Record<string, { initial: CardLayout; assembled: CardLayout }> = {
+  "featured-left": { initial: { x: 377.5, y: 175.7, w: 250.934, h: 145.247, rot: 0 }, assembled: { x: 15.5, y: 0, w: 425, h: 246, rot: -2.2 } },
+  "featured-right": { initial: { x: 595.542, y: 79.739, w: 269.935, h: 182.617, rot: 9.13 }, assembled: { x: 464.5, y: 133, w: 425, h: 246, rot: 2.1 } },
+  "snapshot-left-01": { initial: { x: 299.5, y: 91.392, w: 277.747, h: 186.317, rot: -8.61 }, assembled: { x: 101.5, y: 270, w: 339, h: 196, rot: 1.2 } },
+  "snapshot-left-02": { initial: { x: 513.424, y: 233.739, w: 280.13, h: 191.514, rot: 9.9 }, assembled: { x: 101.5, y: 490, w: 339, h: 196, rot: -1.5 } },
+  "snapshot-right-01": { initial: { x: 530.351, y: 171.067, w: 258.308, h: 149.346, rot: 0 }, assembled: { x: 464.5, y: 403, w: 339, h: 196, rot: -1.1 } },
+  "snapshot-right-02": { initial: { x: 334.5, y: 276.246, w: 278.086, h: 187.043, rot: -8.78 }, assembled: { x: 464.5, y: 623, w: 339, h: 196, rot: 1.8 } },
+  "decoration-top": { initial: { x: 270.005, y: 330.12, w: 97.628, h: 97.532, rot: 0 }, assembled: { x: 446.5, y: -5, w: 128, h: 128, rot: 2.7 } },
+  "decoration-bottom": { initial: { x: 691.788, y: 414.135, w: 86.95, h: 86.865, rot: 0 }, assembled: { x: 323.5, y: 710, w: 114, h: 114, rot: -2.4 } },
+};
 
-function PortfolioCard({ card, order, phase }: { card: Card; order: number; phase: StagePhase }) {
+const cards: Card[] = siteContent.homeShowcase.items.map(item => ({
+  id: item.id,
+  src: item.image,
+  alt: { zh: item.alt.zh, en: item.alt.en },
+  kind: item.type as CardKind,
+  href: "href" in item ? item.href : undefined,
+  ...slotLayouts[item.slot],
+}));
+
+function PortfolioCard({ card, order, phase, language }: { card: Card; order: number; phase: StagePhase; language: Language }) {
   const dragRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLAnchorElement>(null);
   const offset = useRef({ x: 0, y: 0 });
@@ -111,8 +120,8 @@ function PortfolioCard({ card, order, phase }: { card: Card; order: number; phas
 
   const image = <img src={card.src} alt="" draggable={false} />;
   const media = card.kind === "project"
-    ? <a ref={tiltRef} className="card-media project-card" href={phase === "assembled" ? card.href : undefined} aria-label={card.alt} aria-disabled={phase !== "assembled"} tabIndex={phase === "assembled" ? 0 : -1} onPointerMove={onTiltMove} onPointerLeave={resetTilt} onBlur={resetTilt}>{image}</a>
-    : <div className={`card-media ${card.kind === "decorative" ? "decorative-card" : "snapshot-card"}`} role={card.kind === "snapshot" ? "img" : undefined} aria-label={card.kind === "snapshot" ? card.alt : undefined} aria-hidden={card.kind === "decorative" ? "true" : undefined}>{image}</div>;
+    ? <a ref={tiltRef} className="card-media project-card" href={phase === "assembled" ? card.href : undefined} aria-label={card.alt[language]} aria-disabled={phase !== "assembled"} tabIndex={phase === "assembled" ? 0 : -1} onPointerMove={onTiltMove} onPointerLeave={resetTilt} onBlur={resetTilt}>{image}</a>
+    : <div className={`card-media ${card.kind === "decorative" ? "decorative-card" : "snapshot-card"}`} role={card.kind === "snapshot" ? "img" : undefined} aria-label={card.kind === "snapshot" ? card.alt[language] : undefined} aria-hidden={card.kind === "decorative" ? "true" : undefined}>{image}</div>;
 
   return <div className={`card-layout card-${card.kind}`} data-card={card.id} style={{ left: centeredStageX(card.initial.x), top: card.initial.y, width: card.initial.w, height: card.initial.h, zIndex: order } as React.CSSProperties}>
     <div ref={dragRef} className={`card-drag${canDrag ? " is-draggable" : ""}`} onPointerDown={onPointerDown}>{media}</div>
@@ -227,7 +236,7 @@ export default function Home() {
     <div className="page-shell">
       <Header language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption}/>
       <section className="hero" aria-labelledby="home-title"><div className="hero-title-row"><span className="avatar" role="img" aria-label={language === "zh" ? "杨天韵的头像" : "Portrait of Tianyun Yang"} tabIndex={0}><span className="avatar-art"><img className="avatar-base" src="/assets/avatar.png" alt=""/><span className="avatar-hover-layer"><img src="/assets/avatar-hover.png" alt=""/></span></span></span><h1 id="home-title">{content.home.hero_title}</h1></div><p>{content.home.short_description}</p></section>
-      <section className={`portfolio-stage stage-${stagePhase}`} ref={stage} aria-label={language === "zh" ? "作品展示画布" : "Portfolio canvas"}><div className="canvas">{cards.map((card, i) => <PortfolioCard key={card.id} card={card} order={i + 1} phase={stagePhase}/>)}</div></section>
+      <section className={`portfolio-stage stage-${stagePhase}`} ref={stage} aria-label={language === "zh" ? "作品展示画布" : "Portfolio canvas"}><div className="canvas">{cards.map((card, i) => <PortfolioCard key={card.id} card={card} order={i + 1} phase={stagePhase} language={language}/>)}</div></section>
       <footer><p>{content.global.footer.copyright}</p><button type="button" className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={content.global.controls.back_to_top}><img src="/assets/arrow.svg" alt=""/></button></footer>
     </div>
     {dialogOption && <div className="modal-backdrop" onMouseDown={() => setDialogOption(null)}><section className="qr-modal" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title" onMouseDown={e => e.stopPropagation()}><button className="modal-close" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}>×</button>{dialogOption.dialog_image ? <img className="qr-image" src={dialogOption.dialog_image} alt={dialogOption.dialog_title}/> : <div className="qr-missing" aria-hidden="true">QR</div>}<h2 id="contact-dialog-title">{dialogOption.dialog_title}</h2><p>{dialogOption.dialog_body}</p></section></div>}

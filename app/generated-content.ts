@@ -371,5 +371,109 @@ export const siteContent = {
       "work_in_progress_text": "work in progress",
       "note_order": []
     }
+  },
+  "homeShowcase": {
+    "items": [
+      {
+        "id": "map",
+        "type": "project",
+        "image": "/assets/projects/undying-map/home-cover.png",
+        "alt": {
+          "zh": "《苏醒之路》地图界面重构设计案例",
+          "en": "Undying Map Interface Redesign"
+        },
+        "slot": "featured-left",
+        "href": "/work?project=undying-map"
+      },
+      {
+        "id": "art",
+        "type": "project",
+        "image": "/assets/projects/undying-art/home-cover.png",
+        "alt": {
+          "zh": "《苏醒之路》游戏美术作品展示",
+          "en": "Undying Game Art Showcase"
+        },
+        "slot": "featured-right",
+        "href": "/work?project=undying-art"
+      },
+      {
+        "id": "skill",
+        "type": "snapshot",
+        "image": "/assets/home/snapshots/skill-interface.png",
+        "alt": {
+          "zh": "游戏技能界面设计",
+          "en": "Game skill interface design"
+        },
+        "slot": "snapshot-left-01"
+      },
+      {
+        "id": "wireframe",
+        "type": "snapshot",
+        "image": "/assets/home/snapshots/inventory-wireframe.png",
+        "alt": {
+          "zh": "拆解与背包界面线框图",
+          "en": "Inventory and dismantling interface wireframe"
+        },
+        "slot": "snapshot-left-02"
+      },
+      {
+        "id": "illustration",
+        "type": "snapshot",
+        "image": "/assets/home/snapshots/narrative-illustration.png",
+        "alt": {
+          "zh": "游戏叙事插画",
+          "en": "Game narrative illustration"
+        },
+        "slot": "snapshot-right-01"
+      },
+      {
+        "id": "icons",
+        "type": "snapshot",
+        "image": "/assets/home/snapshots/character-icons.png",
+        "alt": {
+          "zh": "角色头像图标设计",
+          "en": "Character portrait icon design"
+        },
+        "slot": "snapshot-right-02"
+      },
+      {
+        "id": "shovel",
+        "type": "decorative",
+        "image": "/assets/home/decorations/shovel.png",
+        "alt": {
+          "zh": "",
+          "en": ""
+        },
+        "slot": "decoration-top"
+      },
+      {
+        "id": "tools",
+        "type": "decorative",
+        "image": "/assets/home/decorations/tools.png",
+        "alt": {
+          "zh": "",
+          "en": ""
+        },
+        "slot": "decoration-bottom"
+      }
+    ],
+    "audit": {
+      "source_item_count": 8,
+      "rendered_item_count": 8,
+      "hidden_items": [],
+      "unused_managed_assets": [],
+      "archived_legacy_assets": [
+        "/assets/archive/home-legacy/avatar/avatar-base-jpeg.jpeg",
+        "/assets/archive/home-legacy/avatar/avatar-base-low-resolution.png",
+        "/assets/archive/home-legacy/avatar/avatar-hover-duplicate.jpeg",
+        "/assets/archive/home-legacy/avatar/avatar-hover-low-resolution.jpeg",
+        "/assets/archive/home-legacy/backgrounds/grid-1920x1080.png",
+        "/assets/archive/home-legacy/backgrounds/grid-480x270.png",
+        "/assets/archive/home-legacy/project-covers/undying-art-low-resolution.png",
+        "/assets/archive/home-legacy/project-covers/undying-map-low-resolution.png",
+        "/assets/archive/home-legacy/reference-captures/home-page-long-capture.png",
+        "/assets/archive/home-legacy/reference-captures/home-page-narrow-capture.png"
+      ]
+    }
   }
 } as const;
