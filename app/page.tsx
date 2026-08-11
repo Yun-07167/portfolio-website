@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { siteContent } from "./generated-content";
 
 type Language = "zh" | "en";
+const LANGUAGE_STORAGE_KEY = "portfolio-language";
 type NavId = "home" | "projects" | "notes" | "connect" | "resume" | "about";
 type StagePhase = "default" | "transitioning" | "assembled";
 type CardKind = "project" | "snapshot" | "decorative";
@@ -128,7 +129,7 @@ function PortfolioCard({ card, order, phase, language }: { card: Card; order: nu
   </div>;
 }
 
-function Header({ language, setLanguage, theme, setTheme, content, onDialog }: { language: Language; setLanguage: (v: Language) => void; theme: "light" | "dark"; setTheme: (v: "light" | "dark") => void; content: LocaleContent; onDialog: (option: ContactOption) => void }) {
+function Header({ language, setLanguage, theme, setTheme, content, onDialog }: { language: Language; setLanguage: Dispatch<SetStateAction<Language>>; theme: "light" | "dark"; setTheme: (v: "light" | "dark") => void; content: LocaleContent; onDialog: (option: ContactOption) => void }) {
   const [hovered, setHovered] = useState<NavId | null>(null);
   const t = content.global;
   const nav = [
@@ -165,8 +166,8 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
       </div>)}
     </nav>
     <div className="mode-switcher">
-      <button className="mode-language" type="button" onClick={() => setLanguage(language === "zh" ? "en" : "zh")} aria-label={t.controls.switch_to_other_language}>
-        {language === "zh" ? <span className="switch-icon-language-en"><img src="/assets/icon-language-en.svg" alt=""/></span> : <span className="switch-icon-language-sc"><img src="/assets/icon-language-sc.svg" alt=""/></span>}
+      <button className="mode-language" type="button" onClick={() => setLanguage(current => current === "zh" ? "en" : "zh")} aria-label={t.controls.switch_to_other_language}>
+        {language === "zh" ? <span key="en" className="switch-icon-language-en"><img src="/assets/icon-language-en.svg" alt=""/></span> : <span key="zh" className="switch-icon-language-sc"><img src="/assets/icon-language-sc.svg" alt=""/></span>}
       </button>
       <button className="mode-theme" type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.controls.switch_theme}>
         {theme === "light" ? <span className="switch-icon-theme-moon"><img src="/assets/icon-theme-moon.svg" alt=""/></span> : <span className="switch-icon-theme-sun"><img src="/assets/icon-theme-sun.svg" alt=""/></span>}
@@ -177,6 +178,7 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("zh");
+  const [languagePreferenceLoaded, setLanguagePreferenceLoaded] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
   const [stagePhase, setStagePhase] = useState<StagePhase>("default");
@@ -184,7 +186,16 @@ export default function Home() {
   const phaseRef = useRef<StagePhase>("default");
   const content = siteContent[language];
 
-  useEffect(() => { document.documentElement.dataset.theme = theme; document.documentElement.lang = language === "zh" ? "zh-CN" : "en"; }, [theme, language]);
+  useEffect(() => {
+    const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    if (savedLanguage === "zh" || savedLanguage === "en") setLanguage(savedLanguage);
+    setLanguagePreferenceLoaded(true);
+  }, []);
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+    if (languagePreferenceLoaded) window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+  }, [theme, language, languagePreferenceLoaded]);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     if (window.matchMedia("(max-width: 600px)").matches) {
