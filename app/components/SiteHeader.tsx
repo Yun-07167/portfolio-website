@@ -3,6 +3,7 @@
 
 import { useState, type Dispatch, type SetStateAction } from "react";
 import { siteContent } from "../generated-content";
+import ModeSwitcher from "./ModeSwitcher";
 
 export type Language = "zh" | "en";
 export type Theme = "light" | "dark";
@@ -46,9 +47,6 @@ export default function SiteHeader({ language, setLanguage, theme, setTheme, con
         </div>;
       })}
     </nav>
-    <div className="mode-switcher">
-      <button className="mode-language" type="button" onClick={() => setLanguage(current => current === "zh" ? "en" : "zh")} aria-label={t.controls.switch_to_other_language}>{language === "zh" ? <span key="en" className="switch-icon-language-en"><img src="/assets/icon-language-en.svg" alt=""/></span> : <span key="zh" className="switch-icon-language-sc"><img src="/assets/icon-language-sc.svg" alt=""/></span>}</button>
-      <button className="mode-theme" type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.controls.switch_theme}>{theme === "light" ? <span className="switch-icon-theme-moon"><img src="/assets/icon-theme-moon.svg" alt=""/></span> : <span className="switch-icon-theme-sun"><img src="/assets/icon-theme-sun.svg" alt=""/></span>}</button>
-    </div>
+    <ModeSwitcher language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} languageLabel={t.controls.switch_to_other_language} themeLabel={t.controls.switch_theme}/>
   </header>;
 }

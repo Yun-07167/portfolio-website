@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
 import { siteContent } from "./generated-content";
+import ModeSwitcher from "./components/ModeSwitcher";
 
 type Language = "zh" | "en";
 const LANGUAGE_STORAGE_KEY = "portfolio-language";
@@ -119,13 +121,29 @@ function PortfolioCard({ card, order, phase, language }: { card: Card; order: nu
     gsap.to(tiltRef.current, { "--tilt-x": "0deg", "--tilt-y": "0deg", duration: .62, ease: "power3.out", overwrite: "auto" });
   };
 
+  const onDragKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!canDrag || !dragRef.current) return;
+    const step = event.shiftKey ? 40 : 12;
+    const movement = {
+      ArrowLeft: { x: -step, y: 0 },
+      ArrowRight: { x: step, y: 0 },
+      ArrowUp: { x: 0, y: -step },
+      ArrowDown: { x: 0, y: step },
+    }[event.key];
+    if (!movement) return;
+    event.preventDefault();
+    offset.current = { x: offset.current.x + movement.x, y: offset.current.y + movement.y };
+    dragRef.current.style.setProperty("--drag-x", `${offset.current.x}px`);
+    dragRef.current.style.setProperty("--drag-y", `${offset.current.y}px`);
+  };
+
   const image = <img src={card.src} alt="" draggable={false} />;
   const media = card.kind === "project"
-    ? <a ref={tiltRef} className="card-media project-card" href={phase === "assembled" ? card.href : undefined} aria-label={card.alt[language]} aria-disabled={phase !== "assembled"} tabIndex={phase === "assembled" ? 0 : -1} onPointerMove={onTiltMove} onPointerLeave={resetTilt} onBlur={resetTilt}>{image}</a>
+    ? <a ref={tiltRef} className="card-media project-card" href={card.href} aria-label={card.alt[language]} aria-disabled={phase !== "assembled"} tabIndex={phase === "assembled" ? 0 : -1} onClick={event => { if (phase !== "assembled") event.preventDefault(); }} onPointerMove={onTiltMove} onPointerLeave={resetTilt} onBlur={resetTilt}>{image}</a>
     : <div className={`card-media ${card.kind === "decorative" ? "decorative-card" : "snapshot-card"}`} role={card.kind === "snapshot" ? "img" : undefined} aria-label={card.kind === "snapshot" ? card.alt[language] : undefined} aria-hidden={card.kind === "decorative" ? "true" : undefined}>{image}</div>;
 
   return <div className={`card-layout card-${card.kind}`} data-card={card.id} style={{ left: centeredStageX(card.initial.x), top: card.initial.y, width: card.initial.w, height: card.initial.h, zIndex: order } as React.CSSProperties}>
-    <div ref={dragRef} className={`card-drag${canDrag ? " is-draggable" : ""}`} onPointerDown={onPointerDown}>{media}</div>
+    <div ref={dragRef} className={`card-drag${canDrag ? " is-draggable" : ""}`} role={canDrag ? "button" : undefined} tabIndex={canDrag ? 0 : undefined} aria-label={canDrag ? card.alt[language] : undefined} onKeyDown={onDragKeyDown} onPointerDown={onPointerDown}>{media}</div>
   </div>;
 }
 
@@ -142,10 +160,10 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
   return <header className={`site-header state-${hovered ?? "default"}`} onMouseLeave={() => setHovered(null)}>
     <nav className="nav-scene" aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
       <div className="home-zone" onMouseEnter={() => setHovered("home")}>
-        <a className="home-link" href="/" aria-current="page" aria-label={t.controls.home_label}>
+        <Link className="home-link" href="/" aria-current="page" aria-label={t.controls.home_label}>
           <span className="home-default"><img src="/assets/home-face.svg" alt=""/></span>
           <span className="home-hover"><img src="/assets/home-hover.png" alt=""/></span>
-        </a>
+        </Link>
       </div>
       {nav.map(item => <div className={`nav-zone nav-${item.id}`} key={item.id} onMouseEnter={() => setHovered(item.id)}>
         <div className="nav-reveal">
@@ -172,14 +190,7 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
         {item.id === "notes" && <span className="nav-status-caption" aria-hidden="true">{language === "zh" ? "施工中" : "in progress"}</span>}
       </div>)}
     </nav>
-    <div className="mode-switcher">
-      <button className="mode-language" type="button" onClick={() => setLanguage(current => current === "zh" ? "en" : "zh")} aria-label={t.controls.switch_to_other_language}>
-        {language === "zh" ? <span key="en" className="switch-icon-language-en"><img src="/assets/icon-language-en.svg" alt=""/></span> : <span key="zh" className="switch-icon-language-sc"><img src="/assets/icon-language-sc.svg" alt=""/></span>}
-      </button>
-      <button className="mode-theme" type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={t.controls.switch_theme}>
-        {theme === "light" ? <span className="switch-icon-theme-moon"><img src="/assets/icon-theme-moon.svg" alt=""/></span> : <span className="switch-icon-theme-sun"><img src="/assets/icon-theme-sun.svg" alt=""/></span>}
-      </button>
-    </div>
+    <ModeSwitcher language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} languageLabel={t.controls.switch_to_other_language} themeLabel={t.controls.switch_theme}/>
   </header>;
 }
 
@@ -194,9 +205,11 @@ export default function Home() {
   const content = siteContent[language];
 
   useEffect(() => {
-    const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    if (savedLanguage === "zh" || savedLanguage === "en") setLanguage(savedLanguage);
-    setLanguagePreferenceLoaded(true);
+    queueMicrotask(() => {
+      const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      if (savedLanguage === "zh" || savedLanguage === "en") setLanguage(savedLanguage);
+      setLanguagePreferenceLoaded(true);
+    });
   }, []);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -207,7 +220,7 @@ export default function Home() {
     gsap.registerPlugin(ScrollTrigger);
     if (window.matchMedia("(max-width: 600px)").matches) {
       phaseRef.current = "assembled";
-      setStagePhase("assembled");
+      queueMicrotask(() => setStagePhase("assembled"));
       return;
     }
     const ctx = gsap.context(() => {
@@ -253,10 +266,10 @@ export default function Home() {
   return <main>
     <div className="page-shell">
       <Header language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption}/>
-      <section className="hero" aria-labelledby="home-title"><div className="hero-title-row"><span className="avatar" role="img" aria-label={language === "zh" ? "杨天韵的头像" : "Portrait of Tianyun Yang"} tabIndex={0}><span className="avatar-art"><img className="avatar-base" src="/assets/avatar.png" alt=""/><span className="avatar-hover-layer"><img src="/assets/avatar-hover.png" alt=""/></span></span></span><h1 id="home-title">{content.home.hero_title}</h1></div><p>{content.home.short_description}</p></section>
+      <section className="hero" aria-labelledby="home-title"><div className="hero-title-row"><span className="avatar" role="img" aria-label={language === "zh" ? "杨天韵的头像" : "Portrait of Tianyun Yang"}><span className="avatar-art"><img className="avatar-base" src="/assets/avatar.png" alt=""/><span className="avatar-hover-layer"><img src="/assets/avatar-hover.png" alt=""/></span></span></span><h1 id="home-title">{content.home.hero_title}</h1></div><p>{content.home.short_description}</p></section>
       <section className={`portfolio-stage stage-${stagePhase}`} ref={stage} aria-label={language === "zh" ? "作品展示画布" : "Portfolio canvas"}><div className="canvas">{cards.map((card, i) => <PortfolioCard key={card.id} card={card} order={i + 1} phase={stagePhase} language={language}/>)}</div></section>
       <footer><p>{content.global.footer.copyright}</p><button type="button" className="back-top" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={content.global.controls.back_to_top}><img src="/assets/arrow.svg" alt=""/></button></footer>
     </div>
-    {dialogOption && <div className="modal-backdrop" onMouseDown={() => setDialogOption(null)}><section className="qr-modal" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title" onMouseDown={e => e.stopPropagation()}><button className="modal-close" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}>×</button>{dialogOption.dialog_image ? <img className="qr-image" src={dialogOption.dialog_image} alt={dialogOption.dialog_title}/> : <div className="qr-missing" aria-hidden="true">QR</div>}<h2 id="contact-dialog-title">{dialogOption.dialog_title}</h2><p>{dialogOption.dialog_body}</p></section></div>}
+    {dialogOption && <div className="modal-backdrop"><button className="modal-dismiss" type="button" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}/><section className="qr-modal" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title"><button className="modal-close" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}>×</button>{dialogOption.dialog_image ? <img className="qr-image" src={dialogOption.dialog_image} alt={dialogOption.dialog_title}/> : <div className="qr-missing" aria-hidden="true">QR</div>}<h2 id="contact-dialog-title">{dialogOption.dialog_title}</h2><p>{dialogOption.dialog_body}</p></section></div>}
   </main>;
 }

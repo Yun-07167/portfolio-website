@@ -19,7 +19,7 @@ function Resume({ language }: { language: Language }) {
     {item.body && <div className="resume-entry-body"><Paragraphs text={item.body}/></div>}
   </article>);
   return <div className="content-page resume-page">
-    <div className="content-page-title"><p>{language === "zh" ? "游戏交互设计师 / UI·UX" : "Game Interaction Designer / UI·UX"}</p><h1>{resume.name}</h1></div>
+    <div className="content-page-title"><h1>{resume.name}</h1></div>
     <section className="resume-section resume-profile"><h2>{resume.profile.title}</h2><Paragraphs text={resume.profile.body}/></section>
     <section className="resume-section"><h2>{resume.education.title}</h2>{entries(resume.education)}</section>
     <section className="resume-section"><h2>{resume.skills.title}</h2><div className="skill-groups">{resume.skills.groups.map(group => <div key={group.id}><h3>{group.label}</h3><p>{group.body}</p></div>)}</div></section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { siteContent } from "../generated-content";
 
 type Language = "zh" | "en";
@@ -11,7 +12,7 @@ export default function NotesPage() {
 
   return <main className="notes-placeholder-page">
     <header className="notes-placeholder-header">
-      <a href="/" aria-label={content.global.controls.home_label}><img src="/assets/home-face.svg" alt=""/></a>
+      <Link href="/" aria-label={content.global.controls.home_label}><img src="/assets/home-face.svg" alt=""/></Link>
       <nav aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
         <a href="/work">{content.global.navigation.works}</a>
         <a href="/notes" aria-current="page">{content.global.navigation.notes}</a>
