@@ -4,7 +4,7 @@
 @font-face { font-family:"Swei B2 Sugar CJK SC"; src:url("/fonts/Swei-B2-Sugar-CJK-SC-Medium.woff2") format("woff2"); font-style:normal; font-weight:500; font-display:swap; }
 @font-face { font-family:"HarmonyOS Sans SC"; src:url("/fonts/HarmonyOS-Sans-SC-Regular.woff2") format("woff2"); font-style:normal; font-weight:400; font-display:swap; }
 
-:root { --background:#fffdfd; --foreground:#2a2a2a; --surface:#fff; --focus:#196f78; --primary-500:#87aeb1; --neutral-900:#141414; --neutral-700:#555555; --neutral-600:#707070; --asset-filter:none; --mode-icon-filter:none; --mode-icon-hover-filter:brightness(2.02381); --nav-text:#2a2a2a; --nav-hover:var(--neutral-700); --font-display:"Swei B2 Sugar CJK SC","Microsoft YaHei",sans-serif; --font-ui:"HarmonyOS Sans SC","Microsoft YaHei",sans-serif; }
+:root { --background:#fffdfd; --foreground:#2a2a2a; --surface:#fff; --focus:#196f78; --primary-500:#87aeb1; --primary-900:#2e6b7c; --neutral-900:#141414; --neutral-700:#555555; --neutral-600:#707070; --asset-filter:none; --mode-icon-filter:none; --mode-icon-hover-filter:brightness(2.02381); --nav-text:#2a2a2a; --nav-hover:var(--neutral-700); --font-display:"Swei B2 Sugar CJK SC","Microsoft YaHei",sans-serif; --font-ui:"HarmonyOS Sans SC","Microsoft YaHei",sans-serif; }
 :root[data-theme="dark"] { --background:#1c1c1d; --foreground:#f4eeee; --surface:#29292b; --neutral-900:#f4eeee; --neutral-600:color-mix(in srgb,#f4eeee 62%,#1c1c1d); --asset-filter:invert(1) brightness(1.55); --mode-icon-filter:invert(1) brightness(1.145); --mode-icon-hover-filter:brightness(2.02381); --nav-text:#f4eeee; --nav-hover:color-mix(in srgb,#f4eeee 78%,#1c1c1d); color-scheme:dark; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
@@ -124,8 +124,11 @@ footer p { margin:16px 0 0; }
 .content-page-title p,.section-index { margin:0 0 16px; color:var(--neutral-600); font-family:var(--font-ui); font-size:15px; letter-spacing:-.03em; }
 .content-page-title h1,.about-section h1 { margin:0; font-size:clamp(52px,7vw,88px); font-weight:500; line-height:1.05; letter-spacing:-.055em; }
 .resume-page { padding-top:168px; display:flex; flex-direction:column; gap:24px; color:var(--foreground); }
-.resume-page .content-page-title { padding:12px 0; border:0; }
+.resume-page .content-page-title { min-height:84px; padding:12px 0; border:0; display:flex; align-items:center; gap:24px; }
 .resume-page .content-page-title h1 { margin:0; color:var(--neutral-900); font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
+.resume-download { flex:0 0 170px; width:170px; height:60px; padding:10px; border:2px solid var(--primary-900); border-radius:0; background:transparent; color:var(--neutral-900); display:flex; align-items:center; justify-content:center; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; text-align:center; transition:background-color .12s ease,border-color .12s ease; }
+.resume-download:hover,.resume-download:focus-visible { border-color:transparent; background:#5fabb0; }
+.resume-download:active { border-color:transparent; background:#9fbec1; }
 .resume-section { display:flex; flex-direction:column; gap:2px; padding:0; border:0; }
 .resume-section > h2 { min-height:44px; margin:0; padding:4px; display:flex; align-items:center; gap:12px; color:var(--foreground); font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; }
 .resume-section-marker { position:relative; flex:0 0 20px; width:20px; height:20px; overflow:visible; }
@@ -163,7 +166,7 @@ footer p { margin:16px 0 0; }
 .about-copy p + p { margin-top:20px; }
 .about-site-illustration { display:block; width:219.119px; height:184.865px; margin-left:auto; object-fit:fill; filter:var(--asset-filter); }
 html[lang="en"] .resume-page :is(.resume-entry-body p,.resume-profile p,.resume-gaming p,.skill-groups h3,.skill-groups p,.resume-labels li,.caption-row,.caption-row time,.compact-entry-description),html[lang="en"] .about-copy p { letter-spacing:-.045em; }
-.subpage-footer { position:static; width:100%; height:176px; margin-top:48px; padding-bottom:128px; display:flex; align-items:flex-start; justify-content:space-between; }
+.subpage-footer { position:static; width:100%; height:176px; margin-top:96px; padding-bottom:128px; display:flex; align-items:flex-start; justify-content:space-between; }
 .subpage-footer button { width:48px; height:48px; border:0; padding:0; background:none; }
 .subpage-footer button img { width:34px; height:48px; transform:rotate(180deg); filter:var(--asset-filter); }
 @media (max-width:800px) {
@@ -174,6 +177,7 @@ html[lang="en"] .resume-page :is(.resume-entry-body p,.resume-profile p,.resume-
   .subpage-switchers { padding:0; gap:4px; }
   .content-page { padding-top:72px; }
   .resume-page { padding-top:72px; }
+  .resume-page .content-page-title { flex-wrap:wrap; }
   .resume-entry-heading { grid-template-columns:1fr; gap:8px; }
   .resume-entry time { padding:0; text-align:left; }
   .caption-row { flex-direction:column; gap:4px; }
