@@ -134,7 +134,7 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
   const t = content.global;
   const nav = [
     { id: "projects" as const, label: t.navigation.works, href: "/work", art: "/assets/projects-illustration.svg" },
-    { id: "notes" as const, label: t.navigation.notes, href: "/notes", art: "/assets/about-illustration.svg" },
+    { id: "notes" as const, label: t.navigation.notes, href: "/notes", art: "/assets/notes-illustration.svg" },
     { id: "connect" as const, label: t.navigation.contact, href: "#contact", art: "/assets/icon-wechat.svg" },
     { id: "resume" as const, label: t.navigation.resume, href: "/resume", art: "/assets/resume-illustration.svg" },
     { id: "about" as const, label: t.navigation.about, href: "/about", art: "/assets/about-illustration.svg" },
@@ -149,7 +149,13 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
       </div>
       {nav.map(item => <div className={`nav-zone nav-${item.id}`} key={item.id} onMouseEnter={() => setHovered(item.id)}>
         <div className="nav-reveal">
-          <img className="nav-illustration" src={item.art} alt=""/>
+          {item.id === "notes" ? (
+            <span className="nav-notes-illustration-frame" aria-hidden="true">
+              <img className="nav-illustration" src={item.art} alt="" />
+            </span>
+          ) : (
+            <img className="nav-illustration" src={item.art} alt="" />
+          )}
           {item.id === "connect" && <div className="social-actions">
             {t.contact_options.map(option => option.action === "dialog" ?
               <button className="social-action" type="button" key={option.id} onClick={() => onDialog(option)} aria-label={option.label}>
