@@ -22,6 +22,14 @@ type Card = {
 type LocaleContent = (typeof siteContent)[Language];
 type ContactOption = LocaleContent["global"]["contact_options"][number];
 
+const ASSEMBLED_HEIGHT = 824;
+const STAGE_SAFE_GUTTER = 48;
+const MIN_ASSEMBLED_SCALE = 0.75;
+
+function getAssembledScale() {
+  return Math.min(1, Math.max(MIN_ASSEMBLED_SCALE, (window.innerHeight - STAGE_SAFE_GUTTER * 2) / ASSEMBLED_HEIGHT));
+}
+
 const cards: Card[] = [
   { id: "map", src: "/assets/raw/raw-01.png", alt: "地图界面重构设计案例", kind: "project", href: "/work?project=undying-map", initial: { x: 377.5, y: 175.7, w: 250.934, h: 145.247, rot: 0 }, assembled: { x: 15.5, y: 0, w: 425, h: 246, rot: 0 } },
   { id: "art", src: "/assets/raw/raw-05.png", alt: "游戏美术作品展示", kind: "project", href: "/work?project=undying-art", initial: { x: 595.542, y: 79.739, w: 269.935, h: 182.617, rot: 9.13 }, assembled: { x: 464.5, y: 133, w: 425, h: 246, rot: 0 } },
@@ -65,11 +73,12 @@ function PortfolioCard({ card, order, phase }: { card: Card; order: number; phas
     const startPointer = { x: event.clientX, y: event.clientY };
     const startOffset = { ...offset.current };
     const move = (e: PointerEvent) => {
-      const bounds = boundsNode.getBoundingClientRect();
+      const renderedBounds = boundsNode.getBoundingClientRect();
+      const scale = renderedBounds.width / boundsNode.offsetWidth || 1;
       const baseLeft = wrapper.offsetLeft;
       const baseTop = wrapper.offsetTop;
-      const x = Math.max(-baseLeft, Math.min(bounds.width - baseLeft - wrapper.offsetWidth, startOffset.x + e.clientX - startPointer.x));
-      const y = Math.max(-baseTop, Math.min(bounds.height - baseTop - wrapper.offsetHeight, startOffset.y + e.clientY - startPointer.y));
+      const x = Math.max(-baseLeft, Math.min(boundsNode.offsetWidth - baseLeft - wrapper.offsetWidth, startOffset.x + (e.clientX - startPointer.x) / scale));
+      const y = Math.max(-baseTop, Math.min(boundsNode.offsetHeight - baseTop - wrapper.offsetHeight, startOffset.y + (e.clientY - startPointer.y) / scale));
       offset.current = { x, y };
       node.style.setProperty("--drag-x", `${x}px`);
       node.style.setProperty("--drag-y", `${y}px`);
@@ -175,7 +184,7 @@ export default function Home() {
         scrollTrigger: {
           trigger: stage.current,
           start: "top top+=465",
-          end: "top top+=120",
+          end: `top top+=${STAGE_SAFE_GUTTER}`,
           scrub: .65,
           invalidateOnRefresh: true,
           onUpdate: self => {
@@ -196,6 +205,14 @@ export default function Home() {
           0
         );
       });
+      const canvas = stage.current?.querySelector<HTMLElement>(".canvas");
+      if (canvas) {
+        timeline.fromTo(canvas,
+          { scale: 1 },
+          { scale: () => getAssembledScale(), transformOrigin: "top center" },
+          0
+        );
+      }
       gsap.to(".site-header", { y: -38, scale: .94, transformOrigin: "top center", scrollTrigger: { trigger: stage.current, start: "top 55%", end: "top 10%", scrub: true } });
     }, stage);
     return () => ctx.revert();
