@@ -267,7 +267,7 @@ About 内容结构较简单，但需要控制大段文本的阅读宽度、节�
 请继续开发杨天韵个人作品集网站的下一阶段。
 
 项目目录：
-C:\Users\yangt\.codex\visualizations\2026\08\06\019fd5da-e5a8-72e3-bbde-400ffc3bcf42\portfolio-website
+D:\04-Projects\Portfolio-website
 
 开始前请完整阅读：
 1. docs/Home Vertical Slice 复盘与下一阶段工作指南.md

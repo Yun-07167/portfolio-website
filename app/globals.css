@@ -104,6 +104,69 @@ footer p { margin:16px 0 0; }
 .qr-missing { width:190px; aspect-ratio:1; margin:auto; display:grid; place-items:center; border:2px dashed var(--neutral-700); border-radius:16px; color:var(--neutral-700); font-family:var(--font-ui); font-size:30px; letter-spacing:.08em; }
 .qr-modal h2 { margin:20px 0 6px; } .qr-modal p { margin:0; }
 .placeholder-page { min-height:100vh; padding:12vw; background:var(--background); color:var(--foreground); }
+.subpage-shell { width:min(100%,1280px); min-height:100vh; margin:auto; padding:48px 150px 0; }
+.subpage-header { height:148px; display:flex; align-items:flex-end; gap:32px; font-family:var(--font-ui); font-size:16px; line-height:1.03; letter-spacing:-.045em; }
+.subpage-home { width:40px; height:40px; display:grid; place-items:center; }
+.subpage-home img { width:24px; filter:var(--asset-filter); }
+.subpage-header nav { display:flex; align-items:center; gap:28px; padding-bottom:12px; }
+.subpage-header nav a { position:relative; white-space:nowrap; color:var(--nav-text); }
+.subpage-header nav a::after { content:""; position:absolute; left:0; right:0; bottom:-7px; height:2px; border-radius:2px; background:currentColor; opacity:0; transform:scaleX(.35); transition:opacity .18s,transform .28s; }
+.subpage-header nav a:hover::after,.subpage-header nav a:focus-visible::after,.subpage-header nav a[aria-current="page"]::after { opacity:1; transform:scaleX(1); }
+.subpage-switchers { margin-left:auto; display:flex; gap:12px; padding-bottom:4px; }
+.subpage-switchers button { width:30px; height:30px; padding:0; border:0; background:transparent; display:grid; place-items:center; font-family:var(--font-ui); font-size:13px; }
+.subpage-switchers img { width:30px; height:30px; object-fit:contain; filter:var(--mode-icon-filter); }
+.content-page { padding-top:106px; }
+.content-page-title { padding-bottom:74px; border-bottom:1px solid color-mix(in srgb,var(--foreground) 22%,transparent); }
+.content-page-title p,.section-index { margin:0 0 16px; color:var(--neutral-600); font-family:var(--font-ui); font-size:15px; letter-spacing:-.03em; }
+.content-page-title h1,.about-section h1 { margin:0; font-size:clamp(52px,7vw,88px); font-weight:500; line-height:1.05; letter-spacing:-.055em; }
+.resume-section { display:grid; grid-template-columns:210px minmax(0,1fr); column-gap:56px; padding:64px 0; border-bottom:1px solid color-mix(in srgb,var(--foreground) 22%,transparent); }
+.resume-section > h2 { margin:0; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.35; letter-spacing:-.04em; }
+.resume-section > .resume-entry,.resume-section > .skill-groups,.resume-section > p { grid-column:2; }
+.resume-entry { padding-bottom:52px; }
+.resume-entry:last-child { padding-bottom:0; }
+.resume-entry-heading { display:grid; grid-template-columns:minmax(0,1fr) 150px; gap:30px; align-items:start; }
+.resume-entry h3,.skill-groups h3 { margin:0; font-size:24px; font-weight:500; line-height:1.38; letter-spacing:-.045em; }
+.resume-entry time { padding-top:7px; color:var(--neutral-600); font-family:var(--font-ui); font-size:14px; line-height:1.4; text-align:right; }
+.resume-entry-body p,.resume-profile p,.resume-gaming p,.skill-groups p { margin:18px 0 0; font-size:18px; line-height:1.75; letter-spacing:-.025em; }
+.resume-profile p,.resume-gaming p { margin-top:0; }
+.resume-labels { display:flex; flex-wrap:wrap; gap:8px; margin:16px 0 0; padding:0; list-style:none; }
+.resume-labels li { padding:6px 11px; border:1px solid color-mix(in srgb,var(--foreground) 28%,transparent); border-radius:999px; font-family:var(--font-ui); font-size:13px; line-height:1; }
+.skill-groups { display:grid; gap:28px; }
+.skill-groups > div { display:grid; grid-template-columns:150px minmax(0,1fr); gap:28px; }
+.skill-groups h3 { font-size:18px; }
+.skill-groups p { margin:0; }
+.about-page { padding-top:116px; }
+.about-section { padding:0 0 128px; }
+.about-section + .about-section { padding-top:96px; border-top:1px solid color-mix(in srgb,var(--foreground) 22%,transparent); }
+.about-copy { width:min(100%,710px); margin:64px 0 0 auto; }
+.about-copy p { margin:0 0 28px; font-size:21px; line-height:1.82; letter-spacing:-.035em; }
+.about-links { width:min(100%,710px); margin:48px 0 0 auto; display:flex; gap:32px; font-family:var(--font-ui); }
+.about-links a { padding-bottom:6px; border-bottom:1px solid currentColor; }
+.about-links span { margin-left:8px; }
+.subpage-footer { position:static; width:100%; height:176px; padding-bottom:128px; display:flex; align-items:flex-start; justify-content:space-between; }
+.subpage-footer button { width:48px; height:48px; border:0; padding:0; background:none; }
+.subpage-footer button img { width:34px; height:48px; transform:rotate(180deg); filter:var(--asset-filter); }
+@media (max-width:800px) {
+  .subpage-shell { padding:24px 32px 0; }
+  .subpage-header { height:auto; min-height:92px; align-items:center; gap:16px; }
+  .subpage-header nav { gap:14px; padding:0; overflow-x:auto; }
+  .subpage-header nav a { font-size:13px; }
+  .subpage-switchers { padding:0; gap:4px; }
+  .content-page { padding-top:72px; }
+  .resume-section { grid-template-columns:1fr; gap:30px; padding:48px 0; }
+  .resume-section > .resume-entry,.resume-section > .skill-groups,.resume-section > p { grid-column:1; }
+  .resume-entry-heading { grid-template-columns:1fr; gap:8px; }
+  .resume-entry time { padding:0; text-align:left; }
+  .about-copy,.about-links { margin-left:0; }
+}
+@media (max-width:560px) {
+  .subpage-shell { padding-inline:20px; }
+  .subpage-header { flex-wrap:wrap; padding:12px 0; }
+  .subpage-header nav { order:3; width:100%; }
+  .content-page-title h1,.about-section h1 { font-size:46px; }
+  .skill-groups > div { grid-template-columns:1fr; gap:6px; }
+  .about-copy p { font-size:18px; }
+}
 .notes-placeholder-page { min-height:100vh; max-width:1280px; margin:auto; padding:48px 150px; background:var(--background); color:var(--foreground); }
 .notes-placeholder-header { height:148px; display:flex; align-items:flex-end; gap:32px; font-family:var(--font-ui); font-size:16px; }
 .notes-placeholder-header > a { width:40px; height:40px; display:grid; place-items:center; }

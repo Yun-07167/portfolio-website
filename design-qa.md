@@ -1,7 +1,7 @@
 # Design QA — Typography
 
 - Source visual truth: the eight Figma text-style screenshots supplied in the current request.
-- Implementation screenshot: `C:\Users\yangt\.codex\visualizations\2026\08\06\019fd5da-e5a8-72e3-bbde-400ffc3bcf42\portfolio-website\qa-fonts.png`
+- Implementation screenshot: `D:\04-Projects\Portfolio-website\qa-fonts.png`
 - Implementation URL: `https://yang-tianyun-portfolio.yangtianyun7.chatgpt.site/`
 - Viewport: 1264 × 708 CSS px, device scale factor 1.
 - State: desktop Home page, light theme, default header.
@@ -79,8 +79,8 @@ final result: blocked
 # Design QA — Centered stage, expanded drag bounds, and card tilt
 
 - Source visual truth: `C:\Users\yangt\AppData\Local\Temp\codex-clipboard-f29e3f84-201a-44d1-aa9d-8e0151689b8b.png`, together with the user's requested `-3°` to `3°` completed-state rotation.
-- Implementation screenshot: `C:\Users\yangt\.codex\visualizations\2026\08\06\019fd5da-e5a8-72e3-bbde-400ffc3bcf42\portfolio-website\audit\centered-drag-tilt-2026-08-11\implementation-2048x1024-assembled-final.png`.
-- Combined comparison: `C:\Users\yangt\.codex\visualizations\2026\08\06\019fd5da-e5a8-72e3-bbde-400ffc3bcf42\portfolio-website\audit\centered-drag-tilt-2026-08-11\comparison-source-vs-implementation.png`.
+- Implementation screenshot: `D:\04-Projects\Portfolio-website\audit\centered-drag-tilt-2026-08-11\implementation-2048x1024-assembled-final.png`.
+- Combined comparison: `D:\04-Projects\Portfolio-website\audit\centered-drag-tilt-2026-08-11\comparison-source-vs-implementation.png`.
 - Viewport: 2048 × 1024 CSS px, device scale factor 1.
 - Source and implementation pixels: both 2048 × 1024; no density normalization required before the side-by-side comparison.
 - State: desktop Home page, light theme, scroll-completed portfolio stage.
