@@ -28,6 +28,10 @@ function CompactEntry({ item }: { item: CompactItem }) {
   </article>;
 }
 
+function ResumeSectionTitle({ children }: { children: ReactNode }) {
+  return <h2><span className="resume-section-marker" aria-hidden="true"><img src="/assets/resume-section-marker.svg" alt=""/></span>{children}</h2>;
+}
+
 function Resume({ language }: { language: Language }) {
   const resume = siteContent[language].resume;
   const workEntries = (section: { items: readonly WorkItem[] }) => section.items.map(item => <article className="resume-entry work-entry" key={item.id}>
@@ -37,12 +41,12 @@ function Resume({ language }: { language: Language }) {
   </article>);
   return <div className="content-page resume-page">
     <div className="content-page-title"><h1>{resume.name}</h1></div>
-    <section className="resume-section resume-profile"><h2>{resume.profile.title}</h2><Paragraphs text={resume.profile.body}/></section>
-    <section className="resume-section"><h2>{resume.education.title}</h2>{resume.education.items.map(item => <EducationEntry item={item} key={item.id}/>)}</section>
-    <section className="resume-section"><h2>{resume.skills.title}</h2><div className="skill-groups">{resume.skills.groups.map(group => <div key={group.id}><h3>{group.label}</h3><p>{group.body}</p></div>)}</div></section>
-    <section className="resume-section"><h2>{resume.experience.title}</h2>{workEntries(resume.experience)}</section>
-    <section className="resume-section"><h2>{resume.other_experience.title}</h2>{resume.other_experience.items.map(item => <CompactEntry item={item} key={item.id}/>)}</section>
-    <section className="resume-section resume-gaming"><h2>{resume.gaming_experience.title}</h2><Paragraphs text={resume.gaming_experience.body}/></section>
+    <section className="resume-section resume-profile"><ResumeSectionTitle>{resume.profile.title}</ResumeSectionTitle><Paragraphs text={resume.profile.body}/></section>
+    <section className="resume-section"><ResumeSectionTitle>{resume.education.title}</ResumeSectionTitle>{resume.education.items.map(item => <EducationEntry item={item} key={item.id}/>)}</section>
+    <section className="resume-section resume-skills"><ResumeSectionTitle>{resume.skills.title}</ResumeSectionTitle><div className="skill-groups">{resume.skills.groups.map(group => <div key={group.id}><h3>{group.label}</h3><p>{group.body}</p></div>)}</div></section>
+    <section className="resume-section"><ResumeSectionTitle>{resume.experience.title}</ResumeSectionTitle>{workEntries(resume.experience)}</section>
+    <section className="resume-section"><ResumeSectionTitle>{resume.other_experience.title}</ResumeSectionTitle>{resume.other_experience.items.map(item => <CompactEntry item={item} key={item.id}/>)}</section>
+    <section className="resume-section resume-gaming"><ResumeSectionTitle>{resume.gaming_experience.title}</ResumeSectionTitle><Paragraphs text={resume.gaming_experience.body}/></section>
   </div>;
 }
 
