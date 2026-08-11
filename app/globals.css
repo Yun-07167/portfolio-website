@@ -74,8 +74,8 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .avatar:hover .avatar-hover-layer,.avatar:focus-visible .avatar-hover-layer { opacity:1; }
 .hero h1 { margin:0; padding:10px; font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; white-space:nowrap; }
 .hero p { margin:8px 0 0; width:819px; min-height:108px; font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; }
-.portfolio-stage { position:absolute; top:465px; left:224px; width:906px; height:calc(824px + max(420px,45dvh)); }
-.canvas { position:sticky; top:48px; width:906px; height:824px; overflow:visible; touch-action:pan-y; transform-origin:top center; will-change:transform; }
+.portfolio-stage { position:absolute; top:465px; left:50%; width:calc(100vw - 32px); height:calc(824px + max(420px,45dvh)); margin-left:calc(16px - 50vw); }
+.canvas { position:sticky; top:48px; width:100%; height:824px; overflow:visible; touch-action:pan-y; transform-origin:top center; will-change:transform; }
 .card-layout { position:absolute; transform-origin:50% 50%; will-change:left,top,width,height,transform; }
 .card-drag { --drag-x:0px; --drag-y:0px; width:100%; height:100%; transform:translate3d(var(--drag-x),var(--drag-y),0); transition:transform .34s cubic-bezier(.22,1,.36,1),filter .2s ease; user-select:none; }
 .card-drag.is-draggable { cursor:grab; touch-action:none; }

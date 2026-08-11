@@ -25,20 +25,25 @@ type ContactOption = LocaleContent["global"]["contact_options"][number];
 const ASSEMBLED_HEIGHT = 824;
 const STAGE_SAFE_GUTTER = 48;
 const MIN_ASSEMBLED_SCALE = 0.75;
+const CARD_PLANE_HALF_WIDTH = 453;
+
+function centeredStageX(x: number) {
+  return `calc(50% - ${CARD_PLANE_HALF_WIDTH}px + ${x}px)`;
+}
 
 function getAssembledScale() {
   return Math.min(1, Math.max(MIN_ASSEMBLED_SCALE, (window.innerHeight - STAGE_SAFE_GUTTER * 2) / ASSEMBLED_HEIGHT));
 }
 
 const cards: Card[] = [
-  { id: "map", src: "/assets/raw/raw-01.png", alt: "地图界面重构设计案例", kind: "project", href: "/work?project=undying-map", initial: { x: 377.5, y: 175.7, w: 250.934, h: 145.247, rot: 0 }, assembled: { x: 15.5, y: 0, w: 425, h: 246, rot: 0 } },
-  { id: "art", src: "/assets/raw/raw-05.png", alt: "游戏美术作品展示", kind: "project", href: "/work?project=undying-art", initial: { x: 595.542, y: 79.739, w: 269.935, h: 182.617, rot: 9.13 }, assembled: { x: 464.5, y: 133, w: 425, h: 246, rot: 0 } },
-  { id: "skill", src: "/assets/raw/raw-13.png", alt: "游戏技能界面设计", kind: "snapshot", initial: { x: 299.5, y: 91.392, w: 277.747, h: 186.317, rot: -8.61 }, assembled: { x: 101.5, y: 270, w: 339, h: 196, rot: 0 } },
-  { id: "wireframe", src: "/assets/raw/raw-15.png", alt: "拆解与背包界面线框图", kind: "snapshot", initial: { x: 513.424, y: 233.739, w: 280.13, h: 191.514, rot: 9.9 }, assembled: { x: 101.5, y: 490, w: 339, h: 196, rot: 0 } },
-  { id: "illustration", src: "/assets/raw/raw-11.png", alt: "游戏叙事插画", kind: "snapshot", initial: { x: 530.351, y: 171.067, w: 258.308, h: 149.346, rot: 0 }, assembled: { x: 464.5, y: 403, w: 339, h: 196, rot: 0 } },
-  { id: "icons", src: "/assets/raw/raw-06.png", alt: "角色头像图标设计", kind: "snapshot", initial: { x: 334.5, y: 276.246, w: 278.086, h: 187.043, rot: -8.78 }, assembled: { x: 464.5, y: 623, w: 339, h: 196, rot: 0 } },
-  { id: "shovel", src: "/assets/raw/raw-16.png", alt: "", kind: "decorative", initial: { x: 270.005, y: 330.12, w: 97.628, h: 97.532, rot: 0 }, assembled: { x: 446.5, y: -5, w: 128, h: 128, rot: 0 } },
-  { id: "tools", src: "/assets/raw/raw-04.png", alt: "", kind: "decorative", initial: { x: 691.788, y: 414.135, w: 86.95, h: 86.865, rot: 0 }, assembled: { x: 323.5, y: 710, w: 114, h: 114, rot: 0 } },
+  { id: "map", src: "/assets/raw/raw-01.png", alt: "地图界面重构设计案例", kind: "project", href: "/work?project=undying-map", initial: { x: 377.5, y: 175.7, w: 250.934, h: 145.247, rot: 0 }, assembled: { x: 15.5, y: 0, w: 425, h: 246, rot: -2.2 } },
+  { id: "art", src: "/assets/raw/raw-05.png", alt: "游戏美术作品展示", kind: "project", href: "/work?project=undying-art", initial: { x: 595.542, y: 79.739, w: 269.935, h: 182.617, rot: 9.13 }, assembled: { x: 464.5, y: 133, w: 425, h: 246, rot: 2.1 } },
+  { id: "skill", src: "/assets/raw/raw-13.png", alt: "游戏技能界面设计", kind: "snapshot", initial: { x: 299.5, y: 91.392, w: 277.747, h: 186.317, rot: -8.61 }, assembled: { x: 101.5, y: 270, w: 339, h: 196, rot: 1.2 } },
+  { id: "wireframe", src: "/assets/raw/raw-15.png", alt: "拆解与背包界面线框图", kind: "snapshot", initial: { x: 513.424, y: 233.739, w: 280.13, h: 191.514, rot: 9.9 }, assembled: { x: 101.5, y: 490, w: 339, h: 196, rot: -1.5 } },
+  { id: "illustration", src: "/assets/raw/raw-11.png", alt: "游戏叙事插画", kind: "snapshot", initial: { x: 530.351, y: 171.067, w: 258.308, h: 149.346, rot: 0 }, assembled: { x: 464.5, y: 403, w: 339, h: 196, rot: -1.1 } },
+  { id: "icons", src: "/assets/raw/raw-06.png", alt: "角色头像图标设计", kind: "snapshot", initial: { x: 334.5, y: 276.246, w: 278.086, h: 187.043, rot: -8.78 }, assembled: { x: 464.5, y: 623, w: 339, h: 196, rot: 1.8 } },
+  { id: "shovel", src: "/assets/raw/raw-16.png", alt: "", kind: "decorative", initial: { x: 270.005, y: 330.12, w: 97.628, h: 97.532, rot: 0 }, assembled: { x: 446.5, y: -5, w: 128, h: 128, rot: 2.7 } },
+  { id: "tools", src: "/assets/raw/raw-04.png", alt: "", kind: "decorative", initial: { x: 691.788, y: 414.135, w: 86.95, h: 86.865, rot: 0 }, assembled: { x: 323.5, y: 710, w: 114, h: 114, rot: -2.4 } },
 ];
 
 function PortfolioCard({ card, order, phase }: { card: Card; order: number; phase: StagePhase }) {
@@ -109,7 +114,7 @@ function PortfolioCard({ card, order, phase }: { card: Card; order: number; phas
     ? <a ref={tiltRef} className="card-media project-card" href={phase === "assembled" ? card.href : undefined} aria-label={card.alt} aria-disabled={phase !== "assembled"} tabIndex={phase === "assembled" ? 0 : -1} onPointerMove={onTiltMove} onPointerLeave={resetTilt} onBlur={resetTilt}>{image}</a>
     : <div className={`card-media ${card.kind === "decorative" ? "decorative-card" : "snapshot-card"}`} role={card.kind === "snapshot" ? "img" : undefined} aria-label={card.kind === "snapshot" ? card.alt : undefined} aria-hidden={card.kind === "decorative" ? "true" : undefined}>{image}</div>;
 
-  return <div className={`card-layout card-${card.kind}`} data-card={card.id} style={{ left: card.initial.x, top: card.initial.y, width: card.initial.w, height: card.initial.h, zIndex: order } as React.CSSProperties}>
+  return <div className={`card-layout card-${card.kind}`} data-card={card.id} style={{ left: centeredStageX(card.initial.x), top: card.initial.y, width: card.initial.w, height: card.initial.h, zIndex: order } as React.CSSProperties}>
     <div ref={dragRef} className={`card-drag${canDrag ? " is-draggable" : ""}`} onPointerDown={onPointerDown}>{media}</div>
   </div>;
 }
@@ -200,8 +205,8 @@ export default function Home() {
         const node = stage.current?.querySelector<HTMLElement>(`[data-card="${card.id}"]`);
         if (!node) return;
         timeline.fromTo(node,
-          { left: card.initial.x, top: card.initial.y, width: card.initial.w, height: card.initial.h, rotation: card.initial.rot },
-          { left: card.assembled.x, top: card.assembled.y, width: card.assembled.w, height: card.assembled.h, rotation: card.assembled.rot },
+          { left: centeredStageX(card.initial.x), top: card.initial.y, width: card.initial.w, height: card.initial.h, rotation: card.initial.rot },
+          { left: centeredStageX(card.assembled.x), top: card.assembled.y, width: card.assembled.w, height: card.assembled.h, rotation: card.assembled.rot },
           0
         );
       });
