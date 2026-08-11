@@ -11,9 +11,26 @@ function Paragraphs({ text }: { text: string }) {
   return text.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>);
 }
 
+type WorkItem = { id: string; heading: string; date: string; body: string; labels?: readonly string[] };
+type EducationItem = { id: string; institution: string; institution_en: string; qualification: string; qualification_en: string; date: string };
+type CompactItem = { id: string; title: string; context: string; date: string; description: string };
+
+function EducationEntry({ item }: { item: EducationItem }) {
+  return <article className="resume-entry education-entry">
+    <div className="caption-row"><div><p>{item.institution}{item.institution_en && <> <span>{item.institution_en}</span></>}</p><p className="education-qualification">{item.qualification}{item.qualification_en && <> <span>{item.qualification_en}</span></>}</p></div><time>{item.date}</time></div>
+  </article>;
+}
+
+function CompactEntry({ item }: { item: CompactItem }) {
+  return <article className="resume-entry compact-entry">
+    <div className="caption-row"><p>{item.title}{item.context && <> <span className="entry-divider">|</span> {item.context}</>}</p><time>{item.date}</time></div>
+    <p className="compact-entry-description">{item.description}</p>
+  </article>;
+}
+
 function Resume({ language }: { language: Language }) {
   const resume = siteContent[language].resume;
-  const entries = (section: { items: readonly { id: string; heading: string; date: string; body: string; labels?: readonly string[] }[] }) => section.items.map(item => <article className="resume-entry" key={item.id}>
+  const workEntries = (section: { items: readonly WorkItem[] }) => section.items.map(item => <article className="resume-entry work-entry" key={item.id}>
     <div className="resume-entry-heading"><h3>{item.heading}</h3><time>{item.date}</time></div>
     {item.labels && item.labels.length > 0 && <ul className="resume-labels" aria-label={language === "zh" ? "关键词" : "Keywords"}>{item.labels.map(label => <li key={label}>{label}</li>)}</ul>}
     {item.body && <div className="resume-entry-body"><Paragraphs text={item.body}/></div>}
@@ -21,10 +38,10 @@ function Resume({ language }: { language: Language }) {
   return <div className="content-page resume-page">
     <div className="content-page-title"><h1>{resume.name}</h1></div>
     <section className="resume-section resume-profile"><h2>{resume.profile.title}</h2><Paragraphs text={resume.profile.body}/></section>
-    <section className="resume-section"><h2>{resume.education.title}</h2>{entries(resume.education)}</section>
+    <section className="resume-section"><h2>{resume.education.title}</h2>{resume.education.items.map(item => <EducationEntry item={item} key={item.id}/>)}</section>
     <section className="resume-section"><h2>{resume.skills.title}</h2><div className="skill-groups">{resume.skills.groups.map(group => <div key={group.id}><h3>{group.label}</h3><p>{group.body}</p></div>)}</div></section>
-    <section className="resume-section"><h2>{resume.experience.title}</h2>{entries(resume.experience)}</section>
-    <section className="resume-section"><h2>{resume.other_experience.title}</h2>{entries(resume.other_experience)}</section>
+    <section className="resume-section"><h2>{resume.experience.title}</h2>{workEntries(resume.experience)}</section>
+    <section className="resume-section"><h2>{resume.other_experience.title}</h2>{resume.other_experience.items.map(item => <CompactEntry item={item} key={item.id}/>)}</section>
     <section className="resume-section resume-gaming"><h2>{resume.gaming_experience.title}</h2><Paragraphs text={resume.gaming_experience.body}/></section>
   </div>;
 }

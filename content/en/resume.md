@@ -11,13 +11,17 @@ education:
   title: "Education"
   items:
     - id: "education-uppsala"
-      heading: "Uppsala University (QS Top 100)｜MA in Game Design"
+      institution: "Uppsala University (QS Top 100)"
+      institution_en: ""
+      qualification: "MA in Game Design"
+      qualification_en: ""
       date: "2025 – 2026"
-      body: ""
     - id: "education-limkokwing"
-      heading: "Limkokwing University｜BA (Hons) in Game Art and Development"
+      institution: "Limkokwing University"
+      institution_en: ""
+      qualification: "BA (Hons) in Game Art and Development"
+      qualification_en: ""
       date: "2016 – 2019"
-      body: ""
 
 skills:
   title: "Skills"
@@ -72,13 +76,15 @@ other_experience:
   title: "Additional Experience"
   items:
     - id: "other-elvtr"
-      heading: "ELVTR coursework｜Overwatch 2 case study and Destiny 2 HUD redesign"
+      title: "ELVTR coursework"
+      context: "Overwatch 2 case study and Destiny 2 HUD redesign"
       date: "Mar 2024 – Aug 2025"
-      body: "Completed UI/UX for Games and Advanced UI/UX for Games, including practical Figma projects."
+      description: "Completed UI/UX for Games and Advanced UI/UX for Games, including practical Figma projects."
     - id: "other-booomjam"
-      heading: "Booomjam 2025｜Empty Eye Sockets"
+      title: "Booomjam 2025"
+      context: "Empty Eye Sockets"
       date: "May 2025"
-      body: "Led the core mechanic design, created UI and environment art, and implemented UI assets and levels in Unity. The submitted game received a Best Game nomination."
+      description: "Led the core mechanic design, created UI and environment art, and implemented UI assets and levels in Unity. The submitted game received a Best Game nomination."
 
 gaming_experience:
   title: "Gaming Experience"

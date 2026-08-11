@@ -64,15 +64,19 @@ export const siteContent = {
         "items": [
           {
             "id": "education-uppsala",
-            "heading": "乌普萨拉大学 (QS100) Uppsala University｜游戏设计研究生 MA in Game Design Programme",
-            "date": "2025 – 2026",
-            "body": ""
+            "institution": "乌普萨拉大学 (QS100)",
+            "institution_en": "Uppsala University",
+            "qualification": "游戏设计研究生",
+            "qualification_en": "MA in Game Design Programme",
+            "date": "2025 – 2026"
           },
           {
             "id": "education-limkokwing",
-            "heading": "林国荣创意科技大学 Limkokwing University｜游戏艺术与研发学士学位 (Hon) BA in Game Art and Development",
-            "date": "2016 – 2019",
-            "body": ""
+            "institution": "林国荣创意科技大学",
+            "institution_en": "Limkokwing University",
+            "qualification": "游戏艺术与研发学士学位",
+            "qualification_en": "(Hon) BA in Game Art and Development",
+            "date": "2016 – 2019"
           }
         ]
       },
@@ -144,15 +148,17 @@ export const siteContent = {
         "items": [
           {
             "id": "other-elvtr",
-            "heading": "ELVTR 课程学习｜《守望先锋2》案例分析；《命运2》HUD优化练习",
+            "title": "ELVTR 课程学习",
+            "context": "《守望先锋2》案例分析；《命运2》HUD优化练习",
             "date": "2024.3 – 2025.8",
-            "body": "完成 UI/UX for Games 与 Advanced UI/UX for Games 课程及 Figma 实战项目。"
+            "description": "完成 UI/UX for Games 与 Advanced UI/UX for Games 课程及 Figma 实战项目。"
           },
           {
             "id": "other-booomjam",
-            "heading": "Booomjam 2025 参赛｜《空眼眶》",
+            "title": "Booomjam 2025 参赛",
+            "context": "《空眼眶》",
             "date": "2025.5",
-            "body": "主导游戏核心机制设计，绘制 UI 与关卡美术素材，在 Unity 中完成 UI 资源拼接和关卡还原；成功提交参赛版本，并获最佳游戏提名。"
+            "description": "主导游戏核心机制设计，绘制 UI 与关卡美术素材，在 Unity 中完成 UI 资源拼接和关卡还原；成功提交参赛版本，并获最佳游戏提名。"
           }
         ]
       },
@@ -250,15 +256,19 @@ export const siteContent = {
         "items": [
           {
             "id": "education-uppsala",
-            "heading": "Uppsala University (QS Top 100)｜MA in Game Design",
-            "date": "2025 – 2026",
-            "body": ""
+            "institution": "Uppsala University (QS Top 100)",
+            "institution_en": "",
+            "qualification": "MA in Game Design",
+            "qualification_en": "",
+            "date": "2025 – 2026"
           },
           {
             "id": "education-limkokwing",
-            "heading": "Limkokwing University｜BA (Hons) in Game Art and Development",
-            "date": "2016 – 2019",
-            "body": ""
+            "institution": "Limkokwing University",
+            "institution_en": "",
+            "qualification": "BA (Hons) in Game Art and Development",
+            "qualification_en": "",
+            "date": "2016 – 2019"
           }
         ]
       },
@@ -330,15 +340,17 @@ export const siteContent = {
         "items": [
           {
             "id": "other-elvtr",
-            "heading": "ELVTR coursework｜Overwatch 2 case study and Destiny 2 HUD redesign",
+            "title": "ELVTR coursework",
+            "context": "Overwatch 2 case study and Destiny 2 HUD redesign",
             "date": "Mar 2024 – Aug 2025",
-            "body": "Completed UI/UX for Games and Advanced UI/UX for Games, including practical Figma projects."
+            "description": "Completed UI/UX for Games and Advanced UI/UX for Games, including practical Figma projects."
           },
           {
             "id": "other-booomjam",
-            "heading": "Booomjam 2025｜Empty Eye Sockets",
+            "title": "Booomjam 2025",
+            "context": "Empty Eye Sockets",
             "date": "May 2025",
-            "body": "Led the core mechanic design, created UI and environment art, and implemented UI assets and levels in Unity. The submitted game received a Best Game nomination."
+            "description": "Led the core mechanic design, created UI and environment art, and implemented UI assets and levels in Unity. The submitted game received a Best Game nomination."
           }
         ]
       },

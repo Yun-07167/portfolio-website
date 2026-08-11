@@ -135,23 +135,32 @@ footer p { margin:16px 0 0; }
 .resume-entry-heading { display:flex; justify-content:space-between; gap:30px; align-items:flex-start; }
 .resume-entry h3,.skill-groups h3 { margin:0; font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; }
 .resume-entry time { flex:0 0 auto; color:var(--foreground); font-family:var(--font-display); font-size:24px; line-height:1.52; letter-spacing:-.045em; text-align:right; }
-.resume-entry-body p,.resume-profile p,.resume-gaming p,.skill-groups p { margin:0; font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:-.045em; }
+.resume-entry-body p,.resume-profile p,.resume-gaming p,.skill-groups p { margin:0; font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:0; }
 .resume-entry-body p + p,.resume-profile p + p,.resume-gaming p + p { margin-top:10px; }
 .resume-labels { display:flex; flex-wrap:wrap; gap:0; width:max-content; max-width:100%; margin:0; padding:0; list-style:none; }
-.resume-labels li { min-height:20px; padding:0 10px; display:flex; align-items:center; border:0; border-right:1px solid #e0dede; border-radius:0; background:var(--primary-500); color:#2a2a2a; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.25; letter-spacing:-.045em; }
+.resume-labels li { min-height:20px; padding:0 10px; display:flex; align-items:center; border:0; border-right:1px solid #e0dede; border-radius:0; background:var(--primary-500); color:#2a2a2a; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.25; letter-spacing:0; }
 .resume-labels li:last-child { border-right:0; }
 .skill-groups { display:grid; gap:0; }
 .skill-groups > div { display:grid; grid-template-columns:max-content minmax(0,1fr); gap:10px; align-items:center; }
-.skill-groups h3 { padding-right:10px; font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:-.045em; }
+.skill-groups h3 { padding-right:10px; font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:0; }
 .skill-groups p { margin:0; padding-block:10px; }
+.caption-row { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; color:var(--foreground); font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.25; letter-spacing:0; }
+.caption-row p { margin:0; }
+.caption-row time { flex:0 0 auto; padding:0; color:var(--foreground); font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:0; text-align:right; }
+.education-qualification { color:var(--neutral-900); }
+.education-qualification span,.caption-row p > span:not(.entry-divider) { color:var(--foreground); }
+.entry-divider { margin-inline:5px; }
+.compact-entry { display:flex; flex-direction:column; gap:4px; }
+.compact-entry-description { margin:0; color:var(--foreground); font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:0; }
 .about-page { padding-top:168px; display:flex; flex-direction:column; gap:48px; }
 .about-section { display:flex; flex-direction:column; gap:24px; padding:0; }
 .about-section + .about-section { padding:0; border:0; }
 .about-section h1 { margin:0; color:var(--foreground); font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
 .about-copy { width:100%; margin:0; }
-.about-copy p { margin:0; color:var(--foreground); font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:-.045em; }
+.about-copy p { margin:0; color:var(--foreground); font-family:var(--font-ui); font-size:16px; line-height:1.25; letter-spacing:0; }
 .about-copy p + p { margin-top:20px; }
 .about-site-illustration { display:block; width:219.119px; height:184.865px; margin-left:auto; object-fit:fill; filter:var(--asset-filter); }
+html[lang="en"] .resume-page :is(.resume-entry-body p,.resume-profile p,.resume-gaming p,.skill-groups h3,.skill-groups p,.resume-labels li,.caption-row,.caption-row time,.compact-entry-description),html[lang="en"] .about-copy p { letter-spacing:-.045em; }
 .subpage-footer { position:static; width:100%; height:176px; margin-top:48px; padding-bottom:128px; display:flex; align-items:flex-start; justify-content:space-between; }
 .subpage-footer button { width:48px; height:48px; border:0; padding:0; background:none; }
 .subpage-footer button img { width:34px; height:48px; transform:rotate(180deg); filter:var(--asset-filter); }
@@ -165,6 +174,8 @@ footer p { margin:16px 0 0; }
   .resume-page { padding-top:72px; }
   .resume-entry-heading { grid-template-columns:1fr; gap:8px; }
   .resume-entry time { padding:0; text-align:left; }
+  .caption-row { flex-direction:column; gap:4px; }
+  .caption-row time { text-align:left; }
   .about-copy,.about-links { margin-left:0; }
 }
 @media (max-width:560px) {

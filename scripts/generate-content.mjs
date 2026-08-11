@@ -10,6 +10,44 @@ async function readFrontMatter(relativePath) {
   return matter(source).data;
 }
 
+function requireString(value, path) {
+  if (typeof value !== "string") throw new TypeError(`${path} must be a string.`);
+}
+
+function requireItems(section, path) {
+  if (!section || !Array.isArray(section.items)) throw new TypeError(`${path}.items must be an array.`);
+  return section.items;
+}
+
+function validateResume(resume, locale) {
+  const root = `content/${locale}/resume.md`;
+  requireString(resume?.name, `${root}.name`);
+  requireString(resume?.profile?.title, `${root}.profile.title`);
+  requireString(resume?.profile?.body, `${root}.profile.body`);
+
+  for (const [index, item] of requireItems(resume.education, `${root}.education`).entries()) {
+    for (const field of ["id", "institution", "institution_en", "qualification", "qualification_en", "date"]) {
+      requireString(item[field], `${root}.education.items[${index}].${field}`);
+    }
+  }
+
+  for (const [index, item] of requireItems(resume.experience, `${root}.experience`).entries()) {
+    for (const field of ["id", "heading", "date", "body"]) requireString(item[field], `${root}.experience.items[${index}].${field}`);
+    if (!Array.isArray(item.labels) || item.labels.some(label => typeof label !== "string")) {
+      throw new TypeError(`${root}.experience.items[${index}].labels must be a string array.`);
+    }
+  }
+
+  for (const [index, item] of requireItems(resume.other_experience, `${root}.other_experience`).entries()) {
+    for (const field of ["id", "title", "context", "date", "description"]) {
+      requireString(item[field], `${root}.other_experience.items[${index}].${field}`);
+    }
+  }
+
+  requireString(resume?.gaming_experience?.title, `${root}.gaming_experience.title`);
+  requireString(resume?.gaming_experience?.body, `${root}.gaming_experience.body`);
+}
+
 async function readLocale(locale) {
   const base = `content/${locale}`;
   const [global, home, work, resume, about, notes] = await Promise.all([
@@ -21,6 +59,7 @@ async function readLocale(locale) {
     readFrontMatter(`${base}/notes.md`),
   ]);
 
+  validateResume(resume, locale);
   return { global, home, work, resume, about, notes };
 }
 
