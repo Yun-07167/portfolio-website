@@ -45,8 +45,6 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .nav-zone.is-active .nav-label { color:var(--neutral-900); }
 .active-underline { position:absolute; left:50%; top:calc(100% + 1px); display:block; width:87.8145px; height:6.87717px; transform:translateX(-50%); pointer-events:none; }
 .active-underline img { display:block; width:87.8145px; height:6.87717px; max-width:none; }
-.site-header .nav-zone.is-active .nav-reveal { display:grid; opacity:1; visibility:visible; transform:none; transition-delay:0s; }
-.site-header .nav-zone.is-active .nav-reveal .nav-illustration,.site-header .nav-zone.is-active .nav-notes-illustration-frame { opacity:1; visibility:visible; }
 .drawn-ring { position:absolute; inset:0; opacity:0; transition:opacity .08s; pointer-events:none; }
 .drawn-ring img { position:absolute; left:50%; top:50%; width:104px; height:40px; object-fit:contain; transform:translate(-50%,-50%); filter:var(--asset-filter); }
 .nav-about .drawn-ring img { width:104px; height:43px; }
