@@ -1,32 +1,14 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import Link from "next/link";
 import { siteContent } from "../generated-content";
+import SiteHeader, { type ContactOption, type Language, type Theme } from "./SiteHeader";
 
-type Language = "zh" | "en";
-type Theme = "light" | "dark";
 type PageKind = "resume" | "about";
 const LANGUAGE_STORAGE_KEY = "portfolio-language";
 
 function Paragraphs({ text }: { text: string }) {
   return text.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>);
-}
-
-function SubpageHeader({ language, setLanguage, theme, setTheme, active }: { language: Language; setLanguage: (language: Language) => void; theme: Theme; setTheme: (theme: Theme) => void; active: PageKind }) {
-  const global = siteContent[language].global;
-  const links = [["works", global.navigation.works, "/work"], ["notes", global.navigation.notes, "/notes"], ["resume", global.navigation.resume, "/resume"], ["about", global.navigation.about, "/about"]] as const;
-  return <header className="subpage-header">
-    <Link className="subpage-home" href="/" aria-label={global.controls.home_label}><img src="/assets/home-face.svg" alt=""/></Link>
-    <nav aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
-      {links.map(([id, label, href]) => <Link key={id} href={href} aria-current={active === id ? "page" : undefined}>{label}</Link>)}
-      <a href="mailto:yangtianyun7@foxmail.com">{global.navigation.contact}</a>
-    </nav>
-    <div className="subpage-switchers">
-      <button type="button" onClick={() => setLanguage(language === "zh" ? "en" : "zh")} aria-label={global.controls.switch_to_other_language}>{language === "zh" ? "EN" : "中"}</button>
-      <button type="button" onClick={() => setTheme(theme === "light" ? "dark" : "light")} aria-label={global.controls.switch_theme}><img src={theme === "light" ? "/assets/icon-theme-moon.svg" : "/assets/icon-theme-sun.svg"} alt=""/></button>
-    </div>
-  </header>;
 }
 
 function Resume({ language }: { language: Language }) {
@@ -51,15 +33,17 @@ function About({ language }: { language: Language }) {
   const about = siteContent[language].about;
   return <div className="content-page about-page">{about.sections.map((section, index) => <section key={section.id} className="about-section">
     <p className="section-index">0{index + 1}</p><h1>{section.title}</h1><div className="about-copy"><Paragraphs text={section.body}/></div>
-    {section.id === "about-me" && <div className="about-links"><Link href="/resume">{about.resume_link_text}<span aria-hidden="true">↗</span></Link><a href="mailto:yangtianyun7@foxmail.com">{about.contact_link_text}<span aria-hidden="true">↗</span></a></div>}
+    {section.id === "about-me" && <div className="about-links"><a href="/resume">{about.resume_link_text}<span aria-hidden="true">↗</span></a><a href="mailto:yangtianyun7@foxmail.com">{about.contact_link_text}<span aria-hidden="true">↗</span></a></div>}
   </section>)}</div>;
 }
 
 export default function ContentPage({ page }: { page: PageKind }) {
   const [language, setLanguage] = useState<Language>("zh");
   const [theme, setTheme] = useState<Theme>("light");
+  const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
   useEffect(() => { queueMicrotask(() => { const saved = window.localStorage.getItem(LANGUAGE_STORAGE_KEY); if (saved === "zh" || saved === "en") setLanguage(saved); if (document.documentElement.dataset.theme === "dark") setTheme("dark"); }); }, []);
   useEffect(() => { document.documentElement.lang = language === "zh" ? "zh-CN" : "en"; document.documentElement.dataset.theme = theme; window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language); }, [language, theme]);
   const body: ReactNode = page === "resume" ? <Resume language={language}/> : <About language={language}/>;
-  return <main className="subpage-shell"><SubpageHeader language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} active={page}/>{body}<footer className="subpage-footer"><p>{siteContent[language].global.footer.copyright}</p><button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={siteContent[language].global.controls.back_to_top}><img src="/assets/arrow.svg" alt=""/></button></footer></main>;
+  const content = siteContent[language];
+  return <main className="subpage-shell"><SiteHeader language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption} activePage={page}/>{body}<footer className="subpage-footer"><p>{content.global.footer.copyright}</p><button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={content.global.controls.back_to_top}><img src="/assets/arrow.svg" alt=""/></button></footer>{dialogOption && <div className="modal-backdrop"><button className="modal-dismiss" type="button" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}/><section className="qr-modal" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title"><button className="modal-close" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}>×</button>{dialogOption.dialog_image ? <img className="qr-image" src={dialogOption.dialog_image} alt={dialogOption.dialog_title}/> : <div className="qr-missing" aria-hidden="true">QR</div>}<h2 id="contact-dialog-title">{dialogOption.dialog_title}</h2><p>{dialogOption.dialog_body}</p></section></div>}</main>;
 }
