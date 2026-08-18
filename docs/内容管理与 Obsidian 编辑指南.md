@@ -72,6 +72,30 @@ Obsidian 原生支持 Mermaid。在 Markdown 中插入 `mermaid` 代码块即可
 
 第二行控制列对齐：`---` 为左对齐，`:---:` 为居中，`---:` 为右对齐。网站在窄屏上会为表格提供横向滚动，不会压缩到无法阅读。
 
+## Obsidian Excalidraw 可视化绘图
+
+复杂流程图可以用 Obsidian 的 Excalidraw 社区插件拖拽编辑，不需要编写 Mermaid。安装方式：
+
+1. 打开 Obsidian 设置 → 第三方插件，关闭安全模式。
+2. 浏览社区插件并安装、启用 `Excalidraw`。
+3. 在 Excalidraw 设置的 `Embed & Export` 中启用保存时自动导出 SVG。
+4. 把可编辑的 `.excalidraw.md` 放在对应内容目录；把导出的 SVG 放在 `public/assets/projects/<slug>/` 或 `public/assets/notes/<slug>/`。
+5. 建议让源文件和导出文件使用相同主文件名，例如 `task-flow.excalidraw.md` 与 `task-flow.svg`。
+
+网站使用独立绘图内容块：
+
+    :::drawing
+    src: /assets/projects/example/task-flow.svg
+    dark_src: /assets/projects/example/task-flow.dark.svg
+    alt: 玩家任务流程图
+    caption: 从选择目标到确认行动的完整路径
+    layout: wide
+    :::
+
+`dark_src` 可省略；提供后会跟随网站自己的亮暗模式切换，而不是跟随操作系统模式。点击绘图可以打开大图并进行缩放。SVG 最适合流程图；包含大量位图或复杂笔触时可以改用 WebP/PNG。
+
+请不要在网站 Markdown 中直接引用 `.excalidraw.md`。它是编辑源文件，不是浏览器展示素材；发布时应引用自动导出的 SVG/PNG。
+
 ## 支持的正文格式
 
 - 一级至四级标题
@@ -80,6 +104,7 @@ Obsidian 原生支持 Mermaid。在 Markdown 中插入 `mermaid` 代码块即可
 - 引用
 - 代码块
 - Mermaid 流程图
+- Excalidraw 导出的可缩放绘图
 - Markdown 表格
 - 粗体和链接
 - 标准图片、图片媒体块、视频媒体块

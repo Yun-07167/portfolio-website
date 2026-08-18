@@ -38,3 +38,10 @@ test("content body recognizes Mermaid blocks without adding them to bilingual me
   assert.deepEqual(audit.signature,{headings:[2],media:[]});
   assert.throws(()=>inspectContentBody("```mermaid\nflowchart LR\nA --> B","broken.md"),/unclosed Mermaid/);
 });
+
+test("content body validates editable drawing exports", () => {
+  const result=inspectContentBody(":::drawing\nsrc: /assets/flow.svg\ndark_src: /assets/flow.dark.svg\nalt: Task flow\ncaption: Editable in Excalidraw\n:::","drawing.md");
+  assert.equal(result.media[0].type,"drawing");
+  assert.equal(result.media[0].dark_src,"/assets/flow.dark.svg");
+  assert.throws(()=>inspectContentBody(":::drawing\nsrc: /assets/flow.svg\n:::","drawing.md"),/without alt text/);
+});

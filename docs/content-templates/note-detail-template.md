@@ -24,4 +24,12 @@ flowchart LR
 | --- | --- | --- |
 | 示例 | 示例内容 | 示例结论 |
 
+:::drawing
+src: /assets/notes/example-note/task-flow.svg
+dark_src: /assets/notes/example-note/task-flow.dark.svg
+alt: 可视化编辑的任务流程图
+caption: 源文件为 task-flow.excalidraw.md，保存时自动导出 SVG。
+layout: wide
+:::
+
 ![图片说明](/assets/notes/example-note/image.webp)

@@ -1,5 +1,5 @@
 const imagePattern = /^!\[([^\]]*)\]\(([^\s)]+)(?:\s+["'][^"']*["'])?\)$/gm;
-const directivePattern = /^:::(image|video)\s*\n([\s\S]*?)^:::\s*$/gm;
+const directivePattern = /^:::(image|video|drawing)\s*\n([\s\S]*?)^:::\s*$/gm;
 const mermaidFencePattern = /^```mermaid\s*\n([\s\S]*?)^```\s*$/gm;
 
 function parseDirectiveFields(source) {
@@ -29,7 +29,7 @@ export function inspectContentBody(body, path) {
     const type = match[1];
     const fields = parseDirectiveFields(match[2]);
     if (!fields.src) throw new Error(`${path} contains :::${type} without src.`);
-    if (type === "image" && !fields.alt) throw new Error(`${path} contains :::image without alt text: ${fields.src}`);
+    if ((type === "image" || type === "drawing") && !fields.alt) throw new Error(`${path} contains :::${type} without alt text: ${fields.src}`);
     media.push({ type, ...fields });
   }
 

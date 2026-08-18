@@ -41,6 +41,14 @@ flowchart LR
 | 不可用 | 强调限制原因 | 调整选择 |
 | 可确认 | 显示预期结果 | 确认操作 |
 
+:::drawing
+src: /assets/projects/example-project/task-flow.svg
+dark_src: /assets/projects/example-project/task-flow.dark.svg
+alt: 可视化编辑的玩家任务流程图
+caption: 源文件为 task-flow.excalidraw.md，保存时自动导出 SVG。
+layout: wide
+:::
+
 :::image
 src: /assets/projects/example-project/process.webp
 alt: 设计过程图

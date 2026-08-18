@@ -337,6 +337,22 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .mermaid-lightbox-viewport { position:relative; z-index:1; min-height:0; overflow:auto; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); }
 .mermaid-lightbox-canvas { width:min(1200px,90vw); padding:40px; transform-origin:center; transition:transform .18s ease; }
 .mermaid-lightbox-canvas svg { display:block; width:100%; height:auto; }
+.content-drawing { width:100%; margin:40px 0; }
+.drawing-preview { display:block; width:100%; padding:0; overflow:hidden; border:1px solid var(--neutral-600); background:color-mix(in srgb,var(--surface) 78%,transparent); cursor:zoom-in; }
+.drawing-preview:focus-visible { outline:2px solid var(--primary-500); outline-offset:3px; }
+.drawing-picture { display:block; width:100%; }
+.drawing-picture img { display:block; width:100%; height:auto; }
+.drawing-dark { display:none!important; }
+html[data-theme="dark"] .drawing-picture:has(.drawing-dark) .drawing-light { display:none; }
+html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important; }
+.content-drawing figcaption { margin-top:12px; color:var(--neutral-700); font-size:var(--caption-size); letter-spacing:var(--caption-tracking); }
+.drawing-lightbox { position:fixed; inset:0; z-index:3000; display:grid; grid-template-rows:auto 1fr; padding:24px; background:color-mix(in srgb,var(--background) 92%,transparent); backdrop-filter:blur(12px); }
+.drawing-lightbox-dismiss { position:absolute; inset:0; width:100%; height:100%; border:0; background:transparent; }
+.drawing-toolbar { position:relative; z-index:1; justify-self:end; display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+.drawing-toolbar button,.drawing-toolbar output { min-width:44px; height:40px; padding:0 12px; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); color:var(--neutral-900); font-family:var(--font-ui); font-size:15px; }
+.drawing-toolbar button:hover,.drawing-toolbar button:focus-visible { background:var(--primary-100); }
+.drawing-lightbox-viewport { position:relative; z-index:1; min-height:0; overflow:auto; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); }
+.drawing-lightbox-canvas { width:min(1200px,90vw); padding:40px; transform-origin:center; transition:transform .18s ease; }
 @media (max-width:800px) { .notes-page { padding-top:130px; } .notes-layout { grid-template-columns:1fr; gap:36px; } .notes-filters { grid-row:1; position:static; } .notes-list { min-height:0; } }
 @media (max-width:560px) { .notes-page > h1 { font-size:46px; } .note-card { padding-inline:8px; } .note-card-title h2 { font-size:22px; } .detail-page { padding-top:130px; } .detail-hero h1 { font-size:40px; } .detail-meta { flex-direction:column; } .detail-meta time { border-right:0; } .detail-cover,.markdown-content { margin-top:32px; } .markdown-content { font-size:16px; } .markdown-content h2 { font-size:30px; } }
 @media (max-width:600px) {

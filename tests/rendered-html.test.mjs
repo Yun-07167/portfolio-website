@@ -62,3 +62,12 @@ test("renders Markdown tables and mounts Mermaid diagrams in detail content", as
   assert.match(html,/玩家为什么进入这个功能/);
   assert.match(html,/flowchart LR/);
 });
+
+test("renders an expandable visual drawing from Markdown", async () => {
+  const response=await render("/notes/visual-drawing-workflow");
+  assert.equal(response.status,200);
+  const html=await response.text();
+  assert.match(html,/content-drawing/);
+  assert.match(html,/player-goal-flow\.webp/);
+  assert.match(html,/地图导航流程|map navigation flow/);
+});

@@ -1,11 +1,13 @@
 import { Fragment, type ReactNode } from "react";
 import MermaidDiagram from "./MermaidDiagram";
+import DrawingViewer from "./DrawingViewer";
 
 type Block =
   | { type:"heading"; level:number; text:string }
   | { type:"paragraph"; text:string }
   | { type:"image"; src:string; alt:string; caption?:string; layout?:string }
   | { type:"video"; src:string; poster?:string; caption?:string; captions?:string }
+  | { type:"drawing"; src:string; darkSrc?:string; alt:string; caption?:string; layout?:string }
   | { type:"list"; ordered:boolean; items:string[] }
   | { type:"quote"; text:string }
   | { type:"code"; code:string }
@@ -41,11 +43,12 @@ function blocks(markdown:string):Block[] {
     if(heading){result.push({type:"heading",level:heading[1].length,text:heading[2]});index++;continue;}
     const image=line.match(/^!\[([^\]]+)\]\(([^\s)]+)(?:\s+["']([^"']*)["'])?\)$/);
     if(image){result.push({type:"image",alt:image[1],src:image[2],caption:image[3]});index++;continue;}
-    if(line===":::image"||line===":::video"){
-      const type=line.slice(3) as "image"|"video"; const content:string[]=[]; index++;
+    if(line===":::image"||line===":::video"||line===":::drawing"){
+      const type=line.slice(3) as "image"|"video"|"drawing"; const content:string[]=[]; index++;
       while(index<lines.length&&lines[index].trim()!==":::"){content.push(lines[index]);index++;}
       index++; const data=fields(content);
       if(type==="image") result.push({type,src:data.src,alt:data.alt,caption:data.caption,layout:data.layout});
+      else if(type==="drawing") result.push({type,src:data.src,darkSrc:data.dark_src,alt:data.alt,caption:data.caption,layout:data.layout});
       else result.push({type,src:data.src,poster:data.poster,caption:data.caption,captions:data.captions});
       continue;
     }
@@ -104,6 +107,7 @@ export default function MarkdownContent({ markdown }:{ markdown:string }) {
     if(block.type==="quote")return <blockquote key={index}>{inline(block.text)}</blockquote>;
     if(block.type==="code")return <pre key={index}><code>{block.code}</code></pre>;
     if(block.type==="mermaid")return <MermaidDiagram code={block.code} key={index}/>;
+    if(block.type==="drawing")return <DrawingViewer src={block.src} darkSrc={block.darkSrc} alt={block.alt} caption={block.caption} layout={block.layout} key={index}/>;
     if(block.type==="table")return <div className="content-table-scroll" key={index}><table><thead><tr>{block.headers.map((cell,cellIndex)=><th style={{textAlign:block.align[cellIndex]??"left"}} key={cellIndex}>{inline(cell)}</th>)}</tr></thead><tbody>{block.rows.map((row,rowIndex)=><tr key={rowIndex}>{block.headers.map((_,cellIndex)=><td style={{textAlign:block.align[cellIndex]??"left"}} key={cellIndex}>{inline(row[cellIndex]??"")}</td>)}</tr>)}</tbody></table></div>;
     if(block.type==="list"){
       const items=block.items.map((item,itemIndex)=><li key={itemIndex}>{inline(item)}</li>);
