@@ -6,6 +6,26 @@ import SiteHeader, { type ContactOption, type Language, type Theme } from "../co
 
 const LANGUAGE_STORAGE_KEY = "portfolio-language";
 
+function ProjectCover({ src, alt, priority = false }: { src: string; alt: string; priority?: boolean }) {
+  const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
+
+  return <div className={`work-card-media is-${status}`} aria-busy={status === "loading"}>
+    <div className="work-card-placeholder" aria-hidden="true">
+      <img src="/assets/projects-illustration.svg" alt=""/>
+    </div>
+    <img
+      className="work-card-cover"
+      src={src}
+      alt={alt}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      fetchPriority={priority ? "high" : "auto"}
+      onLoad={() => setStatus("loaded")}
+      onError={() => setStatus("error")}
+    />
+  </div>;
+}
+
 export default function WorkPage() {
   const [language, setLanguage] = useState<Language>("zh");
   const [theme, setTheme] = useState<Theme>("light");
@@ -43,8 +63,8 @@ export default function WorkPage() {
       <h1>{work.title}</h1>
       <div className="works-layout">
         <section className="works-list" aria-live="polite">
-          {projects.map(project => <article className="work-card" key={project.slug}>
-            <img className="work-card-cover" src={project.cover} alt={project.cover_alt}/>
+          {projects.map((project, index) => <article className="work-card" key={project.slug}>
+            <ProjectCover src={project.cover} alt={project.cover_alt} priority={index === 0}/>
             <div className="work-card-copy">
               <h2>{project.title}</h2>
               <div className="work-card-meta"><time>{project.year}</time><ul>{project.tags.map(tag => <li key={tag}>{work.tag_labels[tag]}</li>)}</ul></div>
