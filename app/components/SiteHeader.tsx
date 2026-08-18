@@ -7,7 +7,7 @@ import ModeSwitcher from "./ModeSwitcher";
 
 export type Language = "zh" | "en";
 export type Theme = "light" | "dark";
-export type ActivePage = "home" | "resume" | "about";
+export type ActivePage = "home" | "projects" | "resume" | "about";
 type NavId = "home" | "projects" | "notes" | "connect" | "resume" | "about";
 type LocaleContent = (typeof siteContent)[Language];
 export type ContactOption = LocaleContent["global"]["contact_options"][number];

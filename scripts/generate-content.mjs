@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import matter from "gray-matter";
 import { loadHomeShowcase } from "./home-showcase-data.mjs";
+import { loadProjectLocale, serializePublishedProjects, validateProjectParity } from "./project-data.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -48,7 +49,7 @@ function validateResume(resume, locale) {
   requireString(resume?.gaming_experience?.body, `${root}.gaming_experience.body`);
 }
 
-async function readLocale(locale) {
+async function readLocale(locale, projects) {
   const base = `content/${locale}`;
   const [global, home, work, resume, about, notes] = await Promise.all([
     readFrontMatter(`${base}/global.md`),
@@ -60,12 +61,22 @@ async function readLocale(locale) {
   ]);
 
   validateResume(resume, locale);
-  return { global, home, work, resume, about, notes };
+  const tagLabels = work?.tag_labels;
+  if (!tagLabels || typeof tagLabels !== "object" || Array.isArray(tagLabels)) {
+    throw new TypeError(`content/${locale}/work.md.tag_labels must be an object.`);
+  }
+  for (const project of projects.values()) {
+    for (const tag of project.tags) requireString(tagLabels[tag], `content/${locale}/work.md.tag_labels.${tag}`);
+  }
+  return { global, home, work: { ...work, projects: serializePublishedProjects(projects) }, resume, about, notes };
 }
 
+const [projectsZh, projectsEn] = await Promise.all([loadProjectLocale("zh"), loadProjectLocale("en")]);
+validateProjectParity(projectsZh, projectsEn);
+
 const content = {
-  zh: await readLocale("zh"),
-  en: await readLocale("en"),
+  zh: await readLocale("zh", projectsZh),
+  en: await readLocale("en", projectsEn),
   homeShowcase: await loadHomeShowcase(),
 };
 

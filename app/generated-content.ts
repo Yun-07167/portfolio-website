@@ -50,7 +50,56 @@ export const siteContent = {
     },
     "work": {
       "locale": "zh-CN",
-      "project_order": []
+      "title": "项目列表",
+      "filters": {
+        "year": "年份",
+        "tag": "标签",
+        "all": "全部",
+        "clear": "清除筛选",
+        "empty": "没有符合当前条件的项目。"
+      },
+      "tag_labels": {
+        "interaction-design": "交互设计",
+        "case-study": "案例分析",
+        "game-ui": "游戏 UI",
+        "game-art": "游戏美术",
+        "indie-game": "独立游戏"
+      },
+      "projects": [
+        {
+          "slug": "undying-map",
+          "title": "《苏醒之路》地图界面重构设计案例",
+          "summary": "重构地图迁移流程与区域信息层级，帮助玩家更清晰地判断目的地、资源与行动成本。",
+          "cover": "/assets/projects/undying-map/home-cover.png",
+          "cover_alt": "《苏醒之路》地图界面重构设计预览",
+          "home_thumbnail": "/assets/projects/undying-map/home-cover.png",
+          "year": 2026,
+          "tags": [
+            "interaction-design",
+            "case-study",
+            "game-ui"
+          ],
+          "published": true,
+          "order": 10,
+          "body": ""
+        },
+        {
+          "slug": "undying-art",
+          "title": "《苏醒之路》游戏美术作品展示",
+          "summary": "汇总项目中的角色、场景与界面美术实践，呈现独立游戏视觉风格从探索到落地的过程。",
+          "cover": "/assets/projects/undying-art/home-cover.png",
+          "cover_alt": "《苏醒之路》游戏美术作品展示预览",
+          "home_thumbnail": "/assets/projects/undying-art/home-cover.png",
+          "year": 2024,
+          "tags": [
+            "game-art",
+            "indie-game"
+          ],
+          "published": true,
+          "order": 20,
+          "body": ""
+        }
+      ]
     },
     "resume": {
       "locale": "zh-CN",
@@ -242,7 +291,56 @@ export const siteContent = {
     },
     "work": {
       "locale": "en",
-      "project_order": []
+      "title": "Projects",
+      "filters": {
+        "year": "Year",
+        "tag": "Tags",
+        "all": "All",
+        "clear": "Clear filters",
+        "empty": "No projects match the current filters."
+      },
+      "tag_labels": {
+        "interaction-design": "Interaction Design",
+        "case-study": "Case Study",
+        "game-ui": "Game UI",
+        "game-art": "Game Art",
+        "indie-game": "Indie Game"
+      },
+      "projects": [
+        {
+          "slug": "undying-map",
+          "title": "Undying Map Interface Redesign",
+          "summary": "A redesign of the map travel flow and regional information hierarchy, helping players compare destinations, resources, and action costs more clearly.",
+          "cover": "/assets/projects/undying-map/home-cover.png",
+          "cover_alt": "Preview of the Undying map interface redesign",
+          "home_thumbnail": "/assets/projects/undying-map/home-cover.png",
+          "year": 2026,
+          "tags": [
+            "interaction-design",
+            "case-study",
+            "game-ui"
+          ],
+          "published": true,
+          "order": 10,
+          "body": ""
+        },
+        {
+          "slug": "undying-art",
+          "title": "Undying Game Art Showcase",
+          "summary": "A collection of character, environment, and interface artwork showing how the indie game's visual direction developed from exploration to production.",
+          "cover": "/assets/projects/undying-art/home-cover.png",
+          "cover_alt": "Preview of the Undying game art showcase",
+          "home_thumbnail": "/assets/projects/undying-art/home-cover.png",
+          "year": 2024,
+          "tags": [
+            "game-art",
+            "indie-game"
+          ],
+          "published": true,
+          "order": 20,
+          "body": ""
+        }
+      ]
     },
     "resume": {
       "locale": "en",

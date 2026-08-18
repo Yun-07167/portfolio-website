@@ -10,14 +10,13 @@ summary: |
 cover: "[填写项目封面素材路径]"
 cover_alt: "[填写项目封面的替代文字]"
 
-year: "[填写项目年份或时间范围]"
-role: "[填写你在项目中的角色]"
-labels:
-  - "[Label 1]"
-  - "[Label 2]"
-tools:
-  - "[工具 1]"
-  - "[工具 2]"
+year: 2026
+tags:
+  - "interaction-design"
+  - "case-study"
+
+published: false
+order: 100
 
 external_url: null
 ---
@@ -45,4 +44,3 @@ external_url: null
 ## 结果与反思
 
 [填写项目结果、数据、反馈和后续反思。]
-

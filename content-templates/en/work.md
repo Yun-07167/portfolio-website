@@ -1,13 +1,13 @@
 ---
 locale: "en"
-
-# The Works page only controls project order.
-# Card titles, descriptions and covers come from each project Markdown file.
-project_order:
-  - "project-01"
-  - "project-02"
-  - "project-03"
-  - "project-04"
-  - "project-05"
+title: "Projects"
+filters:
+  year: "Year"
+  tag: "Tags"
+  all: "All"
+  clear: "Clear filters"
+  empty: "No projects match the current filters."
+tag_labels:
+  interaction-design: "Interaction Design"
+  case-study: "Case Study"
 ---
-

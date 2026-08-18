@@ -1,6 +1,7 @@
 import { access, readFile, readdir } from "node:fs/promises";
 import { relative, resolve, sep } from "node:path";
 import matter from "gray-matter";
+import { loadProjectLocale } from "./project-data.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const publicRoot = resolve(root, "public");
@@ -18,26 +19,6 @@ const allowedSlots = new Set([
 
 function fail(message) {
   throw new Error(`[home-showcase] ${message}`);
-}
-
-async function readProjectIndex(locale) {
-  const directory = resolve(root, `content/${locale}/work/projects`);
-  const files = (await readdir(directory, { withFileTypes: true }))
-    .filter(entry => entry.isFile() && entry.name.endsWith(".md"))
-    .map(entry => entry.name)
-    .sort();
-  const projects = new Map();
-
-  for (const file of files) {
-    const data = matter(await readFile(resolve(directory, file), "utf8")).data;
-    if (!data.slug || typeof data.slug !== "string") fail(`${locale}/${file} is missing a string slug.`);
-    if (projects.has(data.slug)) fail(`Duplicate ${locale} project slug: ${data.slug}.`);
-    if (!data.title || typeof data.title !== "string") fail(`${locale}/${file} is missing a title.`);
-    if (!data.home_thumbnail || typeof data.home_thumbnail !== "string") fail(`${locale}/${file} is missing home_thumbnail.`);
-    projects.set(data.slug, data);
-  }
-
-  return projects;
 }
 
 function assetFile(webPath) {
@@ -77,7 +58,7 @@ export async function loadHomeShowcase() {
   const manifest = matter(await readFile(manifestPath, "utf8")).data;
   if (!Array.isArray(manifest.items)) fail("content/home-showcase.md must define an items array.");
 
-  const [projectsZh, projectsEn] = await Promise.all([readProjectIndex("zh"), readProjectIndex("en")]);
+  const [projectsZh, projectsEn] = await Promise.all([loadProjectLocale("zh"), loadProjectLocale("en")]);
   const ids = new Set();
   const activeSlots = new Set();
   const referencedAssets = new Set();

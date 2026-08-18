@@ -10,14 +10,13 @@ summary: |
 cover: "[Project cover asset path]"
 cover_alt: "[Alternative text for the project cover]"
 
-year: "[Project year or date range]"
-role: "[Your role in the project]"
-labels:
-  - "[Label 1]"
-  - "[Label 2]"
-tools:
-  - "[Tool 1]"
-  - "[Tool 2]"
+year: 2026
+tags:
+  - "interaction-design"
+  - "case-study"
+
+published: false
+order: 100
 
 external_url: null
 ---
@@ -45,4 +44,3 @@ external_url: null
 ## Outcomes and Reflection
 
 [Describe outcomes, data, feedback and reflections.]
-

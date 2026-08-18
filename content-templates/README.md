@@ -16,7 +16,7 @@
 - Header、Contact、语言/主题切换的辅助文字和 Footer 都是跨页面共享内容，归入 `global.md`。
 - Contact 不是独立页面，而是 Header 中可增删、可排序的联系方式列表。每一项包含显示文字、图标和目标链接。
 - Home 包含 Hero 标题和 Short description。
-- Works 页面在原解析中被遗漏。设计稿显示 5 个可重复的项目卡片，每张卡片包含封面、项目名称和项目简介；链接作为卡片行为配置。
+- Works 页面由项目文件自动生成卡片、年份和标签筛选，不在页面文档中重复维护项目列表。
 - 每个项目详情页单独使用一个 Markdown 文件。Works 卡片从详情文件的 Front Matter 自动读取标题、简介和封面，因此不重复维护内容。
 - Resume 不只是“大标题、小标题、正文、Label”。它包含姓名、栏目标题、条目标题、时间、Label 列表和正文，并允许教育、经历等条目重复增加。
 - About 包含两个内容区块：`关于我` 和 `关于本站`；每个区块都有大标题和正文。
@@ -71,7 +71,11 @@ content/
 - 中文和英文文件使用相同的 `id` 与 `slug`，分别放在对应语言目录。
 - Works 卡片读取详情文件中的 `title`、`summary` 和 `cover`。
 - 项目详情正文使用普通 Markdown，可自由增加或删除二级标题。
-- `work.md` 只控制卡片顺序，不重复填写项目名称和简介。
+- `work.md` 只维护页面文案、筛选器文案和 `tag_labels` 标签翻译，不重复填写项目内容。
+- 项目文件必须填写 `title`、`summary`、`cover`、`cover_alt`、`home_thumbnail`、`year`、`tags`、`published` 和 `order`。
+- `tags` 使用稳定的英文 ID；每个 ID 都必须同时添加到中英文 `work.md` 的 `tag_labels` 中。
+- `year` 使用四位整数；`order` 越小越靠前；`published: false` 的项目不会出现在列表中。
+- 中英文同一项目的 `year`、`tags`、`published`、`order` 和素材路径必须一致，构建时会自动校验。
 
 ## Notes 预留接口
 
