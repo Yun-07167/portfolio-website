@@ -1,0 +1,95 @@
+import { Fragment, type ReactNode } from "react";
+
+type Block =
+  | { type:"heading"; level:number; text:string }
+  | { type:"paragraph"; text:string }
+  | { type:"image"; src:string; alt:string; caption?:string; layout?:string }
+  | { type:"video"; src:string; poster?:string; caption?:string; captions?:string }
+  | { type:"list"; ordered:boolean; items:string[] }
+  | { type:"quote"; text:string }
+  | { type:"code"; code:string };
+
+function fields(lines:string[]) {
+  const result:Record<string,string> = {};
+  for (const line of lines) {
+    const match=line.match(/^([a-z_]+):\s*(.*)$/);
+    if (match) result[match[1]]=match[2].trim().replace(/^["']|["']$/g,"");
+  }
+  return result;
+}
+
+function blocks(markdown:string):Block[] {
+  const lines=markdown.replace(/\r/g,"").split("\n");
+  const result:Block[]=[];
+  for(let index=0;index<lines.length;) {
+    const line=lines[index].trim();
+    if(!line){index++;continue;}
+    const heading=line.match(/^(#{1,6})\s+(.+)$/);
+    if(heading){result.push({type:"heading",level:heading[1].length,text:heading[2]});index++;continue;}
+    const image=line.match(/^!\[([^\]]+)\]\(([^\s)]+)(?:\s+["']([^"']*)["'])?\)$/);
+    if(image){result.push({type:"image",alt:image[1],src:image[2],caption:image[3]});index++;continue;}
+    if(line===":::image"||line===":::video"){
+      const type=line.slice(3) as "image"|"video"; const content:string[]=[]; index++;
+      while(index<lines.length&&lines[index].trim()!==":::"){content.push(lines[index]);index++;}
+      index++; const data=fields(content);
+      if(type==="image") result.push({type,src:data.src,alt:data.alt,caption:data.caption,layout:data.layout});
+      else result.push({type,src:data.src,poster:data.poster,caption:data.caption,captions:data.captions});
+      continue;
+    }
+    if(line.startsWith("\x60\x60\x60")){
+      const content:string[]=[]; index++;
+      while(index<lines.length&&!lines[index].trim().startsWith("\x60\x60\x60")){content.push(lines[index]);index++;}
+      index++; result.push({type:"code",code:content.join("\n")}); continue;
+    }
+    if(/^>\s?/.test(line)){
+      const content:string[]=[];
+      while(index<lines.length&&/^>\s?/.test(lines[index].trim())){content.push(lines[index].trim().replace(/^>\s?/,""));index++;}
+      result.push({type:"quote",text:content.join(" ")});continue;
+    }
+    if(/^([-*]|\d+\.)\s+/.test(line)){
+      const ordered=/^\d+\./.test(line);const items:string[]=[];
+      while(index<lines.length&&new RegExp(ordered?"^\\d+\\.\\s+":"^[-*]\\s+").test(lines[index].trim())){items.push(lines[index].trim().replace(ordered?/^\d+\.\s+/:/^[-*]\s+/,""));index++;}
+      result.push({type:"list",ordered,items});continue;
+    }
+    const content=[line];index++;
+    while(index<lines.length&&lines[index].trim()&&!/^(#{1,6})\s+|^!\[|^:::|^>|^([-*]|\d+\.)\s+/.test(lines[index].trim())){content.push(lines[index].trim());index++;}
+    result.push({type:"paragraph",text:content.join(" ")});
+  }
+  return result;
+}
+
+function safeHref(href:string) {
+  return /^(https?:\/\/|mailto:|\/|#)/.test(href) ? href : "#";
+}
+
+function inline(text:string):ReactNode[] {
+  const pattern=/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g;
+  return text.split(pattern).filter(Boolean).map((part,index)=>{
+    const link=part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if(link)return <a href={safeHref(link[2])} key={index}>{link[1]}</a>;
+    if(part.startsWith("**")&&part.endsWith("**"))return <strong key={index}>{part.slice(2,-2)}</strong>;
+    return <Fragment key={index}>{part}</Fragment>;
+  });
+}
+
+export default function MarkdownContent({ markdown }:{ markdown:string }) {
+  return <div className="markdown-content">{blocks(markdown).map((block,index)=>{
+    if(block.type==="heading"){
+      if(block.level===1)return <h1 key={index}>{inline(block.text)}</h1>;
+      if(block.level===2)return <h2 key={index}>{inline(block.text)}</h2>;
+      if(block.level===3)return <h3 key={index}>{inline(block.text)}</h3>;
+      return <h4 key={index}>{inline(block.text)}</h4>;
+    }
+    if(block.type==="paragraph")return <p key={index}>{inline(block.text)}</p>;
+    if(block.type==="quote")return <blockquote key={index}>{inline(block.text)}</blockquote>;
+    if(block.type==="code")return <pre key={index}><code>{block.code}</code></pre>;
+    if(block.type==="list"){
+      const items=block.items.map((item,itemIndex)=><li key={itemIndex}>{inline(item)}</li>);
+      return block.ordered?<ol key={index}>{items}</ol>:<ul key={index}>{items}</ul>;
+    }
+    if(block.type==="image")return <figure className={"content-media content-image media-"+(block.layout??"standard")} key={index}><img src={block.src} alt={block.alt} loading="lazy" decoding="async"/>{block.caption&&<figcaption>{block.caption}</figcaption>}</figure>;
+    // Captions are rendered when the optional WebVTT path is provided; silent prototype recordings remain valid.
+    // eslint-disable-next-line jsx-a11y/media-has-caption
+    return <figure className="content-media content-video" key={index}><video controls playsInline preload="metadata" poster={block.poster}><source src={block.src}/>{block.captions&&<track kind="captions" src={block.captions} srcLang="zh" label="Captions" default/>}</video>{block.caption&&<figcaption>{block.caption}</figcaption>}</figure>;
+  })}</div>;
+}

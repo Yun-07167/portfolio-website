@@ -591,7 +591,7 @@ export const siteContent = {
           "en": "Undying Map Interface Redesign"
         },
         "slot": "featured-left",
-        "href": "/work?project=undying-map"
+        "href": "/work/undying-map"
       },
       {
         "id": "art",
@@ -602,7 +602,7 @@ export const siteContent = {
           "en": "Undying Game Art Showcase"
         },
         "slot": "featured-right",
-        "href": "/work?project=undying-art"
+        "href": "/work/undying-art"
       },
       {
         "id": "skill",

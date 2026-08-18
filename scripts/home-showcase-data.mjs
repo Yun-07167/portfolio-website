@@ -87,7 +87,7 @@ export async function loadHomeShowcase() {
       if (zh.home_thumbnail !== en.home_thumbnail) fail(`Project "${source.project}" uses different home_thumbnail paths across locales.`);
       image = zh.home_thumbnail;
       alt = { zh: zh.title, en: en.title };
-      href = `/work?project=${source.project}`;
+      href = "/work/" + source.project;
     } else {
       image = source.image;
       if (source.type === "snapshot") {

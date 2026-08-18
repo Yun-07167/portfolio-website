@@ -21,7 +21,7 @@ test("Home showcase project and interaction types resolve correctly", async () =
   assert.equal(projectItems.length, 2);
   assert.equal(snapshots.length, 4);
   assert.equal(decorations.length, 2);
-  for (const item of projectItems) assert.match(item.href, /^\/work\?project=[a-z0-9-]+$/);
+  for (const item of projectItems) assert.match(item.href, /^\/work\/[a-z0-9-]+$/);
   for (const item of snapshots) {
     assert.ok(item.alt.zh);
     assert.ok(item.alt.en);

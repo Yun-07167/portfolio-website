@@ -21,7 +21,7 @@ export default function NotesPage() {
     <SiteHeader language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption} activePage="notes"/>
     <div className="notes-page"><h1>{notes.page_title}</h1><div className="notes-layout">
       <section className="notes-list" aria-live="polite">
-        {entries.map(note=><article className="note-card" key={note.slug}><div className="note-card-title"><h2>{note.title}</h2></div><div className="note-card-meta"><time dateTime={note.published_at}>{note.published_at.replaceAll("-",".")}</time><ul>{note.tags.map(tag=><li key={tag}>{notes.tag_labels[tag]}</li>)}</ul></div></article>)}
+        {entries.map(note=><a className="note-card" href={"/notes/"+note.slug} key={note.slug}><div className="note-card-title"><h2>{note.title}</h2></div><div className="note-card-meta"><time dateTime={note.published_at}>{note.published_at.replaceAll("-",".")}</time><ul>{note.tags.map(tag=><li key={tag}>{notes.tag_labels[tag]}</li>)}</ul></div></a>)}
         {entries.length===0&&<div className="notes-empty"><p>{notes.filters.empty}</p>{hasFilters&&<button type="button" onClick={()=>{setSelectedYear(null);setSelectedTag(null);}}>{notes.filters.clear}</button>}</div>}
       </section>
       <aside className="works-filters notes-filters" aria-label={language==="zh"?"笔记筛选":"Note filters"}>

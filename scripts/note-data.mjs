@@ -1,14 +1,23 @@
-import { readFile, readdir } from "node:fs/promises";
-import { resolve } from "node:path";
+import { access, readFile, readdir } from "node:fs/promises";
+import { resolve, sep } from "node:path";
 import matter from "gray-matter";
+import { inspectContentBody } from "./content-body.mjs";
 
 const root = resolve(import.meta.dirname, "..");
+const publicRoot = resolve(root, "public");
 
 function fail(message) { throw new Error(`[notes] ${message}`); }
 function requireString(value, path) { if (typeof value !== "string" || value.trim() === "") fail(`${path} must be a non-empty string.`); }
 function requireDate(value, path) {
   requireString(value, path);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) fail(`${path} must be a valid YYYY-MM-DD date.`);
+}
+async function assertAssetExists(webPath, path) {
+  requireString(webPath, path);
+  if (!webPath.startsWith("/assets/")) fail(`${path} must start with /assets/: ${webPath}`);
+  const file = resolve(publicRoot, webPath.slice(1));
+  if (!file.startsWith(publicRoot + sep)) fail(`${path} escapes public/: ${webPath}`);
+  try { await access(file); } catch { fail(`${path} references a missing asset: ${webPath}`); }
 }
 
 export async function loadNoteLocale(locale) {
@@ -28,7 +37,15 @@ export async function loadNoteLocale(locale) {
     if (new Set(data.tags).size !== data.tags.length) fail(`${path}.tags contains duplicates.`);
     if (typeof data.published !== "boolean") fail(`${path}.published must be true or false.`);
     if (notes.has(data.slug)) fail(`Duplicate ${locale} note slug: ${data.slug}.`);
-    notes.set(data.slug, { slug:data.slug, title:data.title, published_at:data.published_at, year:Number(data.published_at.slice(0,4)), tags:data.tags, published:data.published, body:source.content.trim() });
+    const body = source.content.trim();
+    const bodyAudit = inspectContentBody(body, path);
+    await Promise.all(bodyAudit.media.flatMap((item, index) => {
+      const checks = [assertAssetExists(item.src, `${path}.body.media[${index}].src`)];
+      if (item.poster) checks.push(assertAssetExists(item.poster, `${path}.body.media[${index}].poster`));
+      if (item.captions) checks.push(assertAssetExists(item.captions, `${path}.body.media[${index}].captions`));
+      return checks;
+    }));
+    notes.set(data.slug, { slug:data.slug, title:data.title, published_at:data.published_at, year:Number(data.published_at.slice(0,4)), tags:data.tags, published:data.published, body, body_signature:bodyAudit.signature });
   }
   return notes;
 }
@@ -40,9 +57,10 @@ export function validateNoteParity(notesZh, notesEn) {
     if (!zh || !en) fail(`Note must exist in both locales: ${slug}.`);
     for (const field of ["published_at", "published"]) if (zh[field] !== en[field]) fail(`Note "${slug}" must use the same ${field} in both locales.`);
     if (JSON.stringify(zh.tags) !== JSON.stringify(en.tags)) fail(`Note "${slug}" must use the same tags in both locales.`);
+    if (JSON.stringify(zh.body_signature) !== JSON.stringify(en.body_signature)) fail(`Note "${slug}" must use matching heading and media structure in both locales.`);
   }
 }
 
 export function serializePublishedNotes(notes) {
-  return [...notes.values()].filter(note => note.published).sort((a,b) => b.published_at.localeCompare(a.published_at) || a.slug.localeCompare(b.slug));
+  return [...notes.values()].filter(note => note.published).sort((a,b) => b.published_at.localeCompare(a.published_at) || a.slug.localeCompare(b.slug)).map(note => { const result={...note}; delete result.body_signature; return result; });
 }

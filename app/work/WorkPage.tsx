@@ -26,7 +26,7 @@ function ProjectCover({ src, alt, priority = false }: { src: string; alt: string
   </div>;
 }
 
-function TiltCard({ children }: { children: ReactNode }) {
+function TiltCard({ children, href }: { children: ReactNode; href:string }) {
   const cardRef = useRef<HTMLElement>(null);
   const onPointerMove = (event: React.PointerEvent<HTMLElement>) => {
     if (!cardRef.current) return;
@@ -39,7 +39,7 @@ function TiltCard({ children }: { children: ReactNode }) {
     if (!cardRef.current) return;
     gsap.to(cardRef.current, { "--work-tilt-x": "0deg", "--work-tilt-y": "0deg", duration: .62, ease: "power3.out", overwrite: "auto" });
   };
-  return <article ref={cardRef} className="work-card" onPointerMove={onPointerMove} onPointerLeave={resetTilt} onBlur={resetTilt}>{children}</article>;
+  return <article ref={cardRef} className="work-card" onPointerMove={onPointerMove} onPointerLeave={resetTilt} onBlur={resetTilt}><a className="work-card-link" href={href}>{children}</a></article>;
 }
 
 export default function WorkPage() {
@@ -64,7 +64,7 @@ export default function WorkPage() {
       <h1>{work.title}</h1>
       <div className="works-layout">
         <section className="works-list" aria-live="polite">
-          {projects.map((project, index) => <TiltCard key={project.slug}>
+          {projects.map((project, index) => <TiltCard key={project.slug} href={"/work/"+project.slug}>
             <ProjectCover src={project.cover} alt={project.cover_alt} priority={index === 0}/>
             <div className="work-card-copy">
               <h2>{project.title}</h2>

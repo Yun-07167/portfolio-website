@@ -1,6 +1,7 @@
 import { access, readFile, readdir } from "node:fs/promises";
 import { resolve, sep } from "node:path";
 import matter from "gray-matter";
+import { inspectContentBody } from "./content-body.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const publicRoot = resolve(root, "public");
@@ -56,6 +57,14 @@ export async function loadProjectLocale(locale) {
       assertAssetExists(data.cover, `${path}.cover`),
       assertAssetExists(data.home_thumbnail, `${path}.home_thumbnail`),
     ]);
+    const body = source.content.trim();
+    const bodyAudit = inspectContentBody(body, path);
+    await Promise.all(bodyAudit.media.flatMap((item, index) => {
+      const checks = [assertAssetExists(item.src, `${path}.body.media[${index}].src`)];
+      if (item.poster) checks.push(assertAssetExists(item.poster, `${path}.body.media[${index}].poster`));
+      if (item.captions) checks.push(assertAssetExists(item.captions, `${path}.body.media[${index}].captions`));
+      return checks;
+    }));
     projects.set(data.slug, {
       slug: data.slug,
       title: data.title,
@@ -67,7 +76,8 @@ export async function loadProjectLocale(locale) {
       tags: data.tags,
       published: data.published,
       order: data.order,
-      body: source.content.trim(),
+      body,
+      body_signature: bodyAudit.signature,
     });
   }
 
@@ -84,11 +94,13 @@ export function validateProjectParity(projectsZh, projectsEn) {
       if (zh[field] !== en[field]) fail(`Project "${slug}" must use the same ${field} in both locales.`);
     }
     if (JSON.stringify(zh.tags) !== JSON.stringify(en.tags)) fail(`Project "${slug}" must use the same tags in both locales.`);
+    if (JSON.stringify(zh.body_signature) !== JSON.stringify(en.body_signature)) fail(`Project "${slug}" must use matching heading and media structure in both locales.`);
   }
 }
 
 export function serializePublishedProjects(projects) {
   return [...projects.values()]
     .filter(project => project.published)
-    .sort((a, b) => a.order - b.order || b.year - a.year || a.slug.localeCompare(b.slug));
+    .sort((a, b) => a.order - b.order || b.year - a.year || a.slug.localeCompare(b.slug))
+    .map(project => { const result={...project}; delete result.body_signature; return result; });
 }

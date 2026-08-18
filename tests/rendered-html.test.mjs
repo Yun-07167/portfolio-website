@@ -34,3 +34,22 @@ test("renders the Notes list route with Markdown entries", async () => {
   assert.match(html, /笔记筛选/);
   assert.doesNotMatch(html, /work in progress/);
 });
+
+test("renders project detail content and record-specific metadata", async () => {
+  const response = await render("/work/undying-map");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /《苏醒之路》地图界面重构设计案例/);
+  assert.match(html, /重构地图迁移流程与区域信息层级/);
+  assert.match(html, /\/assets\/projects\/undying-map\/home-cover\.png/);
+  assert.doesNotMatch(html, /\/og\.png/);
+});
+
+test("renders note detail Markdown and clears inherited social image", async () => {
+  const response = await render("/notes/game-ui-feedback");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /游戏 UI 中的即时反馈与节奏/);
+  assert.match(html, /即时反馈如何帮助玩家理解操作结果/);
+  assert.doesNotMatch(html, /\/og\.png/);
+});
