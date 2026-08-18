@@ -6,9 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { siteContent } from "./generated-content";
 import ModeSwitcher from "./components/ModeSwitcher";
+import useSitePreferences from "./components/useSitePreferences";
 
 type Language = "zh" | "en";
-const LANGUAGE_STORAGE_KEY = "portfolio-language";
 type NavId = "home" | "projects" | "notes" | "connect" | "resume" | "about";
 type StagePhase = "default" | "transitioning" | "assembled";
 type CardKind = "project" | "snapshot" | "decorative";
@@ -195,27 +195,13 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
 }
 
 export default function Home() {
-  const [language, setLanguage] = useState<Language>("zh");
-  const [languagePreferenceLoaded, setLanguagePreferenceLoaded] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { language, setLanguage, theme, setTheme } = useSitePreferences();
   const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
   const [stagePhase, setStagePhase] = useState<StagePhase>("default");
   const stage = useRef<HTMLElement>(null);
   const phaseRef = useRef<StagePhase>("default");
   const content = siteContent[language];
 
-  useEffect(() => {
-    queueMicrotask(() => {
-      const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-      if (savedLanguage === "zh" || savedLanguage === "en") setLanguage(savedLanguage);
-      setLanguagePreferenceLoaded(true);
-    });
-  }, []);
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
-    if (languagePreferenceLoaded) window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-  }, [theme, language, languagePreferenceLoaded]);
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     if (window.matchMedia("(max-width: 600px)").matches) {

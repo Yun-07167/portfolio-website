@@ -1,20 +1,15 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { siteContent } from "../generated-content";
-import SiteHeader, { type ContactOption, type Language, type Theme } from "../components/SiteHeader";
-
-const LANGUAGE_STORAGE_KEY = "portfolio-language";
+import SiteHeader, { type ContactOption } from "../components/SiteHeader";
+import useSitePreferences from "../components/useSitePreferences";
 
 export default function NotesPage() {
-  const [language, setLanguage] = useState<Language>("zh");
-  const [theme, setTheme] = useState<Theme>("light");
+  const { language, setLanguage, theme, setTheme } = useSitePreferences();
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
-
-  useEffect(() => { queueMicrotask(() => { const saved=window.localStorage.getItem(LANGUAGE_STORAGE_KEY); if(saved==="zh"||saved==="en") setLanguage(saved); if(document.documentElement.dataset.theme==="dark") setTheme("dark"); }); }, []);
-  useEffect(() => { document.documentElement.lang=language==="zh"?"zh-CN":"en"; document.documentElement.dataset.theme=theme; window.localStorage.setItem(LANGUAGE_STORAGE_KEY,language); }, [language,theme]);
 
   const content=siteContent[language]; const notes=content.notes;
   const years=useMemo(()=>[...new Set(notes.entries.map(note=>note.year))].sort((a,b)=>b-a),[notes.entries]);

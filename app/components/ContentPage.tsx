@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { siteContent } from "../generated-content";
-import SiteHeader, { type ContactOption, type Language, type Theme } from "./SiteHeader";
+import SiteHeader, { type ContactOption, type Language } from "./SiteHeader";
+import useSitePreferences from "./useSitePreferences";
 
 type PageKind = "resume" | "about";
-const LANGUAGE_STORAGE_KEY = "portfolio-language";
 
 function Paragraphs({ text }: { text: string }) {
   return text.split(/\n\s*\n/).filter(Boolean).map((paragraph, index) => <p key={index}>{paragraph}</p>);
@@ -34,13 +34,18 @@ function ResumeSectionTitle({ children }: { children: ReactNode }) {
 
 function Resume({ language }: { language: Language }) {
   const resume = siteContent[language].resume;
+  const [isDownloading, setIsDownloading] = useState(false);
+  const playDownloadMotion = () => {
+    setIsDownloading(true);
+    window.setTimeout(() => setIsDownloading(false), 2200);
+  };
   const workEntries = (section: { items: readonly WorkItem[] }) => section.items.map(item => <article className="resume-entry work-entry" key={item.id}>
     <div className="resume-entry-heading"><h3>{item.heading}</h3><time>{item.date}</time></div>
     {item.labels && item.labels.length > 0 && <ul className="resume-labels" aria-label={language === "zh" ? "关键词" : "Keywords"}>{item.labels.map(label => <li key={label}>{label}</li>)}</ul>}
     {item.body && <div className="resume-entry-body"><Paragraphs text={item.body}/></div>}
   </article>);
   return <div className="content-page resume-page">
-    <div className="content-page-title"><h1>{resume.name}</h1><button className="resume-download" type="button" aria-disabled="true" title={language === "zh" ? "PDF 简历文件尚未配置" : "PDF resume files are not configured yet"}><span className="resume-download-icon" aria-hidden="true"/><span className="resume-download-label">{language === "zh" ? "下载pdf" : "Download PDF"}</span></button></div>
+    <div className="content-page-title"><h1>{resume.name}</h1><button className={`resume-download${isDownloading ? " is-downloading" : ""}`} type="button" aria-busy={isDownloading} aria-disabled="true" onClick={playDownloadMotion} title={language === "zh" ? "PDF 简历文件尚未配置" : "PDF resume files are not configured yet"}><span className="resume-download-icon" aria-hidden="true"/><span className="resume-download-label">{language === "zh" ? "下载pdf" : "Download PDF"}</span></button></div>
     <section className="resume-section resume-profile"><ResumeSectionTitle>{resume.profile.title}</ResumeSectionTitle><Paragraphs text={resume.profile.body}/></section>
     <section className="resume-section"><ResumeSectionTitle>{resume.education.title}</ResumeSectionTitle>{resume.education.items.map(item => <EducationEntry item={item} key={item.id}/>)}</section>
     <section className="resume-section resume-skills"><ResumeSectionTitle>{resume.skills.title}</ResumeSectionTitle><div className="skill-groups">{resume.skills.groups.map(group => <div key={group.id}><h3>{group.label}</h3><p>{group.body}</p></div>)}</div></section>
@@ -59,11 +64,8 @@ function About({ language }: { language: Language }) {
 }
 
 export default function ContentPage({ page }: { page: PageKind }) {
-  const [language, setLanguage] = useState<Language>("zh");
-  const [theme, setTheme] = useState<Theme>("light");
+  const { language, setLanguage, theme, setTheme } = useSitePreferences();
   const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
-  useEffect(() => { queueMicrotask(() => { const saved = window.localStorage.getItem(LANGUAGE_STORAGE_KEY); if (saved === "zh" || saved === "en") setLanguage(saved); if (document.documentElement.dataset.theme === "dark") setTheme("dark"); }); }, []);
-  useEffect(() => { document.documentElement.lang = language === "zh" ? "zh-CN" : "en"; document.documentElement.dataset.theme = theme; window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language); }, [language, theme]);
   const body: ReactNode = page === "resume" ? <Resume language={language}/> : <About language={language}/>;
   const content = siteContent[language];
   return <main className="subpage-shell"><SiteHeader language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption} activePage={page}/>{body}<footer className="subpage-footer"><p>{content.global.footer.copyright}</p><button type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label={content.global.controls.back_to_top}><img src="/assets/arrow.svg" alt=""/></button></footer>{dialogOption && <div className="modal-backdrop"><button className="modal-dismiss" type="button" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}/><section className="qr-modal" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title"><button className="modal-close" onClick={() => setDialogOption(null)} aria-label={content.global.controls.close_dialog}>×</button>{dialogOption.dialog_image ? <img className="qr-image" src={dialogOption.dialog_image} alt={dialogOption.dialog_title}/> : <div className="qr-missing" aria-hidden="true">QR</div>}<h2 id="contact-dialog-title">{dialogOption.dialog_title}</h2><p>{dialogOption.dialog_body}</p></section></div>}</main>;

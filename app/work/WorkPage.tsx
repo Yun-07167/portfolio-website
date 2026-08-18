@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useRef, useState, type ReactNode } from "react";
+import gsap from "gsap";
 import { siteContent } from "../generated-content";
-import SiteHeader, { type ContactOption, type Language, type Theme } from "../components/SiteHeader";
-
-const LANGUAGE_STORAGE_KEY = "portfolio-language";
+import SiteHeader, { type ContactOption } from "../components/SiteHeader";
+import useSitePreferences from "../components/useSitePreferences";
 
 function ProjectCover({ src, alt, priority = false }: { src: string; alt: string; priority?: boolean }) {
   const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
@@ -26,26 +26,27 @@ function ProjectCover({ src, alt, priority = false }: { src: string; alt: string
   </div>;
 }
 
+function TiltCard({ children }: { children: ReactNode }) {
+  const cardRef = useRef<HTMLElement>(null);
+  const onPointerMove = (event: React.PointerEvent<HTMLElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const px = ((event.clientX - rect.left) / rect.width - .5) * 2;
+    const py = ((event.clientY - rect.top) / rect.height - .5) * 2;
+    gsap.to(cardRef.current, { "--work-tilt-x": `${-py * 3.5}deg`, "--work-tilt-y": `${px * 4.5}deg`, duration: .38, ease: "power3.out", overwrite: "auto" });
+  };
+  const resetTilt = () => {
+    if (!cardRef.current) return;
+    gsap.to(cardRef.current, { "--work-tilt-x": "0deg", "--work-tilt-y": "0deg", duration: .62, ease: "power3.out", overwrite: "auto" });
+  };
+  return <article ref={cardRef} className="work-card" onPointerMove={onPointerMove} onPointerLeave={resetTilt} onBlur={resetTilt}>{children}</article>;
+}
+
 export default function WorkPage() {
-  const [language, setLanguage] = useState<Language>("zh");
-  const [theme, setTheme] = useState<Theme>("light");
+  const { language, setLanguage, theme, setTheme } = useSitePreferences();
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
-
-  useEffect(() => {
-    queueMicrotask(() => {
-      const saved = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-      if (saved === "zh" || saved === "en") setLanguage(saved);
-      if (document.documentElement.dataset.theme === "dark") setTheme("dark");
-    });
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
-    document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
-  }, [language, theme]);
 
   const content = siteContent[language];
   const work = content.work;
@@ -63,14 +64,14 @@ export default function WorkPage() {
       <h1>{work.title}</h1>
       <div className="works-layout">
         <section className="works-list" aria-live="polite">
-          {projects.map((project, index) => <article className="work-card" key={project.slug}>
+          {projects.map((project, index) => <TiltCard key={project.slug}>
             <ProjectCover src={project.cover} alt={project.cover_alt} priority={index === 0}/>
             <div className="work-card-copy">
               <h2>{project.title}</h2>
               <div className="work-card-meta"><time>{project.year}</time><ul>{project.tags.map(tag => <li key={tag}>{work.tag_labels[tag]}</li>)}</ul></div>
               <p>{project.summary}</p>
             </div>
-          </article>)}
+          </TiltCard>)}
           {projects.length === 0 && <div className="works-empty"><p>{work.filters.empty}</p><button type="button" onClick={() => { setSelectedYear(null); setSelectedTag(null); }}>{work.filters.clear}</button></div>}
         </section>
         <aside className="works-filters" aria-label={language === "zh" ? "项目筛选" : "Project filters"}>
