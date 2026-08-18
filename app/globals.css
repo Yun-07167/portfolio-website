@@ -311,6 +311,32 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .detail-project .content-media img { border:1px solid color-mix(in srgb,var(--neutral-600) 55%,transparent); }
 .content-media figcaption { margin-top:10px; color:var(--neutral-700); font-family:var(--font-ui); font-size:14px; line-height:1.4; }
 .locale-notice { width:min(100%,780px); margin:0 0 32px; padding:14px 18px; border-left:4px solid var(--primary-500); background:color-mix(in srgb,var(--primary-50) 78%,transparent); color:var(--neutral-800); font-family:var(--font-ui); font-size:16px; line-height:1.5; }
+.content-table-scroll { width:100%; margin:40px 0; overflow-x:auto; border:1px solid var(--neutral-600); background:color-mix(in srgb,var(--surface) 74%,transparent); scrollbar-color:var(--neutral-600) transparent; }
+.content-table-scroll:focus-visible { outline:2px solid var(--primary-500); outline-offset:3px; }
+.content-table-scroll table { width:100%; min-width:600px; border-collapse:collapse; font-size:16px; line-height:1.5; }
+.content-table-scroll th,.content-table-scroll td { padding:14px 16px; border-right:1px solid var(--neutral-600); border-bottom:1px solid var(--neutral-600); vertical-align:top; }
+.content-table-scroll th:last-child,.content-table-scroll td:last-child { border-right:0; }
+.content-table-scroll tbody tr:last-child td { border-bottom:0; }
+.content-table-scroll th { background:var(--primary-100); color:var(--neutral-900); font-weight:600; }
+.content-table-scroll tbody tr:nth-child(even) { background:color-mix(in srgb,var(--primary-50) 42%,transparent); }
+.content-mermaid { width:100%; margin:40px 0; }
+.mermaid-preview { display:block; width:100%; min-height:220px; padding:24px; overflow:auto; border:1px solid var(--neutral-600); background:color-mix(in srgb,var(--surface) 78%,transparent); color:var(--neutral-900); cursor:zoom-in; }
+.mermaid-preview:disabled { cursor:default; }
+.mermaid-preview:focus-visible { outline:2px solid var(--primary-500); outline-offset:3px; }
+.mermaid-svg { min-width:560px; }
+.mermaid-svg svg { display:block; width:100%; height:auto; max-height:70vh; margin:auto; }
+.mermaid-loading { margin:0; color:var(--neutral-700); }
+.mermaid-error { text-align:left; }
+.mermaid-error p { margin:0 0 12px; color:var(--neutral-700); }
+.mermaid-error pre { margin:0; }
+.mermaid-lightbox { position:fixed; inset:0; z-index:3000; display:grid; grid-template-rows:auto 1fr; padding:24px; background:color-mix(in srgb,var(--background) 92%,transparent); backdrop-filter:blur(12px); }
+.mermaid-lightbox-dismiss { position:absolute; inset:0; width:100%; height:100%; border:0; background:transparent; }
+.mermaid-toolbar { position:relative; z-index:1; justify-self:end; display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+.mermaid-toolbar button,.mermaid-toolbar output { min-width:44px; height:40px; padding:0 12px; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); color:var(--neutral-900); font-family:var(--font-ui); font-size:15px; }
+.mermaid-toolbar button:hover,.mermaid-toolbar button:focus-visible { background:var(--primary-100); }
+.mermaid-lightbox-viewport { position:relative; z-index:1; min-height:0; overflow:auto; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); }
+.mermaid-lightbox-canvas { width:min(1200px,90vw); padding:40px; transform-origin:center; transition:transform .18s ease; }
+.mermaid-lightbox-canvas svg { display:block; width:100%; height:auto; }
 @media (max-width:800px) { .notes-page { padding-top:130px; } .notes-layout { grid-template-columns:1fr; gap:36px; } .notes-filters { grid-row:1; position:static; } .notes-list { min-height:0; } }
 @media (max-width:560px) { .notes-page > h1 { font-size:46px; } .note-card { padding-inline:8px; } .note-card-title h2 { font-size:22px; } .detail-page { padding-top:130px; } .detail-hero h1 { font-size:40px; } .detail-meta { flex-direction:column; } .detail-meta time { border-right:0; } .detail-cover,.markdown-content { margin-top:32px; } .markdown-content { font-size:16px; } .markdown-content h2 { font-size:30px; } }
 @media (max-width:600px) {

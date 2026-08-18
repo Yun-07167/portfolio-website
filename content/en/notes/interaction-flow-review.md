@@ -12,6 +12,16 @@ published: true
 
 When mapping an interaction, I prefer to write down what the player ultimately wants to accomplish, then work backwards to the actions, information, and feedback the interface must provide. This keeps the flow from becoming a diagram of screens and exposes steps that exist without a player reason to use them.
 
+```mermaid
+flowchart LR
+  A[Player goal] --> B[Choose a key action]
+  B --> C{Are system conditions met?}
+  C -->|Yes| D[Execute and show feedback]
+  C -->|No| E[Explain the cause and recovery]
+  E --> B
+  D --> F[Confirm the next step]
+```
+
 :::image
 src: /assets/notes/interaction-flow-review/player-goal-flow.webp
 alt: Hand-drawn flow that works backwards from a player goal through decisions, feedback, and edge cases
@@ -20,6 +30,13 @@ layout: wide
 :::
 
 ## Every flow should answer four questions
+
+| Check | Question to answer | Common omission |
+| --- | --- | --- |
+| Goal | Why did the player enter this feature? | Describing screens instead of intent |
+| Information | What is needed before the decision? | Critical information appears too late |
+| Feedback | What changed after the input? | Waiting and unavailable states are unclear |
+| Recovery | How can the player continue after failure? | An error without a next step |
 
 1. **What is the goal?** What does the player want when entering the feature, rather than what the product wants to show?
 2. **What information supports the decision?** It should appear before the choice and remain spatially connected to the current action.

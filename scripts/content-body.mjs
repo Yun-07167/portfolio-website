@@ -1,5 +1,6 @@
 const imagePattern = /^!\[([^\]]*)\]\(([^\s)]+)(?:\s+["'][^"']*["'])?\)$/gm;
 const directivePattern = /^:::(image|video)\s*\n([\s\S]*?)^:::\s*$/gm;
+const mermaidFencePattern = /^```mermaid\s*\n([\s\S]*?)^```\s*$/gm;
 
 function parseDirectiveFields(source) {
   const fields = {};
@@ -13,6 +14,10 @@ function parseDirectiveFields(source) {
 export function inspectContentBody(body, path) {
   const media = [];
   const headings = [...body.matchAll(/^(#{1,6})\s+(.+)$/gm)].map(match => match[1].length);
+  const mermaid = [...body.matchAll(mermaidFencePattern)].map(match => match[1].trim());
+  const mermaidOpenings = [...body.matchAll(/^```mermaid\s*$/gm)].length;
+  if (mermaidOpenings !== mermaid.length) throw new Error(`${path} contains an unclosed Mermaid code block.`);
+  if (mermaid.some(source => !source)) throw new Error(`${path} contains an empty Mermaid code block.`);
 
   for (const match of body.matchAll(imagePattern)) {
     const alt = match[1].trim();
@@ -30,6 +35,7 @@ export function inspectContentBody(body, path) {
 
   return {
     media,
+    mermaid,
     signature: {
       headings,
       media: media.map(item => ({ type: item.type, src: item.src, poster: item.poster ?? null, captions: item.captions ?? null })),

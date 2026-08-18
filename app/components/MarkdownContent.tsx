@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from "react";
+import MermaidDiagram from "./MermaidDiagram";
 
 type Block =
   | { type:"heading"; level:number; text:string }
@@ -7,7 +8,19 @@ type Block =
   | { type:"video"; src:string; poster?:string; caption?:string; captions?:string }
   | { type:"list"; ordered:boolean; items:string[] }
   | { type:"quote"; text:string }
-  | { type:"code"; code:string };
+  | { type:"code"; code:string }
+  | { type:"mermaid"; code:string }
+  | { type:"table"; headers:string[]; rows:string[][]; align:("left"|"center"|"right")[] };
+
+function tableCells(line:string) {
+  return line.trim().replace(/^\||\|$/g,"").split(/(?<!\\)\|/).map(cell=>cell.trim().replace(/\\\|/g,"|"));
+}
+
+function tableAlignment(line:string) {
+  const cells=tableCells(line);
+  if(!cells.length||cells.some(cell=>!/^:?-{3,}:?$/.test(cell)))return null;
+  return cells.map(cell=>cell.startsWith(":")&&cell.endsWith(":")?"center":cell.endsWith(":")?"right":"left") as ("left"|"center"|"right")[];
+}
 
 function fields(lines:string[]) {
   const result:Record<string,string> = {};
@@ -37,9 +50,16 @@ function blocks(markdown:string):Block[] {
       continue;
     }
     if(line.startsWith("\x60\x60\x60")){
+      const language=line.slice(3).trim().toLowerCase();
       const content:string[]=[]; index++;
       while(index<lines.length&&!lines[index].trim().startsWith("\x60\x60\x60")){content.push(lines[index]);index++;}
-      index++; result.push({type:"code",code:content.join("\n")}); continue;
+      index++; result.push(language==="mermaid"?{type:"mermaid",code:content.join("\n")}:{type:"code",code:content.join("\n")}); continue;
+    }
+    const alignment=index+1<lines.length?tableAlignment(lines[index+1]):null;
+    if(line.includes("|")&&alignment){
+      const headers=tableCells(lines[index]);index+=2;const rows:string[][]=[];
+      while(index<lines.length&&lines[index].trim().includes("|")){rows.push(tableCells(lines[index]));index++;}
+      result.push({type:"table",headers,rows,align:alignment});continue;
     }
     if(/^>\s?/.test(line)){
       const content:string[]=[];
@@ -83,6 +103,8 @@ export default function MarkdownContent({ markdown }:{ markdown:string }) {
     if(block.type==="paragraph")return <p key={index}>{inline(block.text)}</p>;
     if(block.type==="quote")return <blockquote key={index}>{inline(block.text)}</blockquote>;
     if(block.type==="code")return <pre key={index}><code>{block.code}</code></pre>;
+    if(block.type==="mermaid")return <MermaidDiagram code={block.code} key={index}/>;
+    if(block.type==="table")return <div className="content-table-scroll" key={index}><table><thead><tr>{block.headers.map((cell,cellIndex)=><th style={{textAlign:block.align[cellIndex]??"left"}} key={cellIndex}>{inline(cell)}</th>)}</tr></thead><tbody>{block.rows.map((row,rowIndex)=><tr key={rowIndex}>{block.headers.map((_,cellIndex)=><td style={{textAlign:block.align[cellIndex]??"left"}} key={cellIndex}>{inline(row[cellIndex]??"")}</td>)}</tr>)}</tbody></table></div>;
     if(block.type==="list"){
       const items=block.items.map((item,itemIndex)=><li key={itemIndex}>{inline(item)}</li>);
       return block.ordered?<ol key={index}>{items}</ol>:<ul key={index}>{items}</ul>;

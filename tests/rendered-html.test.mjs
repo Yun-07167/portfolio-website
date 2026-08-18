@@ -53,3 +53,12 @@ test("renders note detail Markdown and clears inherited social image", async () 
   assert.match(html, /即时反馈如何帮助玩家理解操作结果/);
   assert.doesNotMatch(html, /\/og\.png/);
 });
+
+test("renders Markdown tables and mounts Mermaid diagrams in detail content", async () => {
+  const response=await render("/notes/interaction-flow-review");
+  assert.equal(response.status,200);
+  const html=await response.text();
+  assert.match(html,/<table>/);
+  assert.match(html,/玩家为什么进入这个功能/);
+  assert.match(html,/flowchart LR/);
+});

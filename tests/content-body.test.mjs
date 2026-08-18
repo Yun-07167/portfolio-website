@@ -31,3 +31,10 @@ test("notes can be locale-only with independent dates and publication", () => {
   assert.deepEqual(serializePublishedNotes(zh).map(item=>item.slug),["zh-only","shared"]);
   assert.deepEqual(serializePublishedNotes(en).map(item=>item.slug),["en-only"]);
 });
+
+test("content body recognizes Mermaid blocks without adding them to bilingual media parity", () => {
+  const audit=inspectContentBody("## Flow\n\n```mermaid\nflowchart LR\nA --> B\n```","fixture.md");
+  assert.deepEqual(audit.mermaid,["flowchart LR\nA --> B"]);
+  assert.deepEqual(audit.signature,{headings:[2],media:[]});
+  assert.throws(()=>inspectContentBody("```mermaid\nflowchart LR\nA --> B","broken.md"),/unclosed Mermaid/);
+});
