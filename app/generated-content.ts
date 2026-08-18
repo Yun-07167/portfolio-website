@@ -250,7 +250,44 @@ export const siteContent = {
         "case-study": "案例分析",
         "indie-game": "独立游戏"
       },
-      "entries": []
+      "entries": [
+        {
+          "slug": "interaction-flow-review",
+          "title": "从玩家目标反推交互流程",
+          "published_at": "2026-08-18",
+          "year": 2026,
+          "tags": [
+            "interaction-design",
+            "case-study"
+          ],
+          "published": true,
+          "body": "用于预览笔记列表结构的示例内容。记录如何从玩家目标、反馈与异常路径反推游戏界面的交互流程。"
+        },
+        {
+          "slug": "game-ui-feedback",
+          "title": "游戏 UI 中的即时反馈与节奏",
+          "published_at": "2026-07-26",
+          "year": 2026,
+          "tags": [
+            "game-ui",
+            "game-design"
+          ],
+          "published": true,
+          "body": "用于预览笔记列表结构的示例内容。讨论即时反馈如何帮助玩家理解操作结果，并维持界面节奏。"
+        },
+        {
+          "slug": "indie-game-interface-notes",
+          "title": "独立游戏界面原型的三个取舍",
+          "published_at": "2026-06-14",
+          "year": 2026,
+          "tags": [
+            "indie-game",
+            "interaction-design"
+          ],
+          "published": true,
+          "body": "用于预览笔记列表结构的示例内容。整理独立游戏界面原型中信息密度、制作成本与表现力之间的取舍。"
+        }
+      ]
     }
   },
   "en": {
@@ -503,7 +540,44 @@ export const siteContent = {
         "case-study": "Case Study",
         "indie-game": "Indie Game"
       },
-      "entries": []
+      "entries": [
+        {
+          "slug": "interaction-flow-review",
+          "title": "Designing Interaction Flows Backwards from Player Goals",
+          "published_at": "2026-08-18",
+          "year": 2026,
+          "tags": [
+            "interaction-design",
+            "case-study"
+          ],
+          "published": true,
+          "body": "Sample content for previewing the notes list, covering how player goals, feedback, and edge cases shape an interaction flow."
+        },
+        {
+          "slug": "game-ui-feedback",
+          "title": "Immediate Feedback and Rhythm in Game UI",
+          "published_at": "2026-07-26",
+          "year": 2026,
+          "tags": [
+            "game-ui",
+            "game-design"
+          ],
+          "published": true,
+          "body": "Sample content for previewing the notes list, exploring how immediate feedback communicates outcomes and maintains interface rhythm."
+        },
+        {
+          "slug": "indie-game-interface-notes",
+          "title": "Three Trade-offs in Indie Game Interface Prototypes",
+          "published_at": "2026-06-14",
+          "year": 2026,
+          "tags": [
+            "indie-game",
+            "interaction-design"
+          ],
+          "published": true,
+          "body": "Sample content for previewing the notes list, summarizing trade-offs between information density, production cost, and visual expression."
+        }
+      ]
     }
   },
   "homeShowcase": {

@@ -40,7 +40,7 @@ function Resume({ language }: { language: Language }) {
     {item.body && <div className="resume-entry-body"><Paragraphs text={item.body}/></div>}
   </article>);
   return <div className="content-page resume-page">
-    <div className="content-page-title"><h1>{resume.name}</h1><button className="resume-download" type="button" aria-disabled="true" title={language === "zh" ? "PDF 简历文件尚未配置" : "PDF resume files are not configured yet"}>{language === "zh" ? "下载pdf" : "Download PDF"}</button></div>
+    <div className="content-page-title"><h1>{resume.name}</h1><button className="resume-download" type="button" aria-disabled="true" title={language === "zh" ? "PDF 简历文件尚未配置" : "PDF resume files are not configured yet"}><span className="resume-download-icon" aria-hidden="true"/><span className="resume-download-label">{language === "zh" ? "下载pdf" : "Download PDF"}</span></button></div>
     <section className="resume-section resume-profile"><ResumeSectionTitle>{resume.profile.title}</ResumeSectionTitle><Paragraphs text={resume.profile.body}/></section>
     <section className="resume-section"><ResumeSectionTitle>{resume.education.title}</ResumeSectionTitle>{resume.education.items.map(item => <EducationEntry item={item} key={item.id}/>)}</section>
     <section className="resume-section resume-skills"><ResumeSectionTitle>{resume.skills.title}</ResumeSectionTitle><div className="skill-groups">{resume.skills.groups.map(group => <div key={group.id}><h3>{group.label}</h3><p>{group.body}</p></div>)}</div></section>

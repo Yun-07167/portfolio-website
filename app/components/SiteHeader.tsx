@@ -41,7 +41,7 @@ export default function SiteHeader({ language, setLanguage, theme, setTheme, con
           </div>
           <a className="nav-label" href={item.href} aria-current={isActive ? "page" : undefined} onFocus={() => setHovered(item.id)} onClick={item.id === "connect" ? event => event.preventDefault() : undefined}>
             <span className="drawn-ring">{hovered === item.id && <img src={item.id === "about" ? "/assets/connects-circle.svg" : "/assets/projects-circle.svg"} alt=""/>}</span>{item.label}
-            {isActive && item.id !== "connect" && <span className="active-underline" aria-hidden="true"><img src={item.id === "resume" ? "/assets/resume-active-underline.svg" : item.id === "about" ? "/assets/about-active-underline.svg" : "/assets/projects-underline.svg"} alt=""/></span>}
+            {isActive && item.id !== "connect" && <span className="active-underline" aria-hidden="true"><img src={item.id === "resume" ? "/assets/resume-active-underline.svg" : item.id === "about" ? "/assets/about-active-underline.svg" : "/assets/projects-active-underline.svg"} alt=""/></span>}
           </a>
         </div>;
       })}
