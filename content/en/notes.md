@@ -1,6 +1,7 @@
 ---
 locale: "en"
 page_title: "Notes"
+translation_missing: "This note is not available in English yet. You have been returned to the English notes list."
 filters:
   year: "Year"
   tag: "Tags"

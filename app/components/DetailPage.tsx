@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { siteContent } from "../generated-content";
 import SiteHeader, { type ContactOption } from "./SiteHeader";
 import useSitePreferences from "./useSitePreferences";
@@ -17,13 +17,34 @@ export default function DetailPage({ kind, slug }:{ kind:"project"|"note"; slug:
   const project=kind==="project"?content.work.projects.find(entry=>entry.slug===slug) as ProjectItem|undefined:undefined;
   const note=kind==="note"?content.notes.entries.find(entry=>entry.slug===slug) as NoteItem|undefined:undefined;
   const item=project??note;
+  const alternateContent=siteContent[language==="zh"?"en":"zh"];
+  const hasAlternate=kind==="project"
+    ? alternateContent.work.projects.some(entry=>entry.slug===slug)
+    : alternateContent.notes.entries.some(entry=>entry.slug===slug);
+
+  useEffect(()=>{
+    if(!item&&hasAlternate) window.location.assign(`${kind==="project"?"/work":"/notes"}?translation=missing`);
+  },[hasAlternate,item,kind]);
+  const setDetailLanguage:Dispatch<SetStateAction<"zh"|"en">>=(update)=>{
+    const next=typeof update==="function"?update(language):update;
+    const nextContent=siteContent[next];
+    const available=kind==="project"
+      ? nextContent.work.projects.some(entry=>entry.slug===slug)
+      : nextContent.notes.entries.some(entry=>entry.slug===slug);
+    if(!available){
+      window.localStorage.setItem("portfolio-language",next);
+      window.location.assign(`${kind==="project"?"/work":"/notes"}?translation=missing`);
+      return;
+    }
+    setLanguage(next);
+  };
   if(!item)return <main className="subpage-shell detail-shell"><SiteHeader language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption} activePage={activePage}/><section className="detail-page"><h1>{language==="zh"?"内容不存在":"Content not found"}</h1></section></main>;
   const isProject=Boolean(project);
   const labels=(isProject?content.work.tag_labels:content.notes.tag_labels) as Record<string,string>;
   const date=project?String(project.year):(note?.published_at??"");
   const body=item.body||(project?.summary??"");
   return <main className="subpage-shell detail-shell">
-    <SiteHeader language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption} activePage={activePage}/>
+    <SiteHeader language={language} setLanguage={setDetailLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption} activePage={activePage}/>
     <article className={`detail-page detail-${kind}`}>
       <a className="detail-back" href={isProject?"/work":"/notes"}>{language==="zh"?"← 返回列表":"← Back to list"}</a>
       <header className="detail-hero"><h1>{item.title}</h1><div className="detail-meta"><time>{date}</time><ul>{item.tags.map(tag=><li key={tag}>{labels[tag]}</li>)}</ul></div>{project&&<p>{project.summary}</p>}</header>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import gsap from "gsap";
 import { siteContent } from "../generated-content";
 import SiteHeader, { type ContactOption } from "../components/SiteHeader";
@@ -47,6 +47,16 @@ export default function WorkPage() {
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
+  const [translationMissing, setTranslationMissing] = useState(false);
+
+  useEffect(() => {
+    const url=new URL(window.location.href);
+    if(url.searchParams.get("translation")==="missing"){
+      setTranslationMissing(true);
+      url.searchParams.delete("translation");
+      window.history.replaceState({},"",url.pathname+url.search+url.hash);
+    }
+  }, []);
 
   const content = siteContent[language];
   const work = content.work;
@@ -62,6 +72,7 @@ export default function WorkPage() {
     <SiteHeader language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption} activePage="projects"/>
     <div className="works-page">
       <h1>{work.title}</h1>
+      {translationMissing&&<p className="locale-notice" role="status">{work.translation_missing}</p>}
       <div className="works-layout">
         <section className="works-list" aria-live="polite">
           {projects.map((project, index) => <TiltCard key={project.slug} href={"/work/"+project.slug}>

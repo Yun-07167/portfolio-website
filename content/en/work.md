@@ -1,6 +1,7 @@
 ---
 locale: "en"
 title: "Projects"
+translation_missing: "This project is not available in English yet. You have been returned to the English project list."
 filters:
   year: "Year"
   tag: "Tags"

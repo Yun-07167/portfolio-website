@@ -89,8 +89,11 @@ export function validateProjectParity(projectsZh, projectsEn) {
   for (const slug of slugs) {
     const zh = projectsZh.get(slug);
     const en = projectsEn.get(slug);
-    if (!zh || !en) fail(`Project must exist in both locales: ${slug}.`);
-    for (const field of ["year", "published", "order", "cover", "home_thumbnail"]) {
+    // A project may intentionally exist in only one locale. When both versions
+    // exist, publishing and ordering remain locale-owned while shared facts and
+    // media stay aligned.
+    if (!zh || !en) continue;
+    for (const field of ["year", "cover", "home_thumbnail"]) {
       if (zh[field] !== en[field]) fail(`Project "${slug}" must use the same ${field} in both locales.`);
     }
     if (JSON.stringify(zh.tags) !== JSON.stringify(en.tags)) fail(`Project "${slug}" must use the same tags in both locales.`);

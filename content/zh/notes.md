@@ -1,6 +1,7 @@
 ---
 locale: "zh-CN"
 page_title: "笔记"
+translation_missing: "这篇笔记暂时没有中文版，已返回中文笔记列表。"
 filters:
   year: "年份"
   tag: "标签"

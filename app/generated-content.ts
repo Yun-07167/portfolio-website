@@ -51,6 +51,7 @@ export const siteContent = {
     "work": {
       "locale": "zh-CN",
       "title": "项目列表",
+      "translation_missing": "这个项目暂时没有中文版，已返回中文项目列表。",
       "filters": {
         "year": "年份",
         "tag": "标签",
@@ -236,6 +237,7 @@ export const siteContent = {
     "notes": {
       "locale": "zh-CN",
       "page_title": "笔记",
+      "translation_missing": "这篇笔记暂时没有中文版，已返回中文笔记列表。",
       "filters": {
         "year": "年份",
         "tag": "标签",
@@ -341,6 +343,7 @@ export const siteContent = {
     "work": {
       "locale": "en",
       "title": "Projects",
+      "translation_missing": "This project is not available in English yet. You have been returned to the English project list.",
       "filters": {
         "year": "Year",
         "tag": "Tags",
@@ -526,6 +529,7 @@ export const siteContent = {
     "notes": {
       "locale": "en",
       "page_title": "Notes",
+      "translation_missing": "This note is not available in English yet. You have been returned to the English notes list.",
       "filters": {
         "year": "Year",
         "tag": "Tags",

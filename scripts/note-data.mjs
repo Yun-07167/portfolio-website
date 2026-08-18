@@ -54,8 +54,8 @@ export function validateNoteParity(notesZh, notesEn) {
   const slugs = new Set([...notesZh.keys(), ...notesEn.keys()]);
   for (const slug of slugs) {
     const zh = notesZh.get(slug); const en = notesEn.get(slug);
-    if (!zh || !en) fail(`Note must exist in both locales: ${slug}.`);
-    for (const field of ["published_at", "published"]) if (zh[field] !== en[field]) fail(`Note "${slug}" must use the same ${field} in both locales.`);
+    // Notes can be published, dated, and ordered by date independently per locale.
+    if (!zh || !en) continue;
     if (JSON.stringify(zh.tags) !== JSON.stringify(en.tags)) fail(`Note "${slug}" must use the same tags in both locales.`);
     if (JSON.stringify(zh.body_signature) !== JSON.stringify(en.body_signature)) fail(`Note "${slug}" must use matching heading and media structure in both locales.`);
   }

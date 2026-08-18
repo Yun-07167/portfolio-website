@@ -1,6 +1,7 @@
 ---
 locale: "zh-CN"
 title: "项目列表"
+translation_missing: "这个项目暂时没有中文版，已返回中文项目列表。"
 filters:
   year: "年份"
   tag: "标签"

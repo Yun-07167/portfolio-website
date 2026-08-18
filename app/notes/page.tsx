@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { siteContent } from "../generated-content";
 import SiteHeader, { type ContactOption } from "../components/SiteHeader";
 import useSitePreferences from "../components/useSitePreferences";
@@ -10,6 +10,16 @@ export default function NotesPage() {
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [dialogOption, setDialogOption] = useState<ContactOption | null>(null);
+  const [translationMissing,setTranslationMissing]=useState(false);
+
+  useEffect(()=>{
+    const url=new URL(window.location.href);
+    if(url.searchParams.get("translation")==="missing"){
+      setTranslationMissing(true);
+      url.searchParams.delete("translation");
+      window.history.replaceState({},"",url.pathname+url.search+url.hash);
+    }
+  },[]);
 
   const content=siteContent[language]; const notes=content.notes;
   const years=useMemo(()=>[...new Set(notes.entries.map(note=>note.year))].sort((a,b)=>b-a),[notes.entries]);
@@ -19,7 +29,7 @@ export default function NotesPage() {
 
   return <main className="subpage-shell notes-shell">
     <SiteHeader language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} content={content} onDialog={setDialogOption} activePage="notes"/>
-    <div className="notes-page"><h1>{notes.page_title}</h1><div className="notes-layout">
+    <div className="notes-page"><h1>{notes.page_title}</h1>{translationMissing&&<p className="locale-notice" role="status">{notes.translation_missing}</p>}<div className="notes-layout">
       <section className="notes-list" aria-live="polite">
         {entries.map(note=><a className="note-card" href={"/notes/"+note.slug} key={note.slug}><div className="note-card-title"><h2>{note.title}</h2></div><div className="note-card-meta"><time dateTime={note.published_at}>{note.published_at.replaceAll("-",".")}</time><ul>{note.tags.map(tag=><li key={tag}>{notes.tag_labels[tag]}</li>)}</ul></div></a>)}
         {entries.length===0&&<div className="notes-empty"><p>{notes.filters.empty}</p>{hasFilters&&<button type="button" onClick={()=>{setSelectedYear(null);setSelectedTag(null);}}>{notes.filters.clear}</button>}</div>}

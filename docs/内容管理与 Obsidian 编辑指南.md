@@ -15,7 +15,9 @@
     content/zh/work/projects/<slug>.md
     content/en/work/projects/<slug>.md
 
-两份文档必须保持相同的 slug、年份、标签、发布状态、排序、封面路径，以及相同顺序的标题层级和媒体素材。文字、图片 alt 和 caption 可以翻译。
+同一个 slug 可以只存在于一个语言目录中，也可以在中英文中分别设置发布状态与顺序：项目使用各自的 `published` 和 `order`，笔记使用各自的 `published` 和 `published_at`。若两种语言都存在，则年份、标签、封面路径以及标题层级和媒体素材顺序仍须保持对应；文字、图片 alt 和 caption 可以翻译。
+
+如果项目还被 `content/home-showcase.md` 选作首页项目卡片，则该项目必须同时存在已发布的中英文版本，因为首页展示区在两种语言中共用同一组卡片。
 
 ## 标准图片
 
