@@ -291,6 +291,8 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .detail-cover { width:100%; margin:48px 0; overflow:hidden; background:var(--surface); }
 .detail-cover img { display:block; width:100%; height:auto; max-height:640px; object-fit:cover; }
 .markdown-content { width:min(100%,780px); margin-top:48px; font-family:var(--font-ui); font-size:18px; line-height:1.7; }
+.detail-project .markdown-content { width:100%; }
+.detail-project .markdown-content > :not(.content-media) { max-width:780px; }
 .markdown-content > :first-child { margin-top:0; }
 .markdown-content h1,.markdown-content h2,.markdown-content h3,.markdown-content h4 { font-family:var(--font-display); font-weight:500; line-height:1.25; letter-spacing:-.035em; }
 .markdown-content h1 { margin:72px 0 24px; font-size:42px; }
@@ -304,7 +306,9 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .markdown-content pre { margin:0 0 28px; padding:20px; overflow:auto; background:var(--neutral-900); color:var(--background); font-size:14px; line-height:1.6; }
 .content-media { width:100%; margin:40px 0; }
 .content-media.media-wide { width:min(980px,calc(100vw - 48px)); }
+.detail-project .content-media.media-wide { width:100%; }
 .content-media img,.content-media video { display:block; width:100%; height:auto; max-height:78vh; object-fit:contain; background:var(--surface); }
+.detail-project .content-media img { border:1px solid color-mix(in srgb,var(--neutral-600) 55%,transparent); }
 .content-media figcaption { margin-top:10px; color:var(--neutral-700); font-family:var(--font-ui); font-size:14px; line-height:1.4; }
 @media (max-width:800px) { .notes-page { padding-top:130px; } .notes-layout { grid-template-columns:1fr; gap:36px; } .notes-filters { grid-row:1; position:static; } .notes-list { min-height:0; } }
 @media (max-width:560px) { .notes-page > h1 { font-size:46px; } .note-card { padding-inline:8px; } .note-card-title h2 { font-size:22px; } .detail-page { padding-top:130px; } .detail-hero h1 { font-size:40px; } .detail-meta { flex-direction:column; } .detail-meta time { border-right:0; } .detail-cover,.markdown-content { margin-top:32px; } .markdown-content { font-size:16px; } .markdown-content h2 { font-size:30px; } }
