@@ -19,6 +19,17 @@ caption: This example starts with the player goal and uses movable nodes to comp
 layout: wide
 :::
 
+## A real Excalidraw → SVG example
+
+The drawing below comes from `player-task-flow.excalidraw.md` in the repository. Saving in Obsidian overwrites the matching `player-task-flow.excalidraw.svg`; the website build then syncs that current SVG into its public assets. There is no manual copying and no new SVG for every edit.
+
+:::drawing
+src: /assets/drawings/notes/visual-drawing-workflow/player-task-flow.excalidraw.svg
+alt: SVG exported from Obsidian Excalidraw with hand-drawn strokes and embedded font styling preserved
+caption: Real workflow example: version the editable source and current SVG together; the website displays only the synchronized SVG.
+layout: wide
+:::
+
 ## Example: a map navigation flow
 
 The drawing frames the player's complete task after opening the map instead of merely listing screens. I begin with three core nodes—choose a destination, inspect the route, and confirm the action—then add branches for insufficient resources and unreachable targets. Nodes and connectors remain directly draggable in Excalidraw, without editing code.

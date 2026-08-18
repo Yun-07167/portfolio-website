@@ -46,3 +46,4 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+/public/assets/drawings/

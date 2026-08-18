@@ -79,14 +79,14 @@ Obsidian 原生支持 Mermaid。在 Markdown 中插入 `mermaid` 代码块即可
 1. 打开 Obsidian 设置 → 第三方插件，关闭安全模式。
 2. 浏览社区插件并安装、启用 `Excalidraw`。
 3. 在 Excalidraw 设置的 `Embed & Export` 中启用保存时自动导出 SVG。
-4. 把可编辑的 `.excalidraw.md` 放在对应内容目录；把导出的 SVG 放在 `public/assets/projects/<slug>/` 或 `public/assets/notes/<slug>/`。
-5. 建议让源文件和导出文件使用相同主文件名，例如 `task-flow.excalidraw.md` 与 `task-flow.svg`。
+4. 把可编辑的 `.excalidraw.md` 放在 `content-drawings/` 中；插件会在旁边覆盖更新同名的 `.excalidraw.svg`。
+5. 开发和构建启动前会自动运行 `drawings:sync`，把当前 SVG/PNG/WebP 按原目录结构复制到 `public/assets/drawings/`。
 
 网站使用独立绘图内容块：
 
     :::drawing
-    src: /assets/projects/example/task-flow.svg
-    dark_src: /assets/projects/example/task-flow.dark.svg
+    src: /assets/drawings/projects/example/task-flow.excalidraw.svg
+    dark_src: /assets/drawings/projects/example/task-flow.dark.excalidraw.svg
     alt: 玩家任务流程图
     caption: 从选择目标到确认行动的完整路径
     layout: wide
@@ -94,7 +94,9 @@ Obsidian 原生支持 Mermaid。在 Markdown 中插入 `mermaid` 代码块即可
 
 `dark_src` 可省略；提供后会跟随网站自己的亮暗模式切换，而不是跟随操作系统模式。点击绘图可以打开大图并进行缩放。SVG 最适合流程图；包含大量位图或复杂笔触时可以改用 WebP/PNG。
 
-请不要在网站 Markdown 中直接引用 `.excalidraw.md`。它是编辑源文件，不是浏览器展示素材；发布时应引用自动导出的 SVG/PNG。
+请不要在网站 Markdown 中直接引用 `.excalidraw.md`。它是编辑源文件，不是浏览器展示素材；发布时应引用同步后的 `/assets/drawings/...` SVG/PNG。
+
+版本控制建议同时提交 `.excalidraw.md` 和当前的 `.excalidraw.svg`，这样源文件可继续编辑，网站构建也始终有确定的导出结果。自动同步到 `public/assets/drawings/` 的副本已被 Git 忽略，不需要重复提交。正常自动导出会覆盖同名 SVG，不会保留每次保存的副本；历史版本由 Git 管理即可。
 
 ## 支持的正文格式
 
