@@ -24,9 +24,11 @@ test("renders Figma content generated from Markdown", async () => {
   assert.doesNotMatch(html, /填写邮箱地址|hello@example\.com|请在这里替换正式二维码/);
 });
 
-test("renders the reserved Notes route", async () => {
+test("renders the Notes list route", async () => {
   const response = await render("/notes");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /work in progress/);
+  assert.match(html, /目前还没有发布笔记/);
+  assert.match(html, /笔记筛选/);
+  assert.doesNotMatch(html, /work in progress/);
 });

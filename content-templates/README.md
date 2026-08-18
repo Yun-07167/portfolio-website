@@ -77,16 +77,14 @@ content/
 - `year` 使用四位整数；`order` 越小越靠前；`published: false` 的项目不会出现在列表中。
 - 中英文同一项目的 `year`、`tags`、`published`、`order` 和素材路径必须一致，构建时会自动校验。
 
-## Notes 预留接口
+## Notes 内容规则
 
-- Header 文案已在 `global.md` 中预留 `notes` 字段。
-- 当前 `notes.md` 使用 `status: work-in-progress`，页面只显示 `work in progress`。
-- 未来将状态改为 `published` 后，同一页面显示 Notes 网格。
-- 每篇 Note 单独一个 Markdown 文件，文件名使用稳定 `slug`。
-- 卡片显示 `title`、格式化后的 `published_at` 日期和可选 `thumbnail`。
-- 当 `thumbnail` 为素材路径时，卡片使用 `with-thumbnail` 变体。
-- 当 `thumbnail: null` 时，卡片使用 `text-only` 变体，不保留空白图片框，标题和日期使用完整卡片空间。
-- 两种卡片具有相同网格宽度；高度可以统一，也可以让纯文字卡片跨两行，具体视觉规则在实现页面时确定。
+- 每篇 Note 单独一个 Markdown 文件，中英文使用相同 `slug`，分别放在对应语言的 `notes/` 目录。
+- Note 文件必须填写 `title`、`published_at`、`tags` 和 `published`；正文写在 Front Matter 之后。
+- `published_at` 使用 `YYYY-MM-DD`，列表年份由日期自动生成，并按发布日期倒序排列。
+- `tags` 使用稳定英文 ID；每个 ID 都必须同时添加到中英文 `notes.md` 的 `tag_labels` 中。
+- `published: false` 的草稿不会出现在列表中。
+- 中英文同一 Note 的 `published_at`、`tags` 和 `published` 必须一致，构建时会自动校验。
 
 ## 本地化策略
 

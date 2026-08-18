@@ -1,7 +1,16 @@
 ---
 locale: "zh-CN"
 page_title: "笔记"
-status: "work-in-progress"
-work_in_progress_text: "work in progress"
-note_order: []
+filters:
+  year: "年份"
+  tag: "标签"
+  all: "全部"
+  clear: "清除筛选"
+  empty: "目前还没有发布笔记。"
+tag_labels:
+  interaction-design: "交互设计"
+  game-design: "游戏设计"
+  game-ui: "游戏 UI"
+  case-study: "案例分析"
+  indie-game: "独立游戏"
 ---

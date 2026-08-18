@@ -3,6 +3,7 @@ import { dirname, resolve } from "node:path";
 import matter from "gray-matter";
 import { loadHomeShowcase } from "./home-showcase-data.mjs";
 import { loadProjectLocale, serializePublishedProjects, validateProjectParity } from "./project-data.mjs";
+import { loadNoteLocale, serializePublishedNotes, validateNoteParity } from "./note-data.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -49,7 +50,7 @@ function validateResume(resume, locale) {
   requireString(resume?.gaming_experience?.body, `${root}.gaming_experience.body`);
 }
 
-async function readLocale(locale, projects) {
+async function readLocale(locale, projects, noteEntries) {
   const base = `content/${locale}`;
   const [global, home, work, resume, about, notes] = await Promise.all([
     readFrontMatter(`${base}/global.md`),
@@ -68,15 +69,19 @@ async function readLocale(locale, projects) {
   for (const project of projects.values()) {
     for (const tag of project.tags) requireString(tagLabels[tag], `content/${locale}/work.md.tag_labels.${tag}`);
   }
-  return { global, home, work: { ...work, projects: serializePublishedProjects(projects) }, resume, about, notes };
+  const noteTagLabels = notes?.tag_labels;
+  if (!noteTagLabels || typeof noteTagLabels !== "object" || Array.isArray(noteTagLabels)) throw new TypeError(`content/${locale}/notes.md.tag_labels must be an object.`);
+  for (const note of noteEntries.values()) for (const tag of note.tags) requireString(noteTagLabels[tag], `content/${locale}/notes.md.tag_labels.${tag}`);
+  return { global, home, work: { ...work, projects: serializePublishedProjects(projects) }, resume, about, notes: { ...notes, entries: serializePublishedNotes(noteEntries) } };
 }
 
-const [projectsZh, projectsEn] = await Promise.all([loadProjectLocale("zh"), loadProjectLocale("en")]);
+const [projectsZh, projectsEn, notesZh, notesEn] = await Promise.all([loadProjectLocale("zh"), loadProjectLocale("en"), loadNoteLocale("zh"), loadNoteLocale("en")]);
 validateProjectParity(projectsZh, projectsEn);
+validateNoteParity(notesZh, notesEn);
 
 const content = {
-  zh: await readLocale("zh", projectsZh),
-  en: await readLocale("en", projectsEn),
+  zh: await readLocale("zh", projectsZh, notesZh),
+  en: await readLocale("en", projectsEn, notesEn),
   homeShowcase: await loadHomeShowcase(),
 };
 

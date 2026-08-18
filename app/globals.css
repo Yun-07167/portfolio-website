@@ -46,6 +46,7 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .active-underline { position:absolute; left:50%; top:calc(100% + 1px); display:block; width:87.8145px; height:6.87717px; transform:translateX(-50%); background:var(--primary-500); mask-repeat:no-repeat; mask-position:center; mask-size:100% 100%; pointer-events:none; }
 .nav-resume .active-underline { mask-image:url("/assets/resume-active-underline.svg"); }
 .nav-about .active-underline { mask-image:url("/assets/about-active-underline.svg"); }
+.nav-projects .active-underline,.nav-notes .active-underline { mask-image:url("/assets/projects-underline.svg"); }
 .active-underline img { display:block; width:87.8145px; height:6.87717px; max-width:none; opacity:0; }
 .drawn-ring { position:absolute; inset:0; opacity:0; transition:opacity .08s; pointer-events:none; }
 .drawn-ring img { position:absolute; left:50%; top:50%; width:104px; height:40px; object-fit:contain; transform:translate(-50%,-50%); filter:var(--asset-filter); }
@@ -247,15 +248,24 @@ html[lang="en"] .work-card-copy :is(p,.work-card-meta),html[lang="en"] .works-fi
   .work-card-meta { flex-direction:column; gap:6px; }
   .work-card-meta time { border-right:0; padding-right:0; }
 }
-.notes-placeholder-page { min-height:100vh; max-width:1280px; margin:auto; padding:48px 150px; background:var(--background); color:var(--foreground); }
-.notes-placeholder-header { height:148px; display:flex; align-items:flex-end; gap:32px; font-family:var(--font-ui); font-size:16px; }
-.notes-placeholder-header > a { width:40px; height:40px; display:grid; place-items:center; }
-.notes-placeholder-header > a img { width:24px; height:auto; filter:var(--asset-filter); }
-.notes-placeholder-header nav { display:flex; gap:28px; padding-bottom:11px; }
-.notes-placeholder-header button { width:40px; height:40px; margin-left:auto; border:0; background:transparent; font-family:var(--font-ui); }
-.notes-placeholder-page section { margin-top:20px; }
-.notes-placeholder-page h1 { margin:0; font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
-.notes-placeholder-page section p { margin:8px 0 0; color:var(--neutral-700); font-size:24px; line-height:1.52; letter-spacing:-.045em; }
+.notes-page { padding-top:168px; }
+.notes-page > h1 { min-height:60px; margin:0; color:var(--neutral-800); font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
+.notes-layout { display:grid; grid-template-columns:minmax(0,680px) 215.358px; gap:89.642px; align-items:start; margin-top:20px; }
+.notes-list { min-height:1285px; display:flex; flex-direction:column; gap:8px; }
+.note-card { width:100%; min-height:120px; padding:8px 12px; display:flex; flex-direction:column; align-items:flex-start; gap:12px; color:var(--neutral-800); transition:background .16s ease,color .16s ease; }
+.note-card-title { width:100%; height:48px; border-bottom:1px solid var(--neutral-600); display:flex; align-items:center; }
+.note-card-title h2 { margin:0; overflow:hidden; color:inherit; font-family:var(--font-display); font-size:24px; font-weight:400; line-height:1.52; letter-spacing:-.045em; text-overflow:ellipsis; white-space:nowrap; }
+.note-card-meta { display:flex; flex-direction:column; align-items:flex-start; gap:4px; font-family:var(--font-ui); font-size:16px; line-height:1.25; }
+.note-card-meta ul { display:flex; flex-wrap:wrap; gap:4px; margin:0; padding:0; list-style:none; }
+.note-card-meta li { min-height:20px; padding:0 10px; background:var(--primary-500); color:var(--neutral-800); }
+.note-card:hover,.note-card:focus-within { background:var(--primary-50); color:var(--neutral-700); }
+.note-card:active { background:var(--primary-100); color:var(--neutral-900); }
+.notes-empty { min-height:120px; padding:28px 12px; border-bottom:1px solid var(--neutral-600); display:flex; flex-direction:column; align-items:flex-start; gap:16px; color:var(--neutral-700); font-family:var(--font-ui); font-size:16px; }
+.notes-empty p { margin:0; }
+.notes-empty button { padding:6px 0; border:0; border-bottom:1px solid currentColor; background:transparent; color:inherit; font:inherit; }
+html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
+@media (max-width:800px) { .notes-page { padding-top:130px; } .notes-layout { grid-template-columns:1fr; gap:36px; } .notes-filters { grid-row:1; position:static; } .notes-list { min-height:0; } }
+@media (max-width:560px) { .notes-page > h1 { font-size:46px; } .note-card { padding-inline:8px; } .note-card-title h2 { font-size:22px; } }
 @media (max-width:600px) {
   .page-shell { min-height:auto; padding:0 24px; }
   .site-header { position:fixed; top:0; left:0; right:0; height:78px; padding:14px 24px; align-items:center; background:color-mix(in srgb,var(--background) 88%,transparent); backdrop-filter:blur(10px); }

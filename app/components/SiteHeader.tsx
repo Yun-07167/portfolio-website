@@ -7,7 +7,7 @@ import ModeSwitcher from "./ModeSwitcher";
 
 export type Language = "zh" | "en";
 export type Theme = "light" | "dark";
-export type ActivePage = "home" | "projects" | "resume" | "about";
+export type ActivePage = "home" | "projects" | "notes" | "resume" | "about";
 type NavId = "home" | "projects" | "notes" | "connect" | "resume" | "about";
 type LocaleContent = (typeof siteContent)[Language];
 export type ContactOption = LocaleContent["global"]["contact_options"][number];
@@ -41,9 +41,8 @@ export default function SiteHeader({ language, setLanguage, theme, setTheme, con
           </div>
           <a className="nav-label" href={item.href} aria-current={isActive ? "page" : undefined} onFocus={() => setHovered(item.id)} onClick={item.id === "connect" ? event => event.preventDefault() : undefined}>
             <span className="drawn-ring">{hovered === item.id && <img src={item.id === "about" ? "/assets/connects-circle.svg" : "/assets/projects-circle.svg"} alt=""/>}</span>{item.label}
-            {isActive && (item.id === "resume" || item.id === "about") && <span className="active-underline" aria-hidden="true"><img src={item.id === "resume" ? "/assets/resume-active-underline.svg" : "/assets/about-active-underline.svg"} alt=""/></span>}
+            {isActive && item.id !== "connect" && <span className="active-underline" aria-hidden="true"><img src={item.id === "resume" ? "/assets/resume-active-underline.svg" : item.id === "about" ? "/assets/about-active-underline.svg" : "/assets/projects-underline.svg"} alt=""/></span>}
           </a>
-          {item.id === "notes" && <span className="nav-status-caption" aria-hidden="true">{language === "zh" ? "施工中" : "in progress"}</span>}
         </div>;
       })}
     </nav>
