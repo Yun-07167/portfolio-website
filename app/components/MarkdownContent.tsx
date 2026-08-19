@@ -146,11 +146,12 @@ function safeVideoEmbedUrl(source:string) {
 }
 
 function inline(text:string):ReactNode[] {
-  const pattern=/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g;
+  const pattern=/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*|(?<!\*)\*[^*\n]+\*(?!\*)|(?<!\w)_[^_\n]+_(?!\w))/g;
   return text.split(pattern).filter(Boolean).map((part,index)=>{
     const link=part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if(link)return <a href={safeHref(link[2])} key={index}>{link[1]}</a>;
     if(part.startsWith("**")&&part.endsWith("**"))return <strong key={index}>{part.slice(2,-2)}</strong>;
+    if((part.startsWith("*")&&part.endsWith("*"))||(part.startsWith("_")&&part.endsWith("_")))return <em key={index}>{part.slice(1,-1)}</em>;
     return <Fragment key={index}>{part}</Fragment>;
   });
 }
