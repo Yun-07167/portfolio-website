@@ -82,8 +82,8 @@ export function inspectContentBody(body, path) {
     signature: {
       headings,
       columns,
-      media: media.map(item => item.type === "video_embed"
-        ? { type: item.type }
+      media: media.map(item => item.type === "video_embed" || item.localized === "true"
+        ? { type: item.type, ...(item.localized === "true" ? { localized: true } : {}) }
         : { type: item.type, src: item.src, poster: item.poster ?? null, captions: item.captions ?? null }),
     },
   };

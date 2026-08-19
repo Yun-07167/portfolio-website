@@ -8,78 +8,155 @@ home_thumbnail: /assets/projects/undying-map/home-cover.png
 year: 2026
 tags:
   - interaction-design
-  - case-study
   - game-ui
+  - indie-game
 published: true
 order: 10
 ---
 
 ## 1. Context and Problem
 
-When route planning and strategic resource management were introduced mid-production, map travel grew from “select a place and go” into a chain of connected decisions. The old fixed-image map could neither explain route costs clearly nor scale to additional locations.
+When route planning and strategic resource management were introduced mid-production, the map travel experience expanded significantly.  
+The previous interface could not support the new route-planning features.
 
+:::columns
+ratio: 1:1
+
+:::column
+Previous design mockup
 :::image
-src: /assets/projects/undying-map/detail/legacy-map.webp
+src: /assets/projects/undying-map/details/legacy-map.webp
 alt: The legacy map presented locations and details on a fixed canvas
-caption: Legacy map: location count, information hierarchy, and canvas size constrained one another.
+caption:
 layout: wide
 :::
+:::
+:::column
+:::image
+src: /assets/projects/undying-map/details/undying-map_userflow_en_01.png
+localized: true
+alt: User flow for the previous map interface
+caption:
+layout: wide
+:::
+:::
+:::
+
+| New system requirement | Previous interface | Gap |
+| --- | --- | --- |
+| Let players plan a route manually and observe cost changes in real time | No route-planning interaction framework | Insufficient information (usability issue) |
+| Let players evaluate whether the vehicle has enough storage before departure | No storage-state feedback | Missing interaction pattern (ease-of-use issue) |
+| Show randomized locations whenever the map opens and let players decide whether to visit them | No logic for handling random events | Missing interaction pattern (ease-of-use issue) |
+| Support an unknown number of future maps and possible DLC | The bounded map places every location on one large PNG | Location count cannot scale (extensibility issue) |
 
 ## 02. Design goals
 
-1. Let players plan a route tile by tile and see fuel, time, and vehicle durability update immediately.
-2. Show destination resources, danger, and vehicle status before the player confirms travel.
-3. Allow the map to grow through coordinate data without rebuilding a single background image.
+**Goal 1: Help players understand the cost of the current route**
+Players can select a route tile by tile with the directional controls, observe cost values changing in real time, and decide whether to explore hidden locations along the way.
 
-> The design focus shifted from “displaying a map” to “supporting an informed travel decision.”
+**Goal 2: Give players the information required to make a decision**
+Before selecting “Confirm Travel,” players can review complete destination intelligence—such as resources and danger—as well as vehicle status, including remaining storage, durability cost, and fuel.
+
+**Goal 3: Allow the map to support more locations**
 
 ## 03. Core design decisions
 
 ### 3.1 Make route planning a visible action–feedback loop
 
-Players extend a route one tile at a time with the directional controls. The route line communicates direction, reachability, and confirmation state: planning, unavailable, or ready to travel. Resource costs update with every step so consequences are visible before confirmation.
+Players use the directional controls to move an arrowed route line one tile at a time while exploring the grid map.
 
 :::image
-src: /assets/projects/undying-map/detail/route-planning.webp
+src: /assets/projects/undying-map/details/undying-map_status_en_01.png
+localized: true
+alt: Route-planning states and destination details in the redesigned grid map
+caption:
+layout: wide
+:::
+
+:::image
+src: /assets/projects/undying-map/details/route-planning.webp
 alt: Route planning and destination details on the redesigned grid map
-caption: Route, cost, and destination intelligence update within the same interaction context.
+caption: Preview of the redesigned interface
 layout: wide
 :::
 
-### 3.2 Reveal information in decision order
+### 3.2 Information Presentation
 
-The map keeps only what is needed to compare the current position and destination. The destination panel owns identity, distance, danger, and resources; the vehicle panel owns durability, fuel, time, inventory, and storage. Players can compare quickly, then reveal deeper information on demand.
-
+###### New Map User Flow
 :::image
-src: /assets/projects/undying-map/detail/vehicle-information.webp
+src: /assets/projects/undying-map/details/undying-map_userflow_sc_02.png
+alt: User flow for the redesigned map
+caption: Redesigned user flow
+layout: wide
+:::
+
+:::columns
+ratio: 1:1
+
+:::column
+###### Vehicle Information
+When a player plans a route to a destination, vehicle durability, fuel, and time costs update in real time. The player can also open the vehicle storage panel to inspect the available slots.
+:::image
+src: /assets/projects/undying-map/details/undying-map_vehicle_01.png
 alt: Vehicle status and storage information panel
-caption: Vehicle state is brought into the departure decision, reducing surprises after travel begins.
+caption: Vehicle status is brought into the departure decision, reducing the frustration of discovering insufficient storage after setting out.
 layout: wide
 :::
+:::
 
+:::column
+###### Destination Information
+Destination information is presented in layers from top to bottom:  
+name and distance/direction; location image in locked or unlocked state; danger level; available resources; and a short location description.
 :::image
-src: /assets/projects/undying-map/detail/destination-information.webp
+src: /assets/projects/undying-map/details/destination-information.webp
 alt: Destination name, distance, danger, and resource panel
 caption: Destination information is layered from identity and risk to potential reward.
 layout: standard
 :::
+:::
+:::
 
 ### 3.3 Replace a fixed map image with data coordinates
 
-The legacy map painted every location into one fixed PNG. The redesign places locations in an extensible coordinate grid. New maps or DLC can add location data and adjacency rules without changing the interface structure.
+The previous map painted every location onto one fixed-size PNG. The redesign places locations on an extensible coordinate grid. New maps or DLC can add location data and adjacency rules without being constrained by a single image.
 
+:::columns
+ratio: 1:1
+
+:::column
 :::image
-src: /assets/projects/undying-map/detail/travel-flow.webp
-alt: Complete interaction flow for map travel
-caption: The new flow covers route planning, random locations, vehicle checks, exception states, and final departure.
+src: /assets/projects/undying-map/details/undying-map_oldversion_01.png
+alt: Previous map design mockup
+caption: Previous design
 layout: wide
+:::
+:::
+
+:::column
+:::image
+src: /assets/projects/undying-map/details/undying-map_newversion_01.png
+alt: Redesigned map interface mockup
+caption: Redesigned interface
+layout: wide
+:::
+:::
 :::
 
 ## 04. Validation and reflection
 
-- Tile-by-tile planning and live costs created a clear action–feedback loop; the design team found the new version more participatory.
-- Testing showed that cost feedback in the lower-left area could still be missed, so future iterations should move critical changes closer to the route endpoint.
-- The destination panel covers the full decision chain, but its density still needs calibration through player testing.
-- The data-driven grid solves the scalability problem and creates room for random locations and future map content.
+**Goal 1: Help players understand the cost of the current route**
+- Tile-by-tile directional input and live costs in the lower-left corner created a complete action–feedback loop.
+- The design team felt that the redesigned system offered more player participation.
+- Playtesting showed that the live cost display in the lower-left corner was easy to miss. A later iteration added icon-and-value cost indicators around each location marker.
 
-This redesign reinforced a principle: a complex systems interface should not reveal everything at once; it should reveal the right information when the player needs to decide.
+**Goal 2: Give players the information required to make a decision**
+- Progressive disclosure covers the complete decision chain: inspect a destination, review its resources, confirm storage, and depart.
+- Vehicle storage is surfaced numerically before departure, while players can still open the storage panel to inspect individual items. This helps prevent the frustration of discovering insufficient capacity after setting out.
+- The information density of the destination panel still needs further player feedback.
+
+**Goal 3: Allow the map to support more locations**
+- The grid system can add locations dynamically through coordinate data without changing the interface structure.
+- Compared with the previous fixed PNG, the extensibility limitation has been resolved.
+
+*All artwork in this project is original; some location images are screenshots from the game.*
