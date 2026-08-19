@@ -23,11 +23,10 @@ The previous interface could not support the new route-planning features.
 ratio: 1:1
 
 :::column
-Previous design mockup
 :::image
 src: /assets/projects/undying-map/details/legacy-map.webp
 alt: The legacy map presented locations and details on a fixed canvas
-caption:
+caption: Previous design mockup
 layout: wide
 :::
 :::
@@ -36,7 +35,7 @@ layout: wide
 src: /assets/projects/undying-map/details/undying-map_userflow_en_01.png
 localized: true
 alt: User flow for the previous map interface
-caption:
+caption: Comparison of the previous and redesigned flows
 layout: wide
 :::
 :::
@@ -109,7 +108,7 @@ layout: wide
 Destination information is presented in layers from top to bottom:  
 name and distance/direction; location image in locked or unlocked state; danger level; available resources; and a short location description.
 :::image
-src: /assets/projects/undying-map/details/destination-information.webp
+src: /assets/projects/undying-map/details/undying-map_destinationInfo_01.png
 alt: Destination name, distance, danger, and resource panel
 caption: Destination information is layered from identity and risk to potential reward.
 layout: standard

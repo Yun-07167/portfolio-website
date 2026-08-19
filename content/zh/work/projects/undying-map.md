@@ -22,11 +22,10 @@ order: 10
 ratio: 1:1
 
 :::column
-旧版本设计稿截图
 :::image
 src: /assets/projects/undying-map/details/legacy-map.webp
 alt: 旧版地图以固定画面呈现地点和详情
-caption: 
+caption: 旧版本设计稿截图
 layout: wide
 :::
 :::
@@ -35,7 +34,7 @@ layout: wide
 src: /assets/projects/undying-map/details/undying-map_userflow_sc_01.png
 localized: true
 alt: 旧版地图以固定画面呈现地点和详情
-caption: 
+caption: 新旧流程对比
 layout: wide
 :::
 :::
@@ -107,7 +106,7 @@ layout: wide
 目标地点信息分层显示，从上到下依次为：  
 地点名称和距离/方位、地点图片（分为已解锁地点和未解锁地点两种状态）、该地危险等级、该地资源、该地描述文字。
 :::image
-src: /assets/projects/undying-map/details/destination-information.webp
+src: /assets/projects/undying-map/details/undying-map_destinationInfo_01.png
 alt: 目的地名称、距离、危险与资源详情面板
 caption: 目的地信息从身份、风险到收益分层排列。
 layout: standard
