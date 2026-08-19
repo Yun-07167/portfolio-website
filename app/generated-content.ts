@@ -98,7 +98,7 @@ export const siteContent = {
           ],
           "published": true,
           "order": 25,
-          "body": ":::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_skills.png\nalt: 副主角技能\ncaption: 副主角技能\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_01.png\nalt: 人物属性\ncaption: 人物属性\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_02.png\nalt: 主角症状\ncaption: 主角症状\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_cook.png\nalt: 料理台\ncaption: 料理台\nlayout: wide\n:::"
+          "body": ":::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_skills.png\nalt: 副主角技能，左侧是基础技能，右侧是进阶技能，下方共用详细说明\ncaption: 副主角技能\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_01.png\nalt: 双主角的基础属性\ncaption: 人物属性\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_02.png\nalt: 主角的症状列表\ncaption: 主角症状\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_cook.png\nalt: 料理台，左侧选择食材，加入中间的锅里，右侧是产出与消耗信息\ncaption: 料理台\nlayout: wide\n:::"
         },
         {
           "slug": "undying-art",

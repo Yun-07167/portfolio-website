@@ -14,28 +14,28 @@ order: 25
 ---
 :::image
 src: /assets/projects/undying-uiart/details/undying_uiart_skills.png
-alt: 副主角技能
+alt: 副主角技能，左侧是基础技能，右侧是进阶技能，下方共用详细说明
 caption: 副主角技能
 layout: wide
 :::
 
 :::image
 src: /assets/projects/undying-uiart/details/undying_uiart_attributes_01.png
-alt: 人物属性
+alt: 双主角的基础属性
 caption: 人物属性
 layout: wide
 :::
 
 :::image
 src: /assets/projects/undying-uiart/details/undying_uiart_attributes_02.png
-alt: 主角症状
+alt: 主角的症状列表
 caption: 主角症状
 layout: wide
 :::
 
 :::image
 src: /assets/projects/undying-uiart/details/undying_uiart_cook.png
-alt: 料理台
+alt: 料理台，左侧选择食材，加入中间的锅里，右侧是产出与消耗信息
 caption: 料理台
 layout: wide
 :::
