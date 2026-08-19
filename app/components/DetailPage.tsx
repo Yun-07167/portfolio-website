@@ -48,7 +48,6 @@ export default function DetailPage({ kind, slug }:{ kind:"project"|"note"; slug:
     <article className={`detail-page detail-${kind}`}>
       <a className="detail-back" href={isProject?"/work":"/notes"}>{language==="zh"?"← 返回列表":"← Back to list"}</a>
       <header className="detail-hero"><h1>{item.title}</h1><div className="detail-meta"><time>{date}</time><ul>{item.tags.map(tag=><li key={tag}>{labels[tag]}</li>)}</ul></div>{project&&<p>{project.summary}</p>}</header>
-      {project&&<figure className="detail-cover"><img src={project.cover} alt={project.cover_alt} decoding="async"/></figure>}
       <MarkdownContent markdown={body}/>
     </article>
     <footer className="subpage-footer"><p>{content.global.footer.copyright}</p><button type="button" onClick={()=>window.scrollTo({top:0,behavior:"smooth"})} aria-label={content.global.controls.back_to_top}><img src="/assets/arrow.svg" alt=""/></button></footer>

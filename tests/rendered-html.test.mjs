@@ -42,6 +42,7 @@ test("renders project detail content and record-specific metadata", async () => 
   assert.match(html, /《苏醒之路》地图界面重构设计案例/);
   assert.match(html, /重构地图迁移流程与区域信息层级/);
   assert.match(html, /\/assets\/projects\/undying-map\/home-cover\.png/);
+  assert.doesNotMatch(html, /class="detail-cover"/);
   assert.doesNotMatch(html, /\/og\.png/);
 });
 

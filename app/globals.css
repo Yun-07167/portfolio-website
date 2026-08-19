@@ -288,8 +288,6 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .detail-meta time { padding-right:8px; border-right:1px solid var(--neutral-600); }
 .detail-meta ul { display:flex; flex-wrap:wrap; gap:4px; margin:0; padding:0; list-style:none; }
 .detail-meta li { min-height:20px; padding:0 10px; background:var(--primary-500); color:var(--neutral-800); }
-.detail-cover { width:100%; margin:48px 0; overflow:hidden; background:var(--surface); }
-.detail-cover img { display:block; width:100%; height:auto; max-height:640px; object-fit:cover; }
 .markdown-content { width:min(100%,780px); margin-top:48px; font-family:var(--font-ui); font-size:18px; line-height:1.7; }
 .detail-project .markdown-content { width:100%; }
 .detail-project .markdown-content > :not(.content-media) { max-width:780px; }
@@ -358,7 +356,7 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
 .video-embed-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
 .content-video-embed figcaption { margin-top:12px; color:var(--neutral-700); font-size:var(--caption-size); letter-spacing:var(--caption-tracking); }
 @media (max-width:800px) { .notes-page { padding-top:130px; } .notes-layout { grid-template-columns:1fr; gap:36px; } .notes-filters { grid-row:1; position:static; } .notes-list { min-height:0; } }
-@media (max-width:560px) { .notes-page > h1 { font-size:46px; } .note-card { padding-inline:8px; } .note-card-title h2 { font-size:22px; } .detail-page { padding-top:130px; } .detail-hero h1 { font-size:40px; } .detail-meta { flex-direction:column; } .detail-meta time { border-right:0; } .detail-cover,.markdown-content { margin-top:32px; } .markdown-content { font-size:16px; } .markdown-content h2 { font-size:30px; } }
+@media (max-width:560px) { .notes-page > h1 { font-size:46px; } .note-card { padding-inline:8px; } .note-card-title h2 { font-size:22px; } .detail-page { padding-top:130px; } .detail-hero h1 { font-size:40px; } .detail-meta { flex-direction:column; } .detail-meta time { border-right:0; } .markdown-content { margin-top:32px; } .markdown-content { font-size:16px; } .markdown-content h2 { font-size:30px; } }
 @media (max-width:600px) {
   .page-shell { min-height:auto; padding:0 24px; }
   .site-header { position:fixed; top:0; left:0; right:0; height:78px; padding:14px 24px; align-items:center; background:color-mix(in srgb,var(--background) 88%,transparent); backdrop-filter:blur(10px); }

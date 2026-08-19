@@ -98,7 +98,7 @@ export const siteContent = {
           ],
           "published": true,
           "order": 25,
-          "body": ":::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_skills.png\nalt: 副主角技能\ncaption: \nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_01.png\nalt: 人物属性\ncaption: \nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_02.png\nalt: 主角症状\ncaption: \nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_cook.png\nalt: 料理台\ncaption: \nlayout: wide\n:::"
+          "body": ":::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_skills.png\nalt: 副主角技能\ncaption: 副主角技能\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_01.png\nalt: 人物属性\ncaption: 人物属性\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_02.png\nalt: 主角症状\ncaption: 主角症状\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_cook.png\nalt: 料理台\ncaption: 料理台\nlayout: wide\n:::"
         },
         {
           "slug": "undying-art",
