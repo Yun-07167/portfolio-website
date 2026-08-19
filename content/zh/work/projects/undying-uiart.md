@@ -9,6 +9,7 @@ year: 2022
 tags:
   - game-art
   - indie-game
+  - game-ui
 published: true
 order: 25
 ---

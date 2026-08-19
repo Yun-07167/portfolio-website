@@ -5,7 +5,7 @@ summary: A selection of key visuals, illustrations, and icons created for the ga
 cover: /assets/projects/undying-art/home-cover.png
 cover_alt: Preview of the Undying game art showcase
 home_thumbnail: /assets/projects/undying-art/home-cover.png
-year: 2022
+year: 2021
 tags:
   - game-art
   - indie-game

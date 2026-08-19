@@ -306,9 +306,19 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .content-media.media-wide { width:min(980px,calc(100vw - 48px)); }
 .detail-project .content-media.media-wide { width:100%; }
 .content-media img { display:block; width:100%; height:auto; background:var(--surface); }
+.content-image-preview { display:block; width:100%; padding:0; overflow:hidden; border:0; background:transparent; cursor:zoom-in; }
+.detail-project .content-image-preview { border:1px solid color-mix(in srgb,var(--neutral-600) 55%,transparent); }
+.content-image-preview:focus-visible { outline:2px solid var(--primary-500); outline-offset:3px; }
 .content-media video { display:block; width:100%; height:auto; max-height:78vh; object-fit:contain; background:var(--surface); }
-.detail-project .content-media img { border:1px solid color-mix(in srgb,var(--neutral-600) 55%,transparent); }
 .content-media figcaption { margin-top:10px; color:var(--neutral-700); font-family:var(--font-ui); font-size:14px; line-height:1.4; text-align:center; }
+.image-lightbox { position:fixed; inset:0; z-index:3000; display:grid; grid-template-rows:auto 1fr; padding:24px; background:color-mix(in srgb,var(--background) 92%,transparent); backdrop-filter:blur(12px); }
+.image-lightbox-dismiss { position:absolute; inset:0; width:100%; height:100%; border:0; background:transparent; }
+.image-toolbar { position:relative; z-index:1; justify-self:end; display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+.image-toolbar button,.image-toolbar output { min-width:44px; height:40px; padding:0 12px; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); color:var(--neutral-900); font-family:var(--font-ui); font-size:15px; }
+.image-toolbar button:hover,.image-toolbar button:focus-visible { background:var(--primary-100); }
+.image-lightbox-viewport { position:relative; z-index:1; min-height:0; overflow:auto; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); }
+.image-lightbox-canvas { width:max-content; max-width:90vw; transform-origin:center; transition:transform .18s ease; }
+.image-lightbox-canvas img { display:block; width:auto; max-width:90vw; height:auto; max-height:calc(100vh - 130px); background:transparent; }
 .content-columns { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:32px; width:100%; margin:40px 0; align-items:start; }
 .content-columns.columns-1-2 { grid-template-columns:minmax(0,1fr) minmax(0,2fr); }
 .content-columns.columns-2-1 { grid-template-columns:minmax(0,2fr) minmax(0,1fr); }

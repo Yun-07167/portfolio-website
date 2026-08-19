@@ -5,15 +5,14 @@ summary: 重构地图迁移流程与区域信息层级，帮助玩家更清晰�
 cover: /assets/projects/undying-map/home-cover.png
 cover_alt: 《苏醒之路》地图界面重构设计预览
 home_thumbnail: /assets/projects/undying-map/home-cover.png
-year: 2026
+year: 2022
 tags:
   - interaction-design
   - game-ui
   - indie-game
 published: true
-order: 10
+order: 15
 ---
-## 1. 背景与问题
 
 游戏中期加入路径规划机制和策略性资源管理玩法后，地图迁移的用户体验流程扩展了。  
 旧版界面无法支撑新增的路径规划功能。

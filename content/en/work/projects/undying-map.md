@@ -5,7 +5,7 @@ summary: A redesign of the map travel flow and regional information hierarchy, h
 cover: /assets/projects/undying-map/home-cover.png
 cover_alt: Preview of the Undying map interface redesign
 home_thumbnail: /assets/projects/undying-map/home-cover.png
-year: 2026
+year: 2022
 tags:
   - interaction-design
   - game-ui
@@ -13,8 +13,6 @@ tags:
 published: true
 order: 10
 ---
-
-## 1. Context and Problem
 
 When route planning and strategic resource management were introduced mid-production, the map travel experience expanded significantly.  
 The previous interface could not support the new route-planning features.

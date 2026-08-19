@@ -5,7 +5,7 @@ summary: 包含kv、插画图标等
 cover: /assets/projects/undying-art/home-cover.png
 cover_alt: 《苏醒之路》游戏美术作品展示预览
 home_thumbnail: /assets/projects/undying-art/home-cover.png
-year: 2022
+year: 2021
 tags:
   - game-art
   - indie-game

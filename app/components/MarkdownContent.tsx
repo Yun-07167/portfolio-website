@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from "react";
 import MermaidDiagram from "./MermaidDiagram";
 import DrawingViewer from "./DrawingViewer";
+import ImageViewer from "./ImageViewer";
 
 type Block =
   | { type:"heading"; level:number; text:string }
@@ -179,7 +180,7 @@ export default function MarkdownContent({ markdown }:{ markdown:string }) {
       const items=block.items.map((item,itemIndex)=><li key={itemIndex}>{inline(item)}</li>);
       return block.ordered?<ol key={index}>{items}</ol>:<ul key={index}>{items}</ul>;
     }
-    if(block.type==="image")return <figure className={"content-media content-image media-"+(block.layout??"standard")} key={index}><img src={block.src} alt={block.alt} loading="lazy" decoding="async"/>{block.caption&&<figcaption>{block.caption}</figcaption>}</figure>;
+    if(block.type==="image")return <ImageViewer src={block.src} alt={block.alt} caption={block.caption} layout={block.layout} key={index}/>;
     // Captions are rendered when the optional WebVTT path is provided; silent prototype recordings remain valid.
     // eslint-disable-next-line jsx-a11y/media-has-caption
     return <figure className="content-media content-video" key={index}><video controls playsInline preload="metadata" poster={block.poster}><source src={block.src}/>{block.captions&&<track kind="captions" src={block.captions} srcLang="zh" label="Captions" default/>}</video>{block.caption&&<figcaption>{block.caption}</figcaption>}</figure>;
