@@ -82,23 +82,39 @@ export const siteContent = {
           ],
           "published": true,
           "order": 10,
-          "body": "## 01. 背景与问题\n\n游戏中期加入路径规划与策略性资源管理后，地图迁移从“选择地点并前往”扩展为一条需要连续判断的决策链。旧版界面以固定图片承载地点，既无法清楚反馈路线消耗，也难以继续增加地点。\n\n核心问题不是把更多信息塞进地图，而是让玩家在行动前理解三个问题：**去哪里、要付出什么、是否值得去。**\n\n:::image\nsrc: /assets/projects/undying-map/detail/legacy-map.webp\nalt: 旧版地图以固定画面呈现地点和详情\ncaption: 旧版地图：地点数量、详情层级与画布尺寸互相制约。\nlayout: wide\n:::\n\n## 02. 设计目标\n\n1. 玩家可以逐格规划路线，并实时得知燃料、时间与载具耐久的变化。\n2. 玩家在确认出发前，可以看到目的地资源、危险等级与载具状态。\n3. 地图结构可以通过坐标数据持续增加地点，而不需要重做整张背景图。\n\n> 设计重点从“展示一张地图”转向“支持一次有依据的旅行决策”。\n\n## 03. 核心设计决策\n\n### 3.1 把路径规划变成可见的操作与反馈\n\n玩家使用方向键逐格延伸路线。路径线同时承担方向、可达状态与确认进度三种反馈：正在规划、无法前往、可以前往。资源消耗随每一步即时更新，避免把关键后果推迟到确认之后。\n\n:::image\nsrc: /assets/projects/undying-map/detail/route-planning.webp\nalt: 新版格子地图中的路径规划与目的地详情\ncaption: 路线、消耗和目的地情报在同一操作上下文中同步变化。\nlayout: wide\n:::\n\n### 3.2 按决策顺序分层呈现信息\n\n地图只保留判断当前位置与目标所需的信息；目的地面板负责名称、距离、危险与资源；载具面板负责耐久、燃料、时间、背包和储物空间。玩家可以先快速比较地点，再按需打开更深一层的信息。\n\n:::image\nsrc: /assets/projects/undying-map/detail/vehicle-information.webp\nalt: 载具状态和储物格信息面板\ncaption: 载具状态被前置到出发决策中，减少到达后才发现资源不足的挫败。\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-map/detail/destination-information.webp\nalt: 目的地名称、距离、危险与资源详情面板\ncaption: 目的地信息从身份、风险到收益分层排列。\nlayout: standard\n:::\n\n### 3.3 用数据坐标替代固定地图图片\n\n旧地图把地点画在一张固定尺寸的 PNG 上；新版把地点放入可延伸的格子坐标。新增地图或 DLC 时，只需增加地点数据与相邻关系，不再受单张图片尺寸限制。\n\n:::image\nsrc: /assets/projects/undying-map/detail/travel-flow.webp\nalt: 地图旅行的完整交互流程图\ncaption: 新流程覆盖路线规划、随机地点、载具检查、异常状态与最终出发。\nlayout: wide\n:::\n\n## 04. 验证与反思\n\n- 逐格规划和实时消耗形成了清晰的“操作—反馈”闭环，策划反馈新版更有参与感。\n- 测试中发现左下角的消耗信息仍可能被忽略，后续应把关键变化进一步靠近当前地点或路径终点。\n- 目的地面板覆盖了完整决策信息，但信息密度仍需通过玩家测试继续校准。\n- 数据化格子结构解决了扩展性问题，也为随机地点与后续地图内容留下了空间。\n\n这次重构让我确认：复杂系统界面的核心不是一次呈现所有信息，而是让信息在玩家需要做决定的那一刻出现。"
+          "body": "## 01. 背景与问题\n\n游戏中期加入路径规划机制和策略性资源管理玩法后，地图迁移的用户体验流程扩展了。  \n旧版界面无法支撑新增的路径规划功能。\n\n核心问题不是把更多信息塞进地图，而是让玩家在行动前理解三个问题：**去哪里、要付出什么、是否值得去。**\n\n:::image\nsrc: /assets/projects/undying-map/detail/legacy-map.webp\nalt: 旧版地图以固定画面呈现地点和详情\ncaption: 旧版地图：地点数量、详情层级与画布尺寸互相制约。\nlayout: wide\n:::\n\n## 02. 设计目标\n\n1. 玩家可以逐格规划路线，并实时得知燃料、时间与载具耐久的变化。\n2. 玩家在确认出发前，可以看到目的地资源、危险等级与载具状态。\n3. 地图结构可以通过坐标数据持续增加地点，而不需要重做整张背景图。\n\n> 设计重点从“展示一张地图”转向“支持一次有依据的旅行决策”。\n\n## 03. 核心设计决策\n\n### 3.1 把路径规划变成可见的操作与反馈\n\n玩家使用方向键逐格延伸路线。路径线同时承担方向、可达状态与确认进度三种反馈：正在规划、无法前往、可以前往。资源消耗随每一步即时更新，避免把关键后果推迟到确认之后。\n\n:::image\nsrc: /assets/projects/undying-map/detail/route-planning.webp\nalt: 新版格子地图中的路径规划与目的地详情\ncaption: 路线、消耗和目的地情报在同一操作上下文中同步变化。\nlayout: wide\n:::\n\n### 3.2 按决策顺序分层呈现信息\n\n地图只保留判断当前位置与目标所需的信息；目的地面板负责名称、距离、危险与资源；载具面板负责耐久、燃料、时间、背包和储物空间。玩家可以先快速比较地点，再按需打开更深一层的信息。\n\n:::image\nsrc: /assets/projects/undying-map/detail/vehicle-information.webp\nalt: 载具状态和储物格信息面板\ncaption: 载具状态被前置到出发决策中，减少到达后才发现资源不足的挫败。\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-map/detail/destination-information.webp\nalt: 目的地名称、距离、危险与资源详情面板\ncaption: 目的地信息从身份、风险到收益分层排列。\nlayout: standard\n:::\n\n### 3.3 用数据坐标替代固定地图图片\n\n旧地图把地点画在一张固定尺寸的 PNG 上；新版把地点放入可延伸的格子坐标。新增地图或 DLC 时，只需增加地点数据与相邻关系，不再受单张图片尺寸限制。\n\n:::image\nsrc: /assets/projects/undying-map/detail/travel-flow.webp\nalt: 地图旅行的完整交互流程图\ncaption: 新流程覆盖路线规划、随机地点、载具检查、异常状态与最终出发。\nlayout: wide\n:::\n\n## 04. 验证与反思\n\n- 逐格规划和实时消耗形成了清晰的“操作—反馈”闭环，策划反馈新版更有参与感。\n- 测试中发现左下角的消耗信息仍可能被忽略，后续应把关键变化进一步靠近当前地点或路径终点。\n- 目的地面板覆盖了完整决策信息，但信息密度仍需通过玩家测试继续校准。\n- 数据化格子结构解决了扩展性问题，也为随机地点与后续地图内容留下了空间。\n\n这次重构让我确认：复杂系统界面的核心不是一次呈现所有信息，而是让信息在玩家需要做决定的那一刻出现。\n\n*本项目美术素材均为原创；部分地点截图为游戏场景截图*"
         },
         {
-          "slug": "undying-art",
-          "title": "《苏醒之路》游戏美术作品展示",
-          "summary": "汇总项目中的角色、场景与界面美术实践，呈现独立游戏视觉风格从探索到落地的过程。",
-          "cover": "/assets/projects/undying-art/home-cover.png",
-          "cover_alt": "《苏醒之路》游戏美术作品展示预览",
-          "home_thumbnail": "/assets/projects/undying-art/home-cover.png",
-          "year": 2024,
+          "slug": "undying-uiart",
+          "title": "《苏醒之路》中的一些界面",
+          "summary": "汇总项目中的部分界面部分设计",
+          "cover": "/assets/projects/undying-uiart/uiart-cover.png",
+          "cover_alt": "《苏醒之路》游戏中的一些界面",
+          "home_thumbnail": "/assets/projects/undying-uiart/uiart-cover.png",
+          "year": 2022,
           "tags": [
             "game-art",
             "indie-game"
           ],
           "published": true,
-          "order": 20,
-          "body": ""
+          "order": 25,
+          "body": ":::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_skills.png\nalt: 副主角技能\ncaption: \nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_01.png\nalt: 人物属性\ncaption: \nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_attributes_02.png\nalt: 主角症状\ncaption: \nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-uiart/details/undying_uiart_cook.png\nalt: 料理台\ncaption: \nlayout: wide\n:::"
+        },
+        {
+          "slug": "undying-art",
+          "title": "《苏醒之路》中的一些界面",
+          "summary": "汇总项目中的部分界面部分设计",
+          "cover": "/assets/projects/undying-art/home-cover.png",
+          "cover_alt": "《苏醒之路》游戏美术作品展示预览",
+          "home_thumbnail": "/assets/projects/undying-art/home-cover.png",
+          "year": 2022,
+          "tags": [
+            "game-art",
+            "indie-game"
+          ],
+          "published": true,
+          "order": 30,
+          "body": ":::image\nsrc: /assets/projects/undying-map/detail/vehicle-information.webp\nalt: 载具状态和储物格信息面板\ncaption: 载具状态被前置到出发决策中，减少到达后才发现资源不足的挫败。\nlayout: wide\n:::"
         }
       ]
     },
@@ -250,46 +266,10 @@ export const siteContent = {
         "game-design": "游戏设计",
         "game-ui": "游戏 UI",
         "case-study": "案例分析",
-        "indie-game": "独立游戏"
+        "indie-game": "独立游戏",
+        "workflow": "工作流程"
       },
-      "entries": [
-        {
-          "slug": "interaction-flow-review",
-          "title": "从玩家目标反推交互流程",
-          "published_at": "2026-08-18",
-          "year": 2026,
-          "tags": [
-            "interaction-design",
-            "case-study"
-          ],
-          "published": true,
-          "body": "## 从结果开始，而不是从页面开始\n\n做交互流程时，我更愿意先写下玩家最终想完成的事情，再回推界面需要提供的动作、信息与反馈。这样可以避免流程图沦为页面之间的连线，也能更早发现“界面存在，但玩家没有理由使用”的步骤。\n\n:::image\nsrc: /assets/notes/interaction-flow-review/player-goal-flow.webp\nalt: 从玩家目标回推决策、反馈与异常路径的手绘流程示意\ncaption: 先定义玩家目标，再拆解关键决策、系统反馈和失败后的恢复路径。\nlayout: wide\n:::\n\n## 一条流程至少要回答四个问题\n\n1. **目标是什么？** 玩家进入这个功能时想完成什么，而不是产品希望他看见什么。\n2. **做决定需要什么信息？** 信息应在决定之前出现，并与当前动作保持空间上的关联。\n3. **系统如何回应？** 每个有效输入都要有可感知的状态变化，尤其是等待、失败和不可用状态。\n4. **出错后怎么回来？** 异常路径不应该只是一个报错弹窗，还要告诉玩家下一步能做什么。\n\n> 正常路径说明功能如何工作；异常路径决定玩家是否信任这个功能。\n\n## 用最小闭环检查设计\n\n我通常把第一版流程压缩成“意图—动作—反馈—下一步”四个节点。如果其中任何一段需要依赖说明文字才能理解，就回到信息层级或控件状态继续修改。确认最小闭环后，再加入分支、权限、资源不足与中断恢复等边界情况。\n\n最后再把流程映射回页面：每个页面只承担清晰的任务，每次跳转都有理由，每个状态都能被玩家识别。这样产出的流程图不仅是交付物，也会成为原型、文案和测试用例共享的结构。"
-        },
-        {
-          "slug": "game-ui-feedback",
-          "title": "游戏 UI 中的即时反馈与节奏",
-          "published_at": "2026-07-26",
-          "year": 2026,
-          "tags": [
-            "game-ui",
-            "game-design"
-          ],
-          "published": true,
-          "body": "用于预览笔记列表结构的示例内容。讨论即时反馈如何帮助玩家理解操作结果，并维持界面节奏。"
-        },
-        {
-          "slug": "indie-game-interface-notes",
-          "title": "独立游戏界面原型的三个取舍",
-          "published_at": "2026-06-14",
-          "year": 2026,
-          "tags": [
-            "indie-game",
-            "interaction-design"
-          ],
-          "published": true,
-          "body": "用于预览笔记列表结构的示例内容。整理独立游戏界面原型中信息密度、制作成本与表现力之间的取舍。"
-        }
-      ]
+      "entries": []
     }
   },
   "en": {
@@ -383,14 +363,14 @@ export const siteContent = {
           "cover": "/assets/projects/undying-art/home-cover.png",
           "cover_alt": "Preview of the Undying game art showcase",
           "home_thumbnail": "/assets/projects/undying-art/home-cover.png",
-          "year": 2024,
+          "year": 2022,
           "tags": [
             "game-art",
             "indie-game"
           ],
           "published": true,
           "order": 20,
-          "body": ""
+          "body": ":::image\nsrc: /assets/projects/undying-map/detail/vehicle-information.webp\nalt: Vehicle status and storage information panel\ncaption: Vehicle status is shown before departure so players can identify resource shortages before committing to the journey.\nlayout: wide\n:::"
         }
       ]
     },
@@ -542,7 +522,8 @@ export const siteContent = {
         "game-design": "Game Design",
         "game-ui": "Game UI",
         "case-study": "Case Study",
-        "indie-game": "Indie Game"
+        "indie-game": "Indie Game",
+        "workflow": "Workflow"
       },
       "entries": [
         {
@@ -555,7 +536,19 @@ export const siteContent = {
             "case-study"
           ],
           "published": true,
-          "body": "## Start with the outcome, not the screen\n\nWhen mapping an interaction, I prefer to write down what the player ultimately wants to accomplish, then work backwards to the actions, information, and feedback the interface must provide. This keeps the flow from becoming a diagram of screens and exposes steps that exist without a player reason to use them.\n\n:::image\nsrc: /assets/notes/interaction-flow-review/player-goal-flow.webp\nalt: Hand-drawn flow that works backwards from a player goal through decisions, feedback, and edge cases\ncaption: Define the player goal first, then break down key decisions, system feedback, and recovery paths.\nlayout: wide\n:::\n\n## Every flow should answer four questions\n\n1. **What is the goal?** What does the player want when entering the feature, rather than what the product wants to show?\n2. **What information supports the decision?** It should appear before the choice and remain spatially connected to the current action.\n3. **How does the system respond?** Every valid input needs a perceptible state change, especially waiting, failure, and unavailable states.\n4. **How does the player recover?** An exception path should offer a useful next action, not merely an error message.\n\n> The happy path explains how a feature works; the exception path determines whether players trust it.\n\n## Test the smallest complete loop\n\nI compress the first draft into four nodes: intent, action, feedback, and next step. If any connection depends on explanatory copy to make sense, I revisit the information hierarchy or control state. Only after the smallest loop is clear do I add branches, permissions, resource shortages, and interruption recovery.\n\nThe final step is mapping the flow back to screens: each screen owns a clear job, each transition has a reason, and each state is recognizable. The diagram then becomes more than a deliverable—it becomes shared structure for prototypes, copy, and test cases."
+          "body": "## Start with the outcome, not the screen\n\nWhen mapping an interaction, I prefer to write down what the player ultimately wants to accomplish, then work backwards to the actions, information, and feedback the interface must provide. This keeps the flow from becoming a diagram of screens and exposes steps that exist without a player reason to use them.\n\n```mermaid\nflowchart LR\n  A[Player goal] --> B[Choose a key action]\n  B --> C{Are system conditions met?}\n  C -->|Yes| D[Execute and show feedback]\n  C -->|No| E[Explain the cause and recovery]\n  E --> B\n  D --> F[Confirm the next step]\n```\n\n:::image\nsrc: /assets/notes/interaction-flow-review/player-goal-flow.webp\nalt: Hand-drawn flow that works backwards from a player goal through decisions, feedback, and edge cases\ncaption: Define the player goal first, then break down key decisions, system feedback, and recovery paths.\nlayout: wide\n:::\n\n## Every flow should answer four questions\n\n| Check | Question to answer | Common omission |\n| --- | --- | --- |\n| Goal | Why did the player enter this feature? | Describing screens instead of intent |\n| Information | What is needed before the decision? | Critical information appears too late |\n| Feedback | What changed after the input? | Waiting and unavailable states are unclear |\n| Recovery | How can the player continue after failure? | An error without a next step |\n\n1. **What is the goal?** What does the player want when entering the feature, rather than what the product wants to show?\n2. **What information supports the decision?** It should appear before the choice and remain spatially connected to the current action.\n3. **How does the system respond?** Every valid input needs a perceptible state change, especially waiting, failure, and unavailable states.\n4. **How does the player recover?** An exception path should offer a useful next action, not merely an error message.\n\n> The happy path explains how a feature works; the exception path determines whether players trust it.\n\n## Test the smallest complete loop\n\nI compress the first draft into four nodes: intent, action, feedback, and next step. If any connection depends on explanatory copy to make sense, I revisit the information hierarchy or control state. Only after the smallest loop is clear do I add branches, permissions, resource shortages, and interruption recovery.\n\nThe final step is mapping the flow back to screens: each screen owns a clear job, each transition has a reason, and each state is recognizable. The diagram then becomes more than a deliverable—it becomes shared structure for prototypes, copy, and test cases."
+        },
+        {
+          "slug": "visual-drawing-workflow",
+          "title": "Mapping Player Tasks with Visual Drawings",
+          "published_at": "2026-08-18",
+          "year": 2026,
+          "tags": [
+            "interaction-design",
+            "workflow"
+          ],
+          "published": true,
+          "body": "## Why start with a visual drawing\n\nWriting Mermaid too early can lock an exploratory flow into a rigid structure. I first move nodes, branches, and connectors in Obsidian Excalidraw, then decide whether the stable result should remain a hand-drawn diagram or be formalized as Mermaid.\n\n:::drawing\nsrc: /assets/notes/interaction-flow-review/player-goal-flow.webp\nalt: Visual flow connecting a player goal to key decisions, system feedback, and exception recovery\ncaption: This example starts with the player goal and uses movable nodes to compare the happy path with recovery paths. Select the drawing to enlarge it.\nlayout: wide\n:::\n\n## A real Excalidraw → SVG example\n\nThe drawing below comes from `player-task-flow.excalidraw.md` in the repository. Saving in Obsidian overwrites the matching `player-task-flow.excalidraw.svg`; the website build then syncs that current SVG into its public assets. There is no manual copying and no new SVG for every edit.\n\n:::drawing\nsrc: /assets/drawings/notes/visual-drawing-workflow/player-task-flow.excalidraw.svg\nalt: SVG exported from Obsidian Excalidraw with hand-drawn strokes and embedded font styling preserved\ncaption: Real workflow example: version the editable source and current SVG together; the website displays only the synchronized SVG.\nlayout: wide\n:::\n\n## Example: a map navigation flow\n\nThe drawing frames the player's complete task after opening the map instead of merely listing screens. I begin with three core nodes—choose a destination, inspect the route, and confirm the action—then add branches for insufficient resources and unreachable targets. Nodes and connectors remain directly draggable in Excalidraw, without editing code.\n\n| Stage | Work in Excalidraw | Website output |\n| --- | --- | --- |\n| Explore | Add nodes, notes, and connectors | Keep the source unpublished |\n| Refine | Align nodes, simplify branches, add labels | Auto-export SVG or PNG |\n| Publish | Check themes and text sizing | Reference the export in Markdown |\n\n> The `.excalidraw.md` file is the editable source; the website displays its exported SVG or PNG. Keep both files in the project."
         },
         {
           "slug": "game-ui-feedback",
@@ -602,7 +595,7 @@ export const siteContent = {
         "type": "project",
         "image": "/assets/projects/undying-art/home-cover.png",
         "alt": {
-          "zh": "《苏醒之路》游戏美术作品展示",
+          "zh": "《苏醒之路》中的一些界面",
           "en": "Undying Game Art Showcase"
         },
         "slot": "featured-right",

@@ -5,10 +5,16 @@ summary: A collection of character, environment, and interface artwork showing h
 cover: /assets/projects/undying-art/home-cover.png
 cover_alt: Preview of the Undying game art showcase
 home_thumbnail: /assets/projects/undying-art/home-cover.png
-year: 2024
+year: 2022
 tags:
   - game-art
   - indie-game
 published: true
 order: 20
 ---
+:::image
+src: /assets/projects/undying-map/detail/vehicle-information.webp
+alt: Vehicle status and storage information panel
+caption: Vehicle status is shown before departure so players can identify resource shortages before committing to the journey.
+layout: wide
+:::
