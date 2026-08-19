@@ -35,7 +35,7 @@ test("notes can be locale-only with independent dates and publication", () => {
 test("content body recognizes Mermaid blocks without adding them to bilingual media parity", () => {
   const audit=inspectContentBody("## Flow\n\n```mermaid\nflowchart LR\nA --> B\n```","fixture.md");
   assert.deepEqual(audit.mermaid,["flowchart LR\nA --> B"]);
-  assert.deepEqual(audit.signature,{headings:[2],media:[]});
+  assert.deepEqual(audit.signature,{headings:[2],columns:[],media:[]});
   assert.throws(()=>inspectContentBody("```mermaid\nflowchart LR\nA --> B","broken.md"),/unclosed Mermaid/);
 });
 
@@ -53,4 +53,12 @@ test("embedded video URLs can differ between locales", () => {
   assert.deepEqual(zh.signature.media,[{type:"video_embed"}]);
   assert.throws(()=>inspectContentBody(":::video_embed\nsrc: http://example.com/video\ntitle: Unsafe\n:::","unsafe.md"),/unsupported video embed URL/);
   assert.throws(()=>inspectContentBody(":::video_embed\nsrc: https://youtu.be/example\n:::","untitled.md"),/without title/);
+});
+
+test("content body validates responsive two-column blocks", () => {
+  const source=":::columns\nratio: 1:2\n:::column\n## Left\n\nShort text.\n:::\n:::column\n## Right\n\nLong text.\n:::\n:::";
+  const audit=inspectContentBody(source,"columns.md");
+  assert.deepEqual(audit.signature.columns,[{ratio:"1:2"}]);
+  assert.throws(()=>inspectContentBody(source.replace("1:2","3:1"),"columns.md"),/unsupported columns ratio/);
+  assert.throws(()=>inspectContentBody(":::columns\n:::column\nOnly one\n:::\n:::","columns.md"),/exactly two/);
 });

@@ -13,6 +13,20 @@ published: false
 
 正文内容。
 
+:::columns
+ratio: 1:2
+:::column
+### 观察
+
+左侧内容。
+:::
+:::column
+### 分析
+
+右侧内容；窄屏会自动切换为单列。
+:::
+:::
+
 ```mermaid
 flowchart LR
   A[起点] --> B{关键判断}

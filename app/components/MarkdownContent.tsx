@@ -9,6 +9,7 @@ type Block =
   | { type:"video"; src:string; poster?:string; caption?:string; captions?:string }
   | { type:"video_embed"; src:string; title:string; caption?:string; layout?:string }
   | { type:"drawing"; src:string; darkSrc?:string; alt:string; caption?:string; layout?:string }
+  | { type:"columns"; ratio:"1-1"|"1-2"|"2-1"; columns:string[] }
   | { type:"list"; ordered:boolean; items:string[] }
   | { type:"quote"; text:string }
   | { type:"code"; code:string }
@@ -40,6 +41,33 @@ function blocks(markdown:string):Block[] {
   for(let index=0;index<lines.length;) {
     const line=lines[index].trim();
     if(!line){index++;continue;}
+    if(line===":::columns"){
+      index++;
+      let ratio:"1-1"|"1-2"|"2-1"="1-1";
+      const columns:string[]=[];
+      while(index<lines.length){
+        const current=lines[index].trim();
+        const ratioMatch=current.match(/^ratio:\s*(1:1|1:2|2:1)$/);
+        if(ratioMatch){ratio=ratioMatch[1].replace(":","-") as typeof ratio;index++;continue;}
+        if(current===":::"){index++;break;}
+        if(current!==":::column"){index++;continue;}
+        index++;
+        const content:string[]=[];
+        let depth=1;
+        while(index<lines.length&&depth>0){
+          const nested=lines[index].trim();
+          if(/^:::(image|video|video_embed|drawing|columns)$/.test(nested)){depth++;content.push(lines[index]);index++;continue;}
+          if(nested===":::"){
+            depth--;
+            if(depth===0){index++;break;}
+          }
+          content.push(lines[index]);index++;
+        }
+        columns.push(content.join("\n").trim());
+      }
+      if(columns.length===2)result.push({type:"columns",ratio,columns});
+      continue;
+    }
     const heading=line.match(/^(#{1,6})\s+(.+)$/);
     if(heading){result.push({type:"heading",level:heading[1].length,text:heading[2]});index++;continue;}
     const image=line.match(/^!\[([^\]]+)\]\(([^\s)]+)(?:\s+["']([^"']*)["'])?\)$/);
@@ -139,6 +167,7 @@ export default function MarkdownContent({ markdown }:{ markdown:string }) {
     if(block.type==="quote")return <blockquote key={index}>{inline(block.text)}</blockquote>;
     if(block.type==="code")return <pre key={index}><code>{block.code}</code></pre>;
     if(block.type==="mermaid")return <MermaidDiagram code={block.code} key={index}/>;
+    if(block.type==="columns")return <div className={`content-columns columns-${block.ratio}`} key={index}>{block.columns.map((column,columnIndex)=><section className="content-column" key={columnIndex}><MarkdownContent markdown={column}/></section>)}</div>;
     if(block.type==="drawing")return <DrawingViewer src={block.src} darkSrc={block.darkSrc} alt={block.alt} caption={block.caption} layout={block.layout} key={index}/>;
     if(block.type==="video_embed"){
       const src=safeVideoEmbedUrl(block.src);
