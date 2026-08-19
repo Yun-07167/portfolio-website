@@ -353,6 +353,10 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
 .drawing-toolbar button:hover,.drawing-toolbar button:focus-visible { background:var(--primary-100); }
 .drawing-lightbox-viewport { position:relative; z-index:1; min-height:0; overflow:auto; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); }
 .drawing-lightbox-canvas { width:min(1200px,90vw); padding:40px; transform-origin:center; transition:transform .18s ease; }
+.content-video-embed { width:100%; margin:40px 0; }
+.video-embed-frame { position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border:1px solid var(--neutral-600); background:var(--neutral-900); }
+.video-embed-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.content-video-embed figcaption { margin-top:12px; color:var(--neutral-700); font-size:var(--caption-size); letter-spacing:var(--caption-tracking); }
 @media (max-width:800px) { .notes-page { padding-top:130px; } .notes-layout { grid-template-columns:1fr; gap:36px; } .notes-filters { grid-row:1; position:static; } .notes-list { min-height:0; } }
 @media (max-width:560px) { .notes-page > h1 { font-size:46px; } .note-card { padding-inline:8px; } .note-card-title h2 { font-size:22px; } .detail-page { padding-top:130px; } .detail-hero h1 { font-size:40px; } .detail-meta { flex-direction:column; } .detail-meta time { border-right:0; } .detail-cover,.markdown-content { margin-top:32px; } .markdown-content { font-size:16px; } .markdown-content h2 { font-size:30px; } }
 @media (max-width:600px) {

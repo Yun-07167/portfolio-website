@@ -47,6 +47,19 @@ layout 可省略，默认跟随正文宽度；使用 wide 可以显示为宽图�
 
 视频默认使用 controls、playsInline 和 preload metadata，不会在页面载入时下载完整视频。建议始终提供压缩后的 poster，并在有对白或关键信息时提供 WebVTT captions。
 
+## 外部视频嵌入
+
+作品与笔记详情都支持 YouTube、YouTube No-Cookie、Vimeo 和哔哩哔哩：
+
+    :::video_embed
+    src: https://www.bilibili.com/video/BV_ID
+    title: 地图交互完整演示
+    caption: 展示路线选择、资源判断与确认反馈。
+    layout: wide
+    :::
+
+中英文文档中的 `src`、`title` 和 `caption` 可以完全不同。例如中文版使用哔哩哔哩，英文版使用 YouTube；只需保证两个文档对应位置都使用一个 `:::video_embed` 块。普通分享页链接会自动转换为受限的播放器地址，必须使用 HTTPS。视频默认懒加载、保持 16:9，并允许全屏播放。
+
 ## Mermaid 流程图
 
 Obsidian 原生支持 Mermaid。在 Markdown 中插入 `mermaid` 代码块即可同时在 Obsidian 阅读视图和网站中显示：
@@ -110,6 +123,7 @@ Obsidian 原生支持 Mermaid。在 Markdown 中插入 `mermaid` 代码块即可
 - Markdown 表格
 - 粗体和链接
 - 标准图片、图片媒体块、视频媒体块
+- 外部视频嵌入（中英文可使用不同链接）
 
 正文不执行 HTML、JavaScript 或 JSX。
 

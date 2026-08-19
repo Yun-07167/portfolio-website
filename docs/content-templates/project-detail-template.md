@@ -58,6 +58,13 @@ layout: wide
 
 ## 最终方案
 
+:::video_embed
+src: https://www.bilibili.com/video/BV_ID
+title: 项目完整演示
+caption: 中文版可以使用哔哩哔哩，英文版可以使用 YouTube 或 Vimeo。
+layout: wide
+:::
+
 :::video
 src: /assets/projects/example-project/demo.mp4
 poster: /assets/projects/example-project/demo-poster.webp

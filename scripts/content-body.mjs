@@ -1,5 +1,5 @@
 const imagePattern = /^!\[([^\]]*)\]\(([^\s)]+)(?:\s+["'][^"']*["'])?\)$/gm;
-const directivePattern = /^:::(image|video|drawing)\s*\n([\s\S]*?)^:::\s*$/gm;
+const directivePattern = /^:::(image|video|video_embed|drawing)\s*\n([\s\S]*?)^:::\s*$/gm;
 const mermaidFencePattern = /^```mermaid\s*\n([\s\S]*?)^```\s*$/gm;
 
 function parseDirectiveFields(source) {
@@ -9,6 +9,17 @@ function parseDirectiveFields(source) {
     if (match) fields[match[1]] = match[2].trim().replace(/^["']|["']$/g, "");
   }
   return fields;
+}
+
+function isAllowedVideoEmbed(source) {
+  try {
+    const url=new URL(source);
+    if(url.protocol!=="https:")return false;
+    const host=url.hostname.toLowerCase().replace(/^www\./,"");
+    return ["youtube.com","m.youtube.com","youtu.be","youtube-nocookie.com","vimeo.com","player.vimeo.com","bilibili.com","player.bilibili.com"].includes(host);
+  } catch {
+    return false;
+  }
 }
 
 export function inspectContentBody(body, path) {
@@ -30,6 +41,8 @@ export function inspectContentBody(body, path) {
     const fields = parseDirectiveFields(match[2]);
     if (!fields.src) throw new Error(`${path} contains :::${type} without src.`);
     if ((type === "image" || type === "drawing") && !fields.alt) throw new Error(`${path} contains :::${type} without alt text: ${fields.src}`);
+    if (type === "video_embed" && !fields.title) throw new Error(`${path} contains :::video_embed without title: ${fields.src}`);
+    if (type === "video_embed" && !isAllowedVideoEmbed(fields.src)) throw new Error(`${path} contains an unsupported video embed URL: ${fields.src}`);
     media.push({ type, ...fields });
   }
 
@@ -38,7 +51,9 @@ export function inspectContentBody(body, path) {
     mermaid,
     signature: {
       headings,
-      media: media.map(item => ({ type: item.type, src: item.src, poster: item.poster ?? null, captions: item.captions ?? null })),
+      media: media.map(item => item.type === "video_embed"
+        ? { type: item.type }
+        : { type: item.type, src: item.src, poster: item.poster ?? null, captions: item.captions ?? null }),
     },
   };
 }

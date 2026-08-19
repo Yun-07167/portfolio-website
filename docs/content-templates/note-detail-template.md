@@ -33,3 +33,10 @@ layout: wide
 :::
 
 ![图片说明](/assets/notes/example-note/image.webp)
+
+:::video_embed
+src: https://www.youtube.com/watch?v=VIDEO_ID
+title: 笔记视频演示
+caption: 可以在中英文文档中分别填写不同视频地址和说明。
+layout: wide
+:::

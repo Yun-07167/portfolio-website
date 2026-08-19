@@ -45,3 +45,12 @@ test("content body validates editable drawing exports", () => {
   assert.equal(result.media[0].dark_src,"/assets/flow.dark.svg");
   assert.throws(()=>inspectContentBody(":::drawing\nsrc: /assets/flow.svg\n:::","drawing.md"),/without alt text/);
 });
+
+test("embedded video URLs can differ between locales", () => {
+  const zh=inspectContentBody("## 视频\n\n:::video_embed\nsrc: https://www.bilibili.com/video/BV1example\ntitle: 中文演示\ncaption: 中文版本\n:::","zh.md");
+  const en=inspectContentBody("## Video\n\n:::video_embed\nsrc: https://www.youtube.com/watch?v=example\ntitle: English demo\ncaption: English version\n:::","en.md");
+  assert.deepEqual(zh.signature,en.signature);
+  assert.deepEqual(zh.signature.media,[{type:"video_embed"}]);
+  assert.throws(()=>inspectContentBody(":::video_embed\nsrc: http://example.com/video\ntitle: Unsafe\n:::","unsafe.md"),/unsupported video embed URL/);
+  assert.throws(()=>inspectContentBody(":::video_embed\nsrc: https://youtu.be/example\n:::","untitled.md"),/without title/);
+});

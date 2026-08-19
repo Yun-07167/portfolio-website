@@ -7,6 +7,7 @@ type Block =
   | { type:"paragraph"; text:string }
   | { type:"image"; src:string; alt:string; caption?:string; layout?:string }
   | { type:"video"; src:string; poster?:string; caption?:string; captions?:string }
+  | { type:"video_embed"; src:string; title:string; caption?:string; layout?:string }
   | { type:"drawing"; src:string; darkSrc?:string; alt:string; caption?:string; layout?:string }
   | { type:"list"; ordered:boolean; items:string[] }
   | { type:"quote"; text:string }
@@ -43,12 +44,13 @@ function blocks(markdown:string):Block[] {
     if(heading){result.push({type:"heading",level:heading[1].length,text:heading[2]});index++;continue;}
     const image=line.match(/^!\[([^\]]+)\]\(([^\s)]+)(?:\s+["']([^"']*)["'])?\)$/);
     if(image){result.push({type:"image",alt:image[1],src:image[2],caption:image[3]});index++;continue;}
-    if(line===":::image"||line===":::video"||line===":::drawing"){
-      const type=line.slice(3) as "image"|"video"|"drawing"; const content:string[]=[]; index++;
+    if(line===":::image"||line===":::video"||line===":::video_embed"||line===":::drawing"){
+      const type=line.slice(3) as "image"|"video"|"video_embed"|"drawing"; const content:string[]=[]; index++;
       while(index<lines.length&&lines[index].trim()!==":::"){content.push(lines[index]);index++;}
       index++; const data=fields(content);
       if(type==="image") result.push({type,src:data.src,alt:data.alt,caption:data.caption,layout:data.layout});
       else if(type==="drawing") result.push({type,src:data.src,darkSrc:data.dark_src,alt:data.alt,caption:data.caption,layout:data.layout});
+      else if(type==="video_embed") result.push({type,src:data.src,title:data.title,caption:data.caption,layout:data.layout});
       else result.push({type,src:data.src,poster:data.poster,caption:data.caption,captions:data.captions});
       continue;
     }
@@ -85,6 +87,36 @@ function safeHref(href:string) {
   return /^(https?:\/\/|mailto:|\/|#)/.test(href) ? href : "#";
 }
 
+function safeVideoEmbedUrl(source:string) {
+  try {
+    const url=new URL(source);
+    if(url.protocol!=="https:")return null;
+    const host=url.hostname.toLowerCase().replace(/^www\./,"");
+    if(host==="youtu.be") {
+      const id=url.pathname.split("/").filter(Boolean)[0];
+      return id?`https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}`:null;
+    }
+    if(host==="youtube.com"||host==="m.youtube.com") {
+      const id=url.pathname.startsWith("/embed/")?url.pathname.split("/")[2]:url.searchParams.get("v");
+      return id?`https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}`:null;
+    }
+    if(host==="youtube-nocookie.com"&&url.pathname.startsWith("/embed/"))return url.toString();
+    if(host==="vimeo.com") {
+      const id=url.pathname.split("/").find(part=>/^\d+$/.test(part));
+      return id?`https://player.vimeo.com/video/${id}`:null;
+    }
+    if(host==="player.vimeo.com"&&url.pathname.startsWith("/video/"))return url.toString();
+    if(host==="bilibili.com") {
+      const bvid=url.pathname.match(/\/video\/(BV[\w]+)/i)?.[1];
+      return bvid?`https://player.bilibili.com/player.html?bvid=${encodeURIComponent(bvid)}`:null;
+    }
+    if(host==="player.bilibili.com")return url.toString();
+  } catch {
+    return null;
+  }
+  return null;
+}
+
 function inline(text:string):ReactNode[] {
   const pattern=/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g;
   return text.split(pattern).filter(Boolean).map((part,index)=>{
@@ -108,6 +140,10 @@ export default function MarkdownContent({ markdown }:{ markdown:string }) {
     if(block.type==="code")return <pre key={index}><code>{block.code}</code></pre>;
     if(block.type==="mermaid")return <MermaidDiagram code={block.code} key={index}/>;
     if(block.type==="drawing")return <DrawingViewer src={block.src} darkSrc={block.darkSrc} alt={block.alt} caption={block.caption} layout={block.layout} key={index}/>;
+    if(block.type==="video_embed"){
+      const src=safeVideoEmbedUrl(block.src);
+      return src?<figure className={`content-media content-video-embed media-${block.layout??"wide"}`} key={index}><div className="video-embed-frame"><iframe src={src} title={block.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen/></div>{block.caption&&<figcaption>{block.caption}</figcaption>}</figure>:null;
+    }
     if(block.type==="table")return <div className="content-table-scroll" key={index}><table><thead><tr>{block.headers.map((cell,cellIndex)=><th style={{textAlign:block.align[cellIndex]??"left"}} key={cellIndex}>{inline(cell)}</th>)}</tr></thead><tbody>{block.rows.map((row,rowIndex)=><tr key={rowIndex}>{block.headers.map((_,cellIndex)=><td style={{textAlign:block.align[cellIndex]??"left"}} key={cellIndex}>{inline(row[cellIndex]??"")}</td>)}</tr>)}</tbody></table></div>;
     if(block.type==="list"){
       const items=block.items.map((item,itemIndex)=><li key={itemIndex}>{inline(item)}</li>);
