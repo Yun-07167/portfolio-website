@@ -14,11 +14,9 @@ published: true
 order: 10
 ---
 
-## 01. Context and problem
+## 1. Context and Problem
 
 When route planning and strategic resource management were introduced mid-production, map travel grew from “select a place and go” into a chain of connected decisions. The old fixed-image map could neither explain route costs clearly nor scale to additional locations.
-
-The real problem was not fitting more data on the map. It was helping players answer three questions before acting: **Where am I going, what will it cost, and is it worth it?**
 
 :::image
 src: /assets/projects/undying-map/detail/legacy-map.webp

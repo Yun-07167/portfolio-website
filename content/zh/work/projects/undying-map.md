@@ -13,20 +13,19 @@ tags:
 published: true
 order: 10
 ---
-
-## 01. 背景与问题
+## 1. 背景与问题
 
 游戏中期加入路径规划机制和策略性资源管理玩法后，地图迁移的用户体验流程扩展了。  
 旧版界面无法支撑新增的路径规划功能。
 
-核心问题不是把更多信息塞进地图，而是让玩家在行动前理解三个问题：**去哪里、要付出什么、是否值得去。**
-
 :::image
 src: /assets/projects/undying-map/detail/legacy-map.webp
 alt: 旧版地图以固定画面呈现地点和详情
-caption: 旧版地图：地点数量、详情层级与画布尺寸互相制约。
+caption: 旧版设计稿截图
 layout: wide
 :::
+
+:::drawing
 
 ## 02. 设计目标
 
