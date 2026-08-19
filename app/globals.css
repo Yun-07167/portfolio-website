@@ -305,7 +305,8 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .content-media { width:100%; margin:40px 0; }
 .content-media.media-wide { width:min(980px,calc(100vw - 48px)); }
 .detail-project .content-media.media-wide { width:100%; }
-.content-media img,.content-media video { display:block; width:100%; height:auto; max-height:78vh; object-fit:contain; background:var(--surface); }
+.content-media img { display:block; width:100%; height:auto; background:var(--surface); }
+.content-media video { display:block; width:100%; height:auto; max-height:78vh; object-fit:contain; background:var(--surface); }
 .detail-project .content-media img { border:1px solid color-mix(in srgb,var(--neutral-600) 55%,transparent); }
 .content-media figcaption { margin-top:10px; color:var(--neutral-700); font-family:var(--font-ui); font-size:14px; line-height:1.4; text-align:center; }
 .locale-notice { width:min(100%,780px); margin:0 0 32px; padding:14px 18px; border-left:4px solid var(--primary-500); background:color-mix(in srgb,var(--primary-50) 78%,transparent); color:var(--neutral-800); font-family:var(--font-ui); font-size:16px; line-height:1.5; }
