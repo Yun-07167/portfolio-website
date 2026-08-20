@@ -1,0 +1,241 @@
+{
+  "main": {
+    "id": "bc522a01e5ebd698",
+    "type": "split",
+    "children": [
+      {
+        "id": "9a994b65634fa87c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f21f649adb167c2c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/zh/work/projects/EmptyEye-indiegame-gamejam.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "EmptyEye-indiegame-gamejam"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "47b27c3502116a47",
+    "type": "split",
+    "children": [
+      {
+        "id": "e7a6626d0879aab0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "08f3287ba7f60f61",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "538af1ebfcee9209",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "707f063de6e4da36",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "cedfa8fd15f831d8",
+    "type": "split",
+    "children": [
+      {
+        "id": "e2f792b590d2f252",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d2860cc9d3f2d3bf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "content/zh/work/projects/undying-art.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "43232e5646637239",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "content/zh/work/projects/undying-art.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "1aa48ebfc346ba76",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "60d46cf1652add1d",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "26ca2d028c5cb300",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "content/zh/work/projects/undying-art.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
+    }
+  },
+  "active": "f21f649adb167c2c",
+  "lastOpenFiles": [
+    "public/assets/projects/emptyeye-gamejam/details/emptyeye.mp4",
+    "dist/server/__vite_rsc_assets_manifest.js",
+    "dist/server/ssr/__vite_rsc_assets_manifest.js",
+    "dist/server/ssr/_next/static/xychartDiagram-PRI3JC2R-B_V9jofC.js",
+    "dist/server/ssr/_next/static/WorkPage-CzBmPBGg.js",
+    "dist/server/ssr/_next/static/useSitePreferences-dOA9Onyv.js",
+    "dist/server/ssr/_next/static/treemap-KMMF4GRG-B2FUsle5.js",
+    "dist/server/ssr/_next/static/timeline-definition-IT6M3QCI-Biku7eP3.js",
+    "dist/server/ssr/_next/static/static.edge-Df_UrqFp.js",
+    "dist/server/ssr/_next/static/stateDiagram-v2-4FDKWEC3-T6Lat5xP.js",
+    "dist/server/ssr/_next/static/stateDiagram-FKZM4ZOC-DPq_WURX.js",
+    "dist/client/assets/projects/undying-uiart/details/undying_uiart_attributes_02.png",
+    "dist/client/assets/projects/undying-uiart/details/undying_uiart_cook.png",
+    "dist/client/assets/projects/undying-uiart/details/undying_uiart_attributes_01.png",
+    "dist/client/assets/projects/undying-map/details/vehicle-information.webp",
+    "dist/client/assets/projects/undying-map/details/undying-map_vehicle_01.png",
+    "dist/client/assets/projects/undying-map/details/undying-map_userflow_sc_02.png",
+    "dist/client/assets/projects/undying-map/details/undying-map_userflow_sc_01.png",
+    "dist/client/assets/projects/undying-map/details/undying-map_userflow_en_01.png",
+    "dist/client/assets/projects/undying-map/details/undying-map_status_sc_01.png",
+    "dist/client/assets/projects/undying-map/details/undying-map_status_en_01.png",
+    "content/zh/work/projects/petitPlanet-casestudy-camfunction.md",
+    "content/zh/work/projects/EmptyEye-indiegame-gamejam.md",
+    "content/en/work/projects/EmptyEye-indiegame-gamejam.md",
+    "content/zh/work/projects/destiny2-casestudy-hud.md",
+    "content/zh/work/projects/overwatch2-casestudy-findGame.md",
+    "content/en/work/projects/overwatch2-casestudy-findGame.md",
+    "content/en/work/projects/petitPlanet-casestudy-camfunction.md",
+    "content/en/work/projects/undying-uiart.md",
+    "content/en/work/projects/destiny2-casestudy-hud.md",
+    "content/zh/work/projects/undying-art.md",
+    "content/zh/work/projects/undying-uiart.md",
+    "content/zh/work/projects/undying-map.md",
+    "node_modules/csso/node_modules/mdn-data/README.md",
+    "node_modules/nth-check/README.md",
+    "node_modules/domhandler/readme.md",
+    "node_modules/svgo/node_modules/commander/Readme.md",
+    "node_modules/csso/node_modules/mdn-data/css/readme.md",
+    "content-drawings/Drawing 2026-08-19 17.02.20.excalidraw.md",
+    "content/zh/notes/visual-drawing-workflow.md",
+    "content/en/notes.md",
+    "content-drawings/Drawing 2026-08-19 14.53.52.excalidraw.md",
+    "content/en/work/projects/undying-map.md",
+    "content-drawings/Drawing 2026-08-19 14.27.00.excalidraw.md",
+    "content-drawings/Drawing 2026-08-18 22.06.28.excalidraw.md",
+    "content/zh/notes/interaction-flow-review.md"
+  ]
+}

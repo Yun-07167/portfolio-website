@@ -12,7 +12,6 @@ tags:
   - game-design
   - game-art
   - unity
-  - game-ui
 published: true
 order: 16
 ---
@@ -26,4 +25,9 @@ order: 16
 https://pan.baidu.com/s/1jyaugjP665IYVr7hG5UO9A?pwd=avu3
 
 #### 游玩过程演示：
-
+:::video_embed
+src: https://youtu.be/1OD6VOPE6AM
+title: 全流程游玩演示
+caption: 全流程游玩演示
+layout: wide
+:::
