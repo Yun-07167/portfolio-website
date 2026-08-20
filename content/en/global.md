@@ -22,10 +22,10 @@ contact_options:
     href: null
     icon: "/assets/icon-wechat.svg"
     dialog_title: "Contact me on WeChat"
-    dialog_body: "The WeChat QR code has not been added yet. Once the image is ready, only dialog_image in this file needs to be updated."
-    dialog_image: null
+    dialog_body: "Scan the QR code to add me on WeChat."
+    dialog_image: "/assets/wechat-qr.jpg"
   - id: "email"
-    label: "Email"
+    label: "yangtianyun7@foxmail.com"
     action: "link"
     href: "mailto:yangtianyun7@foxmail.com"
     icon: "/assets/icon-email.svg"

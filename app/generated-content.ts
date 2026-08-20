@@ -25,12 +25,12 @@ export const siteContent = {
           "href": null,
           "icon": "/assets/icon-wechat.svg",
           "dialog_title": "微信联系",
-          "dialog_body": "微信二维码尚未配置。添加二维码素材后，只需在本文件中填写 dialog_image。",
-          "dialog_image": null
+          "dialog_body": "扫描二维码，添加我为微信好友。",
+          "dialog_image": "/assets/wechat-qr.jpg"
         },
         {
           "id": "email",
-          "label": "邮箱",
+          "label": "yangtianyun7@foxmail.com",
           "action": "link",
           "href": "mailto:yangtianyun7@foxmail.com",
           "icon": "/assets/icon-email.svg",
@@ -368,12 +368,12 @@ export const siteContent = {
           "href": null,
           "icon": "/assets/icon-wechat.svg",
           "dialog_title": "Contact me on WeChat",
-          "dialog_body": "The WeChat QR code has not been added yet. Once the image is ready, only dialog_image in this file needs to be updated.",
-          "dialog_image": null
+          "dialog_body": "Scan the QR code to add me on WeChat.",
+          "dialog_image": "/assets/wechat-qr.jpg"
         },
         {
           "id": "email",
-          "label": "Email",
+          "label": "yangtianyun7@foxmail.com",
           "action": "link",
           "href": "mailto:yangtianyun7@foxmail.com",
           "icon": "/assets/icon-email.svg",

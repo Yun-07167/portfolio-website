@@ -34,18 +34,14 @@ function ResumeSectionTitle({ children }: { children: ReactNode }) {
 
 function Resume({ language }: { language: Language }) {
   const resume = siteContent[language].resume;
-  const [isDownloading, setIsDownloading] = useState(false);
-  const playDownloadMotion = () => {
-    setIsDownloading(true);
-    window.setTimeout(() => setIsDownloading(false), 2200);
-  };
+  const resumePdf = language === "zh" ? "/assets/resume/resume-zh.pdf" : "/assets/resume/resume-en.pdf";
   const workEntries = (section: { items: readonly WorkItem[] }) => section.items.map(item => <article className="resume-entry work-entry" key={item.id}>
     <div className="resume-entry-heading"><h3>{item.heading}</h3><time>{item.date}</time></div>
     {item.labels && item.labels.length > 0 && <ul className="resume-labels" aria-label={language === "zh" ? "关键词" : "Keywords"}>{item.labels.map(label => <li key={label}>{label}</li>)}</ul>}
     {item.body && <div className="resume-entry-body"><Paragraphs text={item.body}/></div>}
   </article>);
   return <div className="content-page resume-page">
-    <div className="content-page-title"><h1>{resume.name}</h1><button className={`resume-download${isDownloading ? " is-downloading" : ""}`} type="button" aria-busy={isDownloading} aria-disabled="true" onClick={playDownloadMotion} title={language === "zh" ? "PDF 简历文件尚未配置" : "PDF resume files are not configured yet"}><span className="resume-download-icon" aria-hidden="true"/><span className="resume-download-label">{language === "zh" ? "下载pdf" : "Download PDF"}</span></button></div>
+    <div className="content-page-title"><h1>{resume.name}</h1><a className="resume-download" href={resumePdf} download><span className="resume-download-icon" aria-hidden="true"/><span className="resume-download-label">{language === "zh" ? "下载pdf" : "Download PDF"}</span></a></div>
     <section className="resume-section resume-profile"><ResumeSectionTitle>{resume.profile.title}</ResumeSectionTitle><Paragraphs text={resume.profile.body}/></section>
     <section className="resume-section"><ResumeSectionTitle>{resume.education.title}</ResumeSectionTitle>{resume.education.items.map(item => <EducationEntry item={item} key={item.id}/>)}</section>
     <section className="resume-section resume-skills"><ResumeSectionTitle>{resume.skills.title}</ResumeSectionTitle><div className="skill-groups">{resume.skills.groups.map(group => <div key={group.id}><h3>{group.label}</h3><p>{group.body}</p></div>)}</div></section>

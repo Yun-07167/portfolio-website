@@ -59,7 +59,7 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .social-actions .social-icon-wechat { width:26.5px; height:22.32px; }
 .social-actions .social-icon-email { width:22px; height:16px; }
 .social-label { width:max-content; max-width:0; margin-left:0; overflow:hidden; color:var(--nav-hover); opacity:0; visibility:hidden; white-space:nowrap; transform:translateX(-4px); transition:max-width .34s cubic-bezier(.22,1,.36,1),margin-left .34s cubic-bezier(.22,1,.36,1),opacity .16s ease,transform .3s cubic-bezier(.22,1,.36,1),visibility 0s .34s; pointer-events:none; }
-.social-action:hover .social-label,.social-action:focus-visible .social-label { max-width:72px; margin-left:6px; opacity:1; visibility:visible; transform:none; transition-delay:0s; }
+.social-action:hover .social-label,.social-action:focus-visible .social-label { max-width:220px; margin-left:6px; opacity:1; visibility:visible; transform:none; transition-delay:0s; }
 .mode-switcher { display:flex; gap:12px; padding:12px 12px 4px; border-radius:100px; box-shadow:none; background:transparent; }
 .mode-switcher button { width:30px; height:30px; border:0; padding:0; background:none; display:grid; place-items:center; }
 .mode-switcher img { display:block; object-fit:contain; filter:var(--mode-icon-filter); transition:filter .18s ease; }
@@ -111,7 +111,7 @@ footer p { margin:16px 0 0; }
 .modal-dismiss { position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; background:transparent; }
 .qr-modal { position:relative; z-index:1; width:360px; padding:32px; border-radius:24px; background:var(--surface); text-align:center; }
 .modal-close { position:absolute; top:10px; right:14px; border:0; background:none; font-size:30px; }
-.qr-image { display:block; width:190px; height:190px; margin:auto; object-fit:contain; }
+.qr-image { display:block; width:min(100%,240px); height:auto; max-height:420px; margin:auto; object-fit:contain; }
 .qr-missing { width:190px; aspect-ratio:1; margin:auto; display:grid; place-items:center; border:2px dashed var(--neutral-700); border-radius:16px; color:var(--neutral-700); font-family:var(--font-ui); font-size:30px; letter-spacing:.08em; }
 .qr-modal h2 { margin:20px 0 6px; } .qr-modal p { margin:0; }
 .placeholder-page { min-height:100vh; padding:12vw; background:var(--background); color:var(--foreground); }
@@ -133,7 +133,7 @@ footer p { margin:16px 0 0; }
 .resume-page { padding-top:216px; display:flex; flex-direction:column; gap:24px; color:var(--foreground); }
 .resume-page .content-page-title { min-height:84px; padding:12px 0; border:0; display:flex; align-items:center; gap:24px; }
 .resume-page .content-page-title h1 { margin:0; color:var(--neutral-900); font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
-.resume-download { flex:0 0 170px; width:170px; height:60px; margin-left:auto; padding:10px; overflow:hidden; border:0; border-radius:0; background:transparent; color:var(--neutral-800); display:flex; gap:12px; align-items:flex-end; justify-content:center; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; text-align:center; }
+.resume-download { flex:0 0 170px; width:170px; height:60px; margin-left:auto; padding:10px; overflow:hidden; border:0; border-radius:0; background:transparent; color:var(--neutral-800); display:flex; gap:12px; align-items:flex-end; justify-content:center; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; text-align:center; text-decoration:none; }
 .resume-download-icon { display:none; flex:0 0 14px; width:14px; height:14px; background:currentColor; mask:center / contain no-repeat; }
 .resume-download:hover,.resume-download:focus-visible { color:var(--neutral-700); }
 .resume-download:hover .resume-download-icon,.resume-download:focus-visible .resume-download-icon { display:block; mask-image:url("/assets/download-hover.svg"); }
