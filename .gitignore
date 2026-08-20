@@ -47,3 +47,7 @@ yarn-error.log*
 /outputs/
 /work/
 /public/assets/drawings/
+
+# local Obsidian workspace and generated TypeScript build cache
+/.obsidian/
+/tsconfig.tsbuildinfo

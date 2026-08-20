@@ -12,7 +12,6 @@ tags:
   - game-design
   - game-art
   - unity
-  - game-ui
 published: true
 order: 16
 ---
@@ -26,4 +25,9 @@ I was responsible for game interaction and interface design, environment art and
 https://pan.baidu.com/s/1jyaugjP665IYVr7hG5UO9A?pwd=avu3
 
 #### Gameplay Demonstration
-*Video asset pending.*
+:::video_embed
+src: https://youtu.be/1OD6VOPE6AM
+title: Full Gameplay Demonstration
+caption: Full gameplay demonstration
+layout: wide
+:::

@@ -60,6 +60,7 @@ export async function loadProjectLocale(locale) {
     const body = source.content.trim();
     const bodyAudit = inspectContentBody(body, path);
     await Promise.all(bodyAudit.media.flatMap((item, index) => {
+      if (item.type === "video_embed") return [];
       const checks = [assertAssetExists(item.src, `${path}.body.media[${index}].src`)];
       if (item.poster) checks.push(assertAssetExists(item.poster, `${path}.body.media[${index}].poster`));
       if (item.captions) checks.push(assertAssetExists(item.captions, `${path}.body.media[${index}].captions`));

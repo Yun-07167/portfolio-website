@@ -132,12 +132,11 @@ export const siteContent = {
             "gamejam",
             "game-design",
             "game-art",
-            "unity",
-            "game-ui"
+            "unity"
           ],
           "published": true,
           "order": 16,
-          "body": "#### 游戏简介\n《空眼眶》是一款横版2D点击式文字冒险游戏，融合微解谜与诗意的叙事。玩家将扮演一位曾经无忧无虑的王子的灵魂，被困在雕像中。随着远方的燕子来访，在一次次给予与剥落中，王子将逐步理解这个世间，理解苦难与温柔的意义，并最终拥有一颗“心”。游戏预计总时长0.5-1小时，通过点击探索场景、收集物品并触发事件而推进剧情，讲述一段关于人间、失去与爱的童话。\n\n这是一个gamejam组队项目，活动由机核网在2025年举办，《空眼眶》获得了优秀游戏提名。\n我在这个项目中负责游戏交互与界面设计、场景美术设计与Unity落地、与一些执行策划的工作。团队成员中还有：一名叙事策划、两名程序员、一名npc形象设计美术、一名音乐与音效设计师；活动主题“奉献”，**我们的设计目标是通过游戏叙事与玩法交互体现为玩家营造”奉献“的感受**。\n\n#### 游戏下载链接：\nhttps://pan.baidu.com/s/1jyaugjP665IYVr7hG5UO9A?pwd=avu3\n\n#### 游玩过程演示："
+          "body": "#### 游戏简介\n《空眼眶》是一款横版2D点击式文字冒险游戏，融合微解谜与诗意的叙事。玩家将扮演一位曾经无忧无虑的王子的灵魂，被困在雕像中。随着远方的燕子来访，在一次次给予与剥落中，王子将逐步理解这个世间，理解苦难与温柔的意义，并最终拥有一颗“心”。游戏预计总时长0.5-1小时，通过点击探索场景、收集物品并触发事件而推进剧情，讲述一段关于人间、失去与爱的童话。\n\n这是一个gamejam组队项目，活动由机核网在2025年举办，《空眼眶》获得了优秀游戏提名。\n我在这个项目中负责游戏交互与界面设计、场景美术设计与Unity落地、与一些执行策划的工作。团队成员中还有：一名叙事策划、两名程序员、一名npc形象设计美术、一名音乐与音效设计师；活动主题“奉献”，**我们的设计目标是通过游戏叙事与玩法交互体现为玩家营造”奉献“的感受**。\n\n#### 游戏下载链接：\nhttps://pan.baidu.com/s/1jyaugjP665IYVr7hG5UO9A?pwd=avu3\n\n#### 游玩过程演示：\n:::video_embed\nsrc: https://youtu.be/1OD6VOPE6AM\ntitle: 全流程游玩演示\ncaption: 全流程游玩演示\nlayout: wide\n:::"
         },
         {
           "slug": "overwatch2-casestudy-findGame",
@@ -476,12 +475,11 @@ export const siteContent = {
             "gamejam",
             "game-design",
             "game-art",
-            "unity",
-            "game-ui"
+            "unity"
           ],
           "published": true,
           "order": 16,
-          "body": "#### Game Overview\nEmpty Eye Socket is a side-scrolling 2D point-and-click narrative adventure that combines light puzzles with poetic storytelling. The player takes the role of the spirit of a once-carefree prince, now trapped inside a statue. As a swallow visits from afar, the prince gradually comes to understand the world, the meaning of suffering and tenderness, and ultimately gains a “heart” through repeated acts of giving and letting go. The game is expected to last 30–60 minutes. Players advance the story by clicking to explore scenes, collecting items, and triggering events, uncovering a fairy tale about humanity, loss, and love.\n\nThis was a team project created for a game jam hosted by GCORES in 2025. Empty Eye Socket received an Outstanding Game nomination.\nI was responsible for game interaction and interface design, environment art and Unity implementation, as well as some implementation-oriented game design work. The rest of the team consisted of one narrative designer, two programmers, one artist responsible for NPC character design, and one music and sound designer.\n\n#### Game Download\nhttps://pan.baidu.com/s/1jyaugjP665IYVr7hG5UO9A?pwd=avu3\n\n#### Gameplay Demonstration\n*Video asset pending.*"
+          "body": "#### Game Overview\nEmpty Eye Socket is a side-scrolling 2D point-and-click narrative adventure that combines light puzzles with poetic storytelling. The player takes the role of the spirit of a once-carefree prince, now trapped inside a statue. As a swallow visits from afar, the prince gradually comes to understand the world, the meaning of suffering and tenderness, and ultimately gains a “heart” through repeated acts of giving and letting go. The game is expected to last 30–60 minutes. Players advance the story by clicking to explore scenes, collecting items, and triggering events, uncovering a fairy tale about humanity, loss, and love.\n\nThis was a team project created for a game jam hosted by GCORES in 2025. Empty Eye Socket received an Outstanding Game nomination.\nI was responsible for game interaction and interface design, environment art and Unity implementation, as well as some implementation-oriented game design work. The rest of the team consisted of one narrative designer, two programmers, one artist responsible for NPC character design, and one music and sound designer.\n\n#### Game Download\nhttps://pan.baidu.com/s/1jyaugjP665IYVr7hG5UO9A?pwd=avu3\n\n#### Gameplay Demonstration\n:::video_embed\nsrc: https://youtu.be/1OD6VOPE6AM\ntitle: Full Gameplay Demonstration\ncaption: Full gameplay demonstration\nlayout: wide\n:::"
         },
         {
           "slug": "overwatch2-casestudy-findGame",
