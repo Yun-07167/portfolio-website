@@ -25,5 +25,5 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const preferenceScript = `try{const l=localStorage.getItem("portfolio-language");const t=localStorage.getItem("portfolio-theme");if(l==="zh"||l==="en")document.documentElement.lang=l==="zh"?"zh-CN":"en";if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}`;
-  return <html lang="zh-CN" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: preferenceScript }}/></head><body>{children}</body></html>;
+  return <html lang="zh-CN" suppressHydrationWarning><head><link rel="icon" type="image/png" href="/assets/avatar.png"/><link rel="shortcut icon" type="image/png" href="/assets/avatar.png"/><link rel="apple-touch-icon" href="/assets/avatar.png"/><script dangerouslySetInnerHTML={{ __html: preferenceScript }}/></head><body>{children}</body></html>;
 }
