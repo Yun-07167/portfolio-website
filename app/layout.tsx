@@ -13,7 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: base,
     title,
     description,
-    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
+    icons: {
+      icon: [{ url: "/assets/avatar.png", type: "image/png" }],
+      shortcut: "/assets/avatar.png",
+      apple: "/assets/avatar.png",
+    },
     openGraph: { title, description, type: "website", images: [{ url: new URL("/og.png", base).toString(), width: 1536, height: 1024 }] },
     twitter: { card: "summary_large_image", title, description, images: [new URL("/og.png", base).toString()] },
   };
