@@ -11,7 +11,7 @@ tags:
   - indie-game
   - game-ui
 published: true
-order: 25
+order: 26
 ---
 :::image
 src: /assets/projects/undying-uiart/uiart-cover.png

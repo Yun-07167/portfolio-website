@@ -14,4 +14,7 @@ tag_labels:
   game-ui: "Game UI"
   game-art: "Game Art"
   indie-game: "Indie Game"
+  gamejam: "Game Jam"
+  game-design: "Game Design"
+  unity: "Unity"
 ---

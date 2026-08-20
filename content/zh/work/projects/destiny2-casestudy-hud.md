@@ -89,5 +89,87 @@ layout: wide
 | 1   | hud + 角色界面 - 可延展性 | 确保 HUD 和装备栏能无缝适配新增技能或槽位。      |
 | 2   | 角色界面 - 易用性        | 提供更直观的职业查看与一键切换入口。            |
 
-#### 功能体验流程图拆解
 ### HUD
+#### 功能体验流程图拆解
+:::image
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_flowchart_01_sc.png
+alt: 流程图-hud
+caption: 现有体验的hud信息显示
+layout: wide
+:::
+
+#### 设计调整说明
+:::image
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_01_sc.png
+alt: pc-redesign
+caption: pc端线框图重新设计
+layout: wide
+:::
+- 重新设计了终极技能能量条的形态，利用几何形状的变化区分血条与能量，提升视觉显著性。
+- 引入了按键图标提示。当技能冷却完成时，按键高亮显示，显著降低玩家在战斗中的记忆负担。
+- 为潜在的新技能留出了占位空间，保证了UI架构在长线更新中的稳定性。
+
+移动端适配：针对触控操作定义了交互热区，确保跨平台逻辑的一致性。
+:::image
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_02_sc.png
+alt: mobile-redesign
+caption: 移动端线框图
+layout: wide
+:::
+:::image
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_03_sc.png
+alt: tablet-redesign
+caption: 平板线框图
+layout: wide
+:::
+
+### 角色界面
+#### 功能体验流程图拆解
+:::image
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_02_sc.png
+alt: pc-redesign
+caption: pc端线框图重新设计-角色界面
+layout: wide
+:::
+
+#### 修改内容
+:::columns
+ratio: 2:1
+:::column
+:::image
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-character_01_sc.png
+alt: pc-redesign
+caption: pc端线框图重新设计-角色界面
+layout: wide
+:::
+:::
+:::column
+:::image
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_original-character_01_sc.png
+alt: pc-redesign
+caption: pc端线框图重新设计-角色界面
+layout: wide
+:::
+:::
+:::
+- 调整了职业显示图标的布局逻辑，使职业切换操作更符合用户的视觉流向。
+- 通过调整图标比例与整体版式，使装备栏具备向四周扩展的能力，以支持未来更多装备位的加入。
+- 为每个属性图标增加了标题说明，将“图标识别”转化为“图文语义识别”，提升决策效率。
+
+#### 追加分析
+###### 与官方授权手游《命运：群星》的对比复盘
+
+**对比反思**
+《命运·群星》是由网易获得正版授权，基于《命运2》制作的射击RPG手游，于2025年上线10月上线国服，这是在我进行本次模拟练习之后，通过对比，我获得了以下关键启示并对原方案进行了反思：  
+  
+
+- 手游端的功能做了轻量化设计，减少了一个武器和一个小技能。在技能冷却层面，几乎采用了和我的练习中一致的方案。
+- 布局严格遵循了移动端的交互热区，将虚拟按钮放在了更明显的位置，尺寸也更大。
+- 跳跃和滑铲是同一个虚拟按钮，提升了空间利用率。
+- 这提示我在未来的移动端设计中，应更深度地考虑原生的人体工学属性，而非仅停留在桌面端逻辑的比例缩放。
+:::image
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_comparison_01_sc.png
+alt: pc-redesign
+caption: 
+layout: wide
+:::
