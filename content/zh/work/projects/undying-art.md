@@ -13,7 +13,7 @@ published: true
 order: 30
 ---
 :::image
-src: /assets/projects/undying-art/details/undying_art_kv.png
+src: /assets/projects/undying-art/home-cover.png
 alt: 圣诞节KV
 caption: 圣诞节KV
 layout: wide

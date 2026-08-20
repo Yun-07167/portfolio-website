@@ -12,7 +12,6 @@ tags:
 published: true
 order: 10
 ---
-#### 《星布谷地》与拍照功能简介
 《星布谷地》是一款3d视角生活模拟类游戏，预计在PC、移动等多端发行。目前还处于开发阶段。  
   
 其中的拍照功能广受测试服玩家好评。一方面，该功能满足玩家的社交与展示需求，另一方面，由于解锁条件为好友亲密度，这一设置也同更鼓励玩家与其他玩家建立联结，促进用户留存。
@@ -160,7 +159,7 @@ layout: wide
 #### #2 移动端UI复刻
 ### UI临摹与移动端适配
 :::image
-src: /assets/projects/petitPlanet-casestudy-cam/details/petitPlanet-casestudy-uiscreen_01.png
+src: /assets/projects/petitPlanet-casestudy-cam/details/petitPlanet-casestudy-uiscreen_01.webp
 alt: ui临摹移动端
 caption: *人物素材截自b站用户 伊伊星，背景素材非游戏画面，来自互联网*
 layout: wide
@@ -172,7 +171,7 @@ ratio: 1:1
 
 :::column
 :::image
-src: /assets/projects/petitPlanet-casestudy-cam/details/petitPlanet-casestudy-screenshot_05.png
+src: /assets/projects/petitPlanet-casestudy-cam/details/petitPlanet-casestudy-screenshot_05.webp
 alt: ui临摹移动端
 caption: pc端视频截图
 layout: wide

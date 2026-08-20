@@ -316,8 +316,11 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .image-toolbar { position:relative; z-index:1; justify-self:end; display:flex; align-items:center; gap:8px; margin-bottom:16px; }
 .image-toolbar button,.image-toolbar output { min-width:44px; height:40px; padding:0 12px; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); color:var(--neutral-900); font-family:var(--font-ui); font-size:15px; }
 .image-toolbar button:hover,.image-toolbar button:focus-visible { background:var(--primary-100); }
-.image-lightbox-viewport { position:relative; z-index:1; min-height:0; overflow:auto; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); }
+.image-lightbox-viewport { position:relative; z-index:1; min-height:0; overflow:hidden; display:grid; place-items:center; border:1px solid var(--neutral-600); background:var(--surface); user-select:none; }
+.image-lightbox-viewport.is-draggable { cursor:grab; touch-action:none; }
+.image-lightbox-viewport.is-dragging { cursor:grabbing; }
 .image-lightbox-canvas { width:max-content; max-width:90vw; transform-origin:center; transition:transform .18s ease; }
+.image-lightbox-viewport.is-dragging .image-lightbox-canvas { transition:none; }
 .image-lightbox-canvas img { display:block; width:auto; max-width:90vw; height:auto; max-height:calc(100vh - 130px); background:transparent; }
 .content-columns { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:32px; width:100%; margin:40px 0; align-items:start; }
 .content-columns.columns-1-2 { grid-template-columns:minmax(0,1fr) minmax(0,2fr); }

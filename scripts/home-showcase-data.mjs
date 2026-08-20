@@ -5,6 +5,7 @@ import { loadProjectLocale } from "./project-data.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 const publicRoot = resolve(root, "public");
+const archiveRoot = resolve(root, "archive");
 const allowedTypes = new Set(["project", "snapshot", "decorative"]);
 const allowedSlots = new Set([
   "featured-left",
@@ -51,6 +52,10 @@ async function listFiles(directory) {
 
 function toWebPath(file) {
   return `/${relative(publicRoot, file).split(sep).join("/")}`;
+}
+
+function toRepoPath(file) {
+  return relative(root, file).split(sep).join("/");
 }
 
 export async function loadHomeShowcase() {
@@ -115,7 +120,7 @@ export async function loadHomeShowcase() {
     .filter(file => /^home-(cover|thumbnail)\./i.test(file.split(sep).at(-1) ?? ""));
   const managedAssets = [...homeAssets, ...projectAssets].map(toWebPath).sort();
   const unusedManagedAssets = managedAssets.filter(path => !referencedAssets.has(path));
-  const archivedLegacyAssets = (await listFiles(resolve(publicRoot, "assets/archive/home-legacy"))).map(toWebPath).sort();
+  const archivedLegacyAssets = (await listFiles(resolve(archiveRoot, "home-legacy"))).map(toRepoPath).sort();
 
   return {
     items,

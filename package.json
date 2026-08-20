@@ -6,6 +6,9 @@
     "node": ">=22.13.0"
   },
   "scripts": {
+    "images:optimize": "npm run images:optimize:png && npm run images:optimize:svg",
+    "images:optimize:png": "node scripts/optimize-site-images.mjs",
+    "images:optimize:svg": "svgo --folder public/assets --recursive --config scripts/svgo.config.mjs",
     "drawings:sync": "node scripts/sync-drawings.mjs",
     "content:generate": "node scripts/generate-content.mjs",
     "content:validate": "node scripts/validate-home-showcase.mjs",
@@ -43,6 +46,7 @@
     "eslint-plugin-react-hooks": "7.1.1",
     "globals": "16.4.0",
     "react-server-dom-webpack": "19.2.6",
+    "svgo": "^4.0.1",
     "tailwindcss": "4.2.1",
     "typescript": "5.9.3",
     "typescript-eslint": "8.59.3",

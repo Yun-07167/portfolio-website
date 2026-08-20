@@ -14,7 +14,7 @@ published: true
 order: 25
 ---
 :::image
-src: /assets/projects/undying-uiart/details/undying_uiart_skills.png
+src: /assets/projects/undying-uiart/uiart-cover.png
 alt: 副主角技能，左侧是基础技能，右侧是进阶技能，下方共用详细说明
 caption: 副主角技能
 layout: wide
