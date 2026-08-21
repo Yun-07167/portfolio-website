@@ -26,8 +26,10 @@ https://pan.baidu.com/s/1jyaugjP665IYVr7hG5UO9A?pwd=avu3
 
 #### 游玩过程演示：
 :::video_embed
-src: https://youtu.be/1OD6VOPE6AM
+src: https://www.bilibili.com/video/BV1Yr8T6pEMG/?share_source=copy_web&vd_source=d7a11c85f2283687ef971437c6fafc75
 title: 全流程游玩演示
 caption: 全流程游玩演示
 layout: wide
 :::
+
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=117132180325559&bvid=BV1Yr8T6pEMG&cid=41094286425&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
