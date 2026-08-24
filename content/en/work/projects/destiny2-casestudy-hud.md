@@ -158,7 +158,7 @@ layout: wide
 ### Character Screen
 #### Experience Flow Breakdown
 :::image
-src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_02_en.png
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_02_sc.png
 alt: PC redesign
 caption: Redesigned PC wireframe — Character screen
 layout: wide

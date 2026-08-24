@@ -91,14 +91,13 @@ export function validateProjectParity(projectsZh, projectsEn) {
     const zh = projectsZh.get(slug);
     const en = projectsEn.get(slug);
     // A project may intentionally exist in only one locale. When both versions
-    // exist, publishing and ordering remain locale-owned while shared facts and
-    // media stay aligned.
+    // exist, publishing, ordering, headings, and body media remain locale-owned;
+    // only shared listing metadata must stay aligned.
     if (!zh || !en) continue;
     for (const field of ["year", "cover", "home_thumbnail"]) {
       if (zh[field] !== en[field]) fail(`Project "${slug}" must use the same ${field} in both locales.`);
     }
     if (JSON.stringify(zh.tags) !== JSON.stringify(en.tags)) fail(`Project "${slug}" must use the same tags in both locales.`);
-    if (JSON.stringify(zh.body_signature) !== JSON.stringify(en.body_signature)) fail(`Project "${slug}" must use matching heading and media structure in both locales.`);
   }
 }
 
