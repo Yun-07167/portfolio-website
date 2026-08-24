@@ -8,9 +8,13 @@ const publicRoot = resolve(root, "public");
 
 function fail(message) { throw new Error(`[notes] ${message}`); }
 function requireString(value, path) { if (typeof value !== "string" || value.trim() === "") fail(`${path} must be a non-empty string.`); }
-function requireDate(value, path) {
-  requireString(value, path);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value) || Number.isNaN(Date.parse(`${value}T00:00:00Z`))) fail(`${path} must be a valid YYYY-MM-DD date.`);
+function normalizeDate(value, path) {
+  const normalized = value instanceof Date && !Number.isNaN(value.getTime())
+    ? value.toISOString().slice(0, 10)
+    : value;
+  requireString(normalized, path);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized) || Number.isNaN(Date.parse(`${normalized}T00:00:00Z`))) fail(`${path} must be a valid YYYY-MM-DD date.`);
+  return normalized;
 }
 async function assertAssetExists(webPath, path) {
   requireString(webPath, path);
@@ -32,7 +36,7 @@ export async function loadNoteLocale(locale) {
     const data = source.data;
     const path = `content/${locale}/notes/${file}`;
     for (const field of ["slug", "title"]) requireString(data[field], `${path}.${field}`);
-    requireDate(data.published_at, `${path}.published_at`);
+    const publishedAt = normalizeDate(data.published_at, `${path}.published_at`);
     if (!Array.isArray(data.tags) || data.tags.length === 0 || data.tags.some(tag => typeof tag !== "string" || !tag)) fail(`${path}.tags must be a non-empty string array.`);
     if (new Set(data.tags).size !== data.tags.length) fail(`${path}.tags contains duplicates.`);
     if (typeof data.published !== "boolean") fail(`${path}.published must be true or false.`);
@@ -45,7 +49,7 @@ export async function loadNoteLocale(locale) {
       if (item.captions) checks.push(assertAssetExists(item.captions, `${path}.body.media[${index}].captions`));
       return checks;
     }));
-    notes.set(data.slug, { slug:data.slug, title:data.title, published_at:data.published_at, year:Number(data.published_at.slice(0,4)), tags:data.tags, published:data.published, body, body_signature:bodyAudit.signature });
+    notes.set(data.slug, { slug:data.slug, title:data.title, published_at:publishedAt, year:Number(publishedAt.slice(0,4)), tags:data.tags, published:data.published, body, body_signature:bodyAudit.signature });
   }
   return notes;
 }
