@@ -1,9 +1,7 @@
 ---
 slug: destiny2-casestudy-hud
-title: Case Study — Onboarding HUD Flow in Destiny 2
-summary: |-
-  Improving HUD and character screens
-  for usability and scalability
+title: A Game UX Case Study of Destiny 2
+summary: Gameplay Flow Improvements
 cover: /assets/projects/destiny2-casestudy-hud/destiny2-casestudy-hud_cover.png
 cover_alt: Case study — Onboarding HUD flow in Destiny 2
 home_thumbnail: /assets/projects/destiny2-casestudy-hud/destiny2-casestudy-hud_cover.png
@@ -14,44 +12,71 @@ tags:
 published: true
 order: 15
 ---
-#### Project Steps
+#### Agenda
 **#1 Background and Context**
-For new players, some commonly used interaction components in Destiny 2 are not intuitive enough.
+Some of Destiny 2’s most-used UI elements still cause friction in fast-paced gameplay.
 
-**#2 Define Optimization Goals**
-Improve the usability and scalability of combat and equipment management by redesigning selected UI components.
+**#2 Experience Goals**
+Improving usability and scalability in combat and gear management through targeted UI redesigns.
 
-**#3 Detailed Process**
-User experience flowchart → Multi-platform wireframes →  
-Communication document → Project reflection
+**#3 Work Process**
+- Flow Chart
+- Wireframes (Support Cross-Platforms)
+- Stakeholder Communication
 
 #### Background and Context
 **About Destiny 2**
-As a long-running GaaS title, Destiny 2 has accumulated increasingly complex systems over successive releases.  
-The existing HUD framework was not originally designed for this level of information density. To reduce the barrier to entry for new players and the cognitive load placed on experienced players during complex combat, improving the hierarchy of interface information is essential to sustaining the game's vitality.
+Destiny 2 is a fast and complex game.
+:::image
+src: /assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_gamealbum_01_en.png
+alt: game album
+caption: Destiny 2
+layout: wide
+:::
 
 **About This Project**
-Pain-point observation: During play, I found that in high-pressure combat situations players struggle to read critical skill cooldowns or health states from the corner HUD within milliseconds.  
-External validation: Community videos show that players often rely on plugins or third-party tools such as DIM to compensate for friction in the native map and equipment interfaces. This indicates clear room to improve the efficiency of the native UI.
+Some parts of its UI still make gameplay harder than it should be. This project improves two areas: the bottom-left HUD, and the ‘character’ screen. These small changes help players act faster and manage gear more easily.
+:::columns
+ratio: 1:1
+:::column
+:::image
+src: /assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud-oridesign_hud_01_en.png
+alt: The Character screen
+caption: The Character screen
+layout: wide
+:::
+:::
+:::column
+:::image
+src: /assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud-oridesign_hud_01_en.png
+alt: HUD
+caption: HUD
+layout: wide
+:::
+:::
+:::
+#### PExperience Goals (Visions)
+Improving usability and scalability in combat and gear management through targeted UI redesigns.
 
-#### Pain-point Analysis
+#### Pin-points
 ### HUD
 Presentation of the ultimate ability, regular abilities, health, and weapon information
 
-I grouped the current experience issues into two dimensions: **Usability** and **Scalability**. This study focuses on interaction logic and information architecture rather than visual aesthetics or technical implementation.
+I listed out the pin-points and categorized them in to *usability* issues and *scalability* issues. This study does not contain desirability and feasibility issues.
 
-| Usability issues | Scalability issues |
-| --- | --- |
-| The health bar and ultimate-energy bar are too similar visually, making them difficult to distinguish quickly during high-pressure combat. | The current framework leaves insufficient space for future ability slots, which could cause crowding or require a structural redesign. |
-| Key prompts for abilities and weapon switching are not intuitive, delaying feedback for new or multi-platform players. | |
+| Usability issues                                                              | Scalability issues                                                           |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| It’s hard to distinguish hp bar and ultimate skill energy bar.                | It can be hard to make more rooms if the designer want to add another skill. |
+| Players may find it hard to remember the key of skills and switching weapons. |                                                                              |
 
+#### Pin-points
 ### Character Management Screen
-Equipment and class
+Manage gears & class
 
-| Usability issues | Scalability issues |
-| --- | --- |
-| The entry point for switching class is not prominent enough and can be difficult to locate quickly. | The current grid layout cannot easily accommodate possible future equipment slots. |
-| Attribute icons lack clear textual explanations or semantic associations, increasing the effort required to make equipment decisions. | |
+| Usability issues                                                                                          | Scalability issues                                                     |
+| --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Player may find it’s unclear to change the class.prominent enough and can be difficult to locate quickly. | If there are more gears to equip, the screen may has to be redesigned. |
+| It is hard to tell the different meaning of the attribute icons.                                          |                                                                        |
 
 #### References
 
@@ -64,8 +89,8 @@ alt: Reference — Marvel Rivals
 caption: HUD — Marvel Rivals — NetEase Games
 layout: wide
 :::
-- Key mapping prompts: Clear key prompts sit beside ability icons, while highly contrasting states distinguish available abilities from abilities on cooldown.
-- Energy bars: The health and ultimate bars use clearly different geometries, reducing cognitive load in fast-paced combat.
+- Clear key hint of skill and weapon usages.
+- Clear display of HP bar and ultimate skill cool down.
 :::
 :::column
 :::image
@@ -74,24 +99,30 @@ alt: Reference — Fortnite
 caption: HUD — Fortnite — Epic Games
 layout: wide
 :::
-- Mobile layout: As a benchmark for cross-platform operation, Fortnite provides a valuable reference for mobile HUD arrangement, including virtual joysticks and ability buttons.
-- Scalability: Its UI supports a degree of player customization and can accommodate varied items and special-ability slots. This validates the need for modular reserved space as GaaS games continue to add progression content.
+- Mobile platform reference
 :::
 :::
 
 #### Optimization Goals and Priorities
+0: Must be improved
+1: Nice to be improved
 
-| Priority | Category | Design goal |
-| --- | --- | --- |
-| 0 | HUD — Usability | Strengthen the visual identity of the ultimate-energy bar in the lower-left corner and add dynamic key prompts. |
-| 0 | Character screen — Usability | Strengthen attribute descriptions to support faster equipment decisions. |
-| 1 | HUD + Character screen — Scalability | Ensure that the HUD and equipment grid can seamlessly support new abilities or slots. |
-| 2 | Character screen — Usability | Provide a more intuitive way to inspect and switch classes. |
+| Priority | Category                       | Design goal                                                                                          |
+| -------- | ------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| 0        | HUD: Usability                 | Player can tell the bar of the down-left corner is related to the ultimate skill.                    |
+|          |                                | Remind players the skills and weapon key.                                                            |
+| 0        | HUD: Scalability               | Make the screen scalable for new skills                                                              |
+| 0        | Character screen: Usability    | Player can tell the differences among different attribute to better decide their equipment strategy. |
+| 0        | Character screen: Scalability  | The screen can be scalable for new equipment                                                         |
+| 1        | Character screen - Usability   | Player can find a way to view and change their class and relevant info directly.                     |
+| 1        | Character screen - Scalability | The screen can be scalable for new class                                                             |
 
+### Work Process
+Flowchart → Wireframe → Communication
 ### HUD
 #### Experience Flow Breakdown
 :::image
-src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_flowchart_01_sc.png
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_flowchart_01_en.png
 alt: HUD flowchart
 caption: Information shown in the existing HUD experience
 layout: wide
@@ -104,11 +135,13 @@ alt: PC redesign
 caption: Redesigned PC wireframe
 layout: wide
 :::
-- Redesigned the ultimate-energy bar so its geometry differentiates it from the health bar and improves visual salience.
-- Introduced key-icon prompts. When an ability finishes cooling down, its key prompt becomes highlighted, significantly reducing memory load during combat.
-- Reserved space for potential new abilities so the UI architecture remains stable through long-term updates.
+Usability:
+- Adjusted the shape of Ultimate skill’s energy bar
+- Add key icon to remind players of using skills and switching weapons. The skill can be used if the key icon turned lighter.
+Scalability:
+- Some Extra room for potential new skills
 
-Mobile adaptation: Interaction hit areas were defined for touch input to maintain consistent logic across platforms.
+Mobile adaptation: I redesigned the skill section in the HUD and added mobile device compatibility.
 :::image
 src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_02_sc.png
 alt: Mobile redesign
@@ -125,7 +158,7 @@ layout: wide
 ### Character Screen
 #### Experience Flow Breakdown
 :::image
-src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_02_sc.png
+src:/assets/projects/destiny2-casestudy-hud/details/destiny2-casestudy-hud_design-hud_02_en.png
 alt: PC redesign
 caption: Redesigned PC wireframe — Character screen
 layout: wide
@@ -151,9 +184,11 @@ layout: wide
 :::
 :::
 :::
-- Adjusted the layout logic of the class icon so class switching follows the user's visual flow more naturally.
-- Changed icon proportions and the overall composition so the equipment grid can expand in multiple directions and support additional future slots.
-- Added a title to each attribute icon, changing recognition from icon-only identification to combined text-and-image semantics and improving decision efficiency.
+Usability:
+- Icon adjustment to help player understand the current class and indicating of changing classes
+- Added title to each attribute to help player better to decided their equipment strategy
+Scalability:
+- Icon and layout adjustment for more slots of gears
 
 #### Additional Analysis
 ###### Retrospective Comparison with the Officially Licensed Mobile Game Destiny: Rising
