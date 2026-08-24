@@ -1,11 +1,11 @@
 ---
 slug: visual-drawing-workflow
-title: "Mapping Player Tasks with Visual Drawings"
-published_at: "2026-08-18"
+title: Mapping Player Tasks with Visual Drawings
+published_at: 2026-08-18
 tags:
   - interaction-design
   - workflow
-published: true
+published: false
 ---
 
 ## Why start with a visual drawing

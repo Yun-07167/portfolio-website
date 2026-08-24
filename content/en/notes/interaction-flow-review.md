@@ -1,11 +1,11 @@
 ---
 slug: interaction-flow-review
-title: "Designing Interaction Flows Backwards from Player Goals"
-published_at: "2026-08-18"
+title: Designing Interaction Flows Backwards from Player Goals
+published_at: 2026-08-18
 tags:
   - interaction-design
   - case-study
-published: true
+published: false
 ---
 
 ## Start with the outcome, not the screen

@@ -1,7 +1,7 @@
 ---
 slug: overwatch2-casestudy-findGame
-title: Case Study — Matchmaking Flow in Overwatch 2
-summary: Matchmaking-flow analysis and a stylized UI redesign
+title: Case Study—Matchmaking Flow in Overwatch 2
+summary: The goal of this project is to walk through the UX and UI process of Overwatch 2, and ultimately create my own case study including iterated wireframes, usability test and UI mockups.
 cover: /assets/projects/overwatch2-casestudy-uiremaster/overwatch2-casestudy-uiremaster_cover.png
 cover_alt: Case study — Matchmaking flow in Overwatch 2
 home_thumbnail: /assets/projects/overwatch2-casestudy-uiremaster/overwatch2-casestudy-uiremaster_cover.png
@@ -12,7 +12,32 @@ tags:
 published: true
 order: 25
 ---
-#### Process
+### About this project
+#### Overview
+The goal of this project is to walk through the UX and UI process of Overwatch 2, and ultimately create my own case study including iterated wireframes, usability test and UI mockups.
+#### My role & Responsibilities
+1. UX + UI Design
+2. User Testing
+
+#### Length of this project
+- 7 weeks
+
+#### Tools
+- Figma
+- Photoshop
+
+#### Challenges
+1. Tight timeline
+2. Lack of UX knowledge
+3. The logic of the complex wireframe
+4. Struggled with the visual
+:::image
+src:/assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-challenges_01_en.png
+alt: challenges
+caption:
+layout: wide
+:::
+#### Work Process
 1. Player journey map
 2. Paper prototype
 3. Flowchart
@@ -23,39 +48,39 @@ order: 25
 8. UI screen redesign
 9. Accessibility testing — color-vision testing
 
-#### Player Journey Map
-By watching one hour of gameplay footage and combining it with my own experience, I mapped the player's first twenty minutes. I focused on interaction flows: what options the designers provide, which options and information they want players to notice, how players respond, and what players do in pursuit of their goals. I then identified details that could be improved.
+### UX design
+#### Player Journey - The Design Intension
+I reviewed a one-hour playthrough video and spent several hours playing the game myself. Based on these experiences, I mapped out a concise player journey, focusing on key interactions and gameplay flow. My goal was to understand the game’s options and the player's actions throughout the game and identify areas where the experience could be improved.
 
 :::image
-src: /assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-uiremaster_playerJourney_01_Sc.png
+src: /assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-uiremaster_playerJourney_01_en.png
 alt: Player journey map
 caption:
 layout: wide
 :::
 
 #### Paper Prototype
-I isolated the options provided by the game design and created a paper prototype to organize the available screens and prepare for drawing the flowchart.
+I distilled all the options provided by the game developers and created a paper prototype along with a flow chart to determine the necessary screens for the game.
 
 Screens and options
 :::image
-src: /assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-uiremaster_paperprototype_01_Sc.png
+src: /assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-uiremaster_paperprototype_01_en.png
 alt: Paper prototype of screens and options
 caption:
 layout: wide
 :::
 
 #### Flowchart
-This process clarified the functional buttons and prompts required on each screen and prepared the work for wireframing. Arrow symbols replace secondary-flow connectors to keep the chart concise and readable. The process also began to reveal the hierarchy among different UI elements.
 :::image
-src: /assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-uiremaster_flowchart_01_Sc.png
+src: /assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-uiremaster_flowchart_01_en.png
 alt: Interface flowchart
 caption:
 layout: wide
 :::
 
 #### Wireframe Prototype
-At this stage, a simple prototype made it possible to conduct small-scale user testing.
-[https://www.figma.com/proto/yDDF0qrt8Tjc24dx1fdXb3/Tianyun-Yang---UX%2FUI-for-Gaming---Assignment-03-%26-04?page-id=189%3A3523&node-id=189-3867&viewport=644%2C416%2C0.06&t=Hq969DIlbVkzu73S-1&scaling=scale-down](https://www.figma.com/proto/yDDF0qrt8Tjc24dx1fdXb3/Tianyun-Yang---UX%2FUI-for-Gaming---Assignment-03-%26-04?page-id=189%3A3523&node-id=189-3867&viewport=644%2C416%2C0.06&t=Hq969DIlbVkzu73S-1&scaling=scale-down)
+I created a version based on the flowchart first, and make an iteration according to the usability test result.
+[https://www.figma.com/proto/yDDF0qrt8Tjc24dx1fdXb3/Tianyun-Yang---UX%2FUI-for-Gaming---Assignment-03-%26-04?page-id=189%3A3523&node-id=189-3867&viewport=644%2C416%2C0.06&t=Hq969DIlbVkzu73S-1&scaling=scale-down]
 :::image
 src: /assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-uiremaster_wireframe_01_Sc.png
 alt: Initial wireframe prototype
@@ -64,33 +89,34 @@ layout: wide
 :::
 
 #### User Testing
-I invited three users to test the prototype, assigned them a set of tasks, and designed a questionnaire. The purpose was to translate their feedback into specific points for improvement.
+After created a simple prototype with the wireframes, I conducted an user test with three testers, they are all game players, I set three main tasks for them and invited them to filled a designated survey to answer some questions,
 
-Prototype:  
-[https://www.figma.com/proto/yDDF0qrt8Tjc24dx1fdXb3/Tianyun-Yang---UX%2FUI-for-Gaming---Assignment-03-%26-04?page-id=189%3A3523&node-id=189-3867&viewport=644%2C416%2C0.06&t=Hq969DIlbVkzu73S-1&scaling=scale-down](https://www.figma.com/proto/yDDF0qrt8Tjc24dx1fdXb3/Tianyun-Yang---UX%2FUI-for-Gaming---Assignment-03-%26-04?page-id=189%3A3523&node-id=189-3867&viewport=644%2C416%2C0.06&t=Hq969DIlbVkzu73S-1&scaling=scale-down)  
-Full test results:  
-[https://www.figma.com/design/yDDF0qrt8Tjc24dx1fdXb3/Tianyun-Yang---UX%2FUI-for-Gaming---Assignment-03-%26-04?node-id=1-11&t=aZ56RvApciZYL033-4](https://s177yed7drj.typeform.com/to/VkVNZcIL)  
+The full test:
+https://www.figma.com/design/yDDF0qrt8Tjc24dx1fdXb3/Tianyun-Yang---UX%2FUI-for-Gaming---Assignment-03-%26-04?node-id=1-11&t=aZ56RvApciZYL033-4
+
 Online questionnaire:  
 [https://s177yed7drj.typeform.com/to/VkVNZcIL](https://s177yed7drj.typeform.com/to/VkVNZcIL)
 
-##### Research Goals
-- Evaluate whether the wireframe communicates information clearly and identify ambiguous details.
-- Determine whether players understand every piece of information in the wireframes and, where they do not, understand why.
-- Ensure that players can enter a match quickly from the home screen.
-- Understand players' opinions of the wireframe layout.
-- Iterate the wireframes based on this usability study.
+##### Research Objectives
+- Evaluate wireframes (design communication) with players to understand potential miscommunication.  
+- Can players understand all the options on the presented screens without assistances? If no, why?
+- Can players quickly start playing game from The main menu Screen?  
+- How do players feel about the design on the presented screens?
+- Iterate design based on the usability test feedback.
 
-##### Research Plan
+##### Research Logistics
 **Recruitment:**  
-- Target users: PC players aged 16–55
-- Three participants
-- Recruited through online communities and personal contacts
+- Target audiences: 16-55 years old, Female & Male, PC Gamer.
+- 3 testers
+- Discord channel and personal friends
 
-**Tool:**  
-- Figma prototype
+**Platform:**  
+- Figma wireframes prototype
 
 **Tasks:**  
-- Move through six wireframe screens: Home, Play, Matchmaking, Finding Game, Hero Select, and in-game HUD.
+- Go through 6 wireframes screens :
+- [Home Screen], [Play Screen], [Unranked Screen], [Finding Game Screen], [Selecting Hero Screen], [In-game Screen]
+- Write about all options they have & what does each option mean to testers (before actually play)
 
 **Schedule:**  
 - Date: May 2024
@@ -99,47 +125,48 @@ Online questionnaire:
 ↓↓↓
 
 ##### Questionnaire
-**Observe the Home screen and provide feedback:**  
-1. What do you think about the options on this screen?
-2. What do you think about the layout?
+**Please review the [Home Screen] from the Figma prototype and leave your feedback**  
+1. What do you think about all the options you have on this screen?
+2. What do you think of the layout of this screen?
 
-**Enter the Play and Mode Select screens, explore them, complete the following tasks, and leave feedback:**  
-1. Task 1: Can you explain the difference between the two Quick Play options?
-2. Task 2: Imagine that you want to play the Tank role. Interact with the interface to choose that role. Can you complete the process smoothly, and what do you think of it?
-3. What do you think about the layout of these two screens?
+**Now moving to the next two screens: [Play Screen] & [Unranked Screen]. Please review, navigate them, complete the presented tasks and leave your feedback.**  
+1. Task 1: Can you elaborate on the differences between the "Quick Play" and "Quicker Play" options?
+2. Task 2: Imagine you want to play a tank role in an unranked game. Please navigate to the screen where you can choose the right way to play. Can you make it? What do you think of the process?
+3. What do you think of the layout of both of the screens?
 
-**Enter the Finding Game screen and provide feedback:**  
-1. Is the non-interactive information on this screen presented clearly?
+**Head to the next screen: [Finding a Game Screen]. Please leave your feedback.:**  
+1. Is the non-interactive information given to you clear? If not, why?
 
-**Enter the Hero Select screen, explore it, complete the following tasks, and leave feedback:**  
-1. Task 3: Can you describe the status of your teammates from this screen?
-2. Task 4: Select “Skin C” and continue.
-3. What do you think about the layout of this screen?
+**Next: [Hero selecting Screen]. Please review, navigate them, complete the presented tasks and leave your feedback.**  
+1. Task 3: Can you describe your teammates’ status from this screen?
+2. Task 4: Please select skin C and dive into the game.
+3. What do you think of the layout of this screen?
+**[In-game screen] Please review and leave your feedback.**  
+4. What is the information you read on this screen?
+5. What do you think about all the options you have on this screen?
 
-**Review the in-game information and provide feedback:**  
-1. What information can you see on this screen?
-2. What do you think about the options shown?
-
-**Thank you for your time — we are almost finished:**  
-1. Do you have any other questions, feedback, or suggestions?
-2. Do you consider yourself a PC player?
-3. Please leave a name or preferred form of address.
+**Thank you for your patient. We are almost there!**  
+1. Are there any other suggestions or questions about all the presented screens?
+2. Are you a PC Gamer? A. Yes / B. No
+3. Please leave your name below.
 
 ↓↓↓
 
-**Synthesized Findings**
+**Usability Test Result:**
+Convert information into Intelligence
 
-| Screen | Player feedback | Improvement |
-| --- | --- | --- |
-| Home | The meaning of Merge Account was unclear, and it felt less important than the other options. | Remove it from the Home screen and move it to Menu → Settings. |
-| Play and matchmaking | The distinction between role-specific matchmaking and open matchmaking was small, and choosing a role required too many steps. | Add compact role-selection controls directly to this screen and remove the following screen. |
-| Finding Game | Players wanted to see which role they had selected so they could change it. | Display the currently selected role here. |
-| Hero Select | The skin-selection control was not prominent enough. | Reposition the Select Skin dropdown. |
-| Hero Select | The teammate list in the upper-right did not include the player's own portrait, which made the player feel excluded from the team. | Add the player's portrait beside their teammates. |
-| Hero Select | The number of heroes shown did not appear scalable. | Change the layout into a scrollable structure. |
-| In-game | The objective-capture information at the top center was unclear. | Redesign the layout of this information. |
+| Screen                          | Information                                                                                                                         | Intelligence                                                     |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [Home screen]                   | “[Account Merge] is not as important as other options”                                                                              | Remove the [Account Merge] option, merge it into menu→setting.   |
+| [Play Screen & Unranked Screen] | - “The differences between [Role queue] and [Open queue] is not obvious enough”<br>- “Selecting Role is a complicated process”      | Adding interaction of pressing icons of the [Role queue] option. |
+| [Fiding game Screen]            | “I hope I could see what role I chose just in case I want to change it before I find a game. ”                                      | Adding info of “ current chosen role” .                          |
+| [Hero selection Screen]         | “[Selecting skin] is not obvious enough ”                                                                                           | Place the selection on another spot.                             |
+|                                 | “It’s a little jarring to see my list of Teammates on the top right but not include a small portrait of myself included there too.” | Adding “myself” besides “my teammates”                           |
+|                                 | “This screen looks not scalable”                                                                                                    | Try different layout”                                            |
+| [In-game Screen]                | “The location taken indicator is not clear enough.”                                                                                 | Redesign the layout of this part                                 |
 
-#### Wireframe Iteration Based on Testing
+#### WIREFRAME - FINALISED VERSION
+I made some iteration based on the user test result.
 :::columns
 ratio: 1:1
 :::column
@@ -201,7 +228,7 @@ layout: wide
 :::
 
 #### UI Screens
-I referenced the wasteland and American-comic themes in Junker Queen's promotional video, selected several wireframes, and developed them into UI screens.
+Inspired by the promotional trailer of Junker Queen, a hero from the game, I aimed to create a Junkland theme with a comic book style.
 :::image
 src: /assets/projects/overwatch2-casestudy-uiremaster/details/overwatch2-casestudy-uiremaster_uidesign_01.png
 alt: UI design 01
@@ -244,6 +271,13 @@ alt: UI component design
 caption:
 layout: wide
 :::
+
+**MOCKUP**
+The character images and Overwatch logos come from the Junker Queen trailer. The gameplay background is a game screenshot, with minor modifications for a cohesive style, including adjustments to the hero ability skill icons and weapon icon.) I selected three screens from the wireframe and adjusted them after a color blindness test. Here are the final results:
+
+#### CONCLUSION
+Throughout the whole process, I learned how to empathize with players by mapping out the player journey. Breaking down the flowchart and conducting a small usability test helped me better understand the intentions of the game designers and opinions from true players. I am also very pleased that I was able to experiment with a new exaggerated art style.  
+Although there are still areas for improvement, I thoroughly enjoyed the process and believe this project was a success.
 
 #### Usability Testing — Color-vision Testing
 I used a color-vision testing tool to evaluate the completed interfaces and made small color adjustments based on the results.
