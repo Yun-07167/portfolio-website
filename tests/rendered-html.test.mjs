@@ -48,11 +48,11 @@ test("renders project detail content and record-specific metadata", async () => 
   assert.doesNotMatch(html, /\/og\.png/);
 });
 
-test("uses alternate-locale metadata for a locale-only note", async () => {
+test("does not expose metadata for an unpublished note", async () => {
   const response = await render("/notes/game-ui-feedback");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Immediate Feedback and Rhythm in Game UI/);
+  assert.doesNotMatch(html, /Immediate Feedback and Rhythm in Game UI/);
   assert.match(html, /内容不存在/);
   assert.doesNotMatch(html, /\/og\.png/);
 });
