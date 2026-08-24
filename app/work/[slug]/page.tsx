@@ -4,12 +4,16 @@ import DetailPage from "../../components/DetailPage";
 import { siteContent } from "../../generated-content";
 
 export function generateStaticParams() {
-  return siteContent.zh.work.projects.map(project=>({ slug:project.slug }));
+  return [...new Set([
+    ...siteContent.zh.work.projects.map(project=>project.slug),
+    ...siteContent.en.work.projects.map(project=>project.slug),
+  ])].map(slug=>({ slug }));
 }
 
 export async function generateMetadata({ params }:{ params:Promise<{slug:string}> }):Promise<Metadata> {
   const { slug }=await params;
-  const project=siteContent.zh.work.projects.find(entry=>entry.slug===slug);
+  const project=siteContent.zh.work.projects.find(entry=>entry.slug===slug)
+    ?? siteContent.en.work.projects.find(entry=>entry.slug===slug);
   if(!project)return { title:"项目不存在", description:"未找到该项目。", openGraph:{title:"项目不存在",description:"未找到该项目。",images:[]}, twitter:{title:"项目不存在",description:"未找到该项目。",images:[]} };
   const requestHeaders=await headers();
   const host=requestHeaders.get("host")??"localhost:3000";

@@ -7,12 +7,16 @@ function description(body:string) {
 }
 
 export function generateStaticParams() {
-  return siteContent.zh.notes.entries.map(note=>({ slug:note.slug }));
+  return [...new Set([
+    ...siteContent.zh.notes.entries.map(note=>note.slug),
+    ...siteContent.en.notes.entries.map(note=>note.slug),
+  ])].map(slug=>({ slug }));
 }
 
 export async function generateMetadata({ params }:{ params:Promise<{slug:string}> }):Promise<Metadata> {
   const { slug }=await params;
-  const note=siteContent.zh.notes.entries.find(entry=>entry.slug===slug);
+  const note=siteContent.zh.notes.entries.find(entry=>entry.slug===slug)
+    ?? siteContent.en.notes.entries.find(entry=>entry.slug===slug);
   if(!note)return { title:"笔记不存在", description:"未找到该笔记。", openGraph:{title:"笔记不存在",description:"未找到该笔记。",images:[]}, twitter:{title:"笔记不存在",description:"未找到该笔记。",images:[]} };
   const summary=description(note.body);
   return {
