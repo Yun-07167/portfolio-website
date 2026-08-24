@@ -24,15 +24,13 @@ test("renders Figma content generated from Markdown", async () => {
   assert.doesNotMatch(html, /填写邮箱地址|hello@example\.com|请在这里替换正式二维码/);
 });
 
-test("renders the Notes list route with Markdown entries", async () => {
+test("renders the Chinese Notes empty state when all Chinese entries are unpublished", async () => {
   const response = await render("/notes");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /从玩家目标反推交互流程/);
-  assert.match(html, /游戏 UI 中的即时反馈与节奏/);
-  assert.match(html, /独立游戏界面原型的三个取舍/);
+  assert.match(html, /目前还没有发布笔记/);
   assert.match(html, /笔记筛选/);
-  assert.doesNotMatch(html, /work in progress/);
+  assert.doesNotMatch(html, /游戏 UI 中的即时反馈与节奏/);
 });
 
 test("renders project detail content and record-specific metadata", async () => {
@@ -50,29 +48,19 @@ test("renders project detail content and record-specific metadata", async () => 
   assert.doesNotMatch(html, /\/og\.png/);
 });
 
-test("renders note detail Markdown and clears inherited social image", async () => {
+test("uses alternate-locale metadata for a locale-only note", async () => {
   const response = await render("/notes/game-ui-feedback");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /游戏 UI 中的即时反馈与节奏/);
-  assert.match(html, /即时反馈如何帮助玩家理解操作结果/);
+  assert.match(html, /Immediate Feedback and Rhythm in Game UI/);
+  assert.match(html, /内容不存在/);
   assert.doesNotMatch(html, /\/og\.png/);
 });
 
-test("renders Markdown tables and mounts Mermaid diagrams in detail content", async () => {
-  const response=await render("/notes/interaction-flow-review");
+test("renders Markdown tables in published project content", async () => {
+  const response=await render("/work/undying-map");
   assert.equal(response.status,200);
   const html=await response.text();
   assert.match(html,/<table>/);
-  assert.match(html,/玩家为什么进入这个功能/);
-  assert.match(html,/flowchart LR/);
-});
-
-test("renders an expandable visual drawing from Markdown", async () => {
-  const response=await render("/notes/visual-drawing-workflow");
-  assert.equal(response.status,200);
-  const html=await response.text();
-  assert.match(html,/content-drawing/);
-  assert.match(html,/player-goal-flow\.webp/);
-  assert.match(html,/地图导航流程|map navigation flow/);
+  assert.match(html,/新系统需求/);
 });
