@@ -36,7 +36,7 @@ test("mobile header restores pointer interaction for touch input", () => {
 });
 
 test("mobile navigation remains above every subpage and highlights without divider lines", () => {
-  assert.match(styles, /@media \(max-width:600px\)[\s\S]*?\.subpage-shell \{ z-index:auto; \}/);
+  assert.match(styles, /@media \(max-width:600px\)[\s\S]*?\.subpage-shell \{[^}]*z-index:auto;/);
   assert.match(styles, /\.site-header \{[^}]*z-index:1000/);
   assert.match(styles, /\.mobile-nav-drawer nav > a \{[^}]*width:fit-content/);
   assert.doesNotMatch(styles, /\.mobile-nav-drawer nav > a \{[^}]*border-bottom/);

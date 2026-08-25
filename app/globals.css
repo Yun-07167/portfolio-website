@@ -382,8 +382,9 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
 @media (max-width:800px) { .notes-page { padding-top:130px; } .notes-layout { grid-template-columns:1fr; gap:36px; } .notes-filters { grid-row:1; position:static; } .notes-list { min-height:0; } .content-columns,.content-columns.columns-1-2,.content-columns.columns-2-1 { grid-template-columns:1fr; } }
 @media (max-width:560px) { .notes-page > h1 { font-size:46px; } .note-card { padding-inline:8px; } .note-card-title h2 { font-size:22px; } .detail-page { padding-top:130px; } .detail-hero h1 { font-size:40px; } .detail-meta { flex-direction:column; } .detail-meta time { border-right:0; } .markdown-content { margin-top:32px; } .markdown-content { font-size:16px; } .markdown-content h2 { font-size:30px; } }
 @media (max-width:600px) {
+  html,body { max-width:100%; overflow-x:hidden; overflow-x:clip; }
   .page-shell { min-height:auto; padding:0 24px; }
-  .subpage-shell { z-index:auto; }
+  .subpage-shell { z-index:auto; max-width:100%; overflow-x:clip; }
   .site-header { position:fixed; z-index:1000; top:0; left:0; right:0; height:72px; padding:12px 24px; align-items:center; background:var(--background); backdrop-filter:none; overflow:visible; pointer-events:auto; }
   .desktop-nav-scene { display:none; }
   .mobile-nav-shell { display:block; pointer-events:auto; }
@@ -419,6 +420,9 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
   .card-drag { pointer-events:auto; transform:none; cursor:default; touch-action:pan-y; }
   .project-card,.project-card:hover,.project-card:focus-visible { transform:none; }
   .card-project .card-media:hover img,.card-project .card-media:focus-visible img { filter:saturate(0); }
+  .detail-page,.detail-hero,.markdown-content { min-width:0; max-width:100%; }
+  .markdown-content :is(h1,h2,h3,h4,p,li,blockquote,a,figcaption) { overflow-wrap:anywhere; word-break:break-word; }
+  .content-table-scroll,.markdown-content pre,.mermaid-preview { max-width:100%; overflow-x:auto; overscroll-behavior-inline:contain; }
   .markdown-content > :is(.content-media,.content-drawing,.content-mermaid,.content-table-scroll,.content-columns) { content-visibility:auto; contain-intrinsic-size:auto 420px; }
   .avatar:hover .avatar-hover-layer,.avatar:focus-visible .avatar-hover-layer { opacity:0; }
   footer .back-top,.subpage-footer button { display:none; }

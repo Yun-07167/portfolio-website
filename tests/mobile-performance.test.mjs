@@ -39,3 +39,13 @@ test("mobile detail media defers offscreen painting", () => {
 test("mobile language control is separated without moving the theme control", () => {
   assert.match(css, /@media \(max-width:600px\) \{[\s\S]*?\.mode-switcher \.mode-language \{ position:relative; left:-12px; \}/);
 });
+
+test("mobile detail pages cannot widen the viewport", () => {
+  assert.match(css, /@media \(max-width:600px\) \{[\s\S]*?html,body \{[^}]*overflow-x:hidden;[^}]*overflow-x:clip;/);
+  assert.match(css, /@media \(max-width:600px\) \{[\s\S]*?\.markdown-content :is\(h1,h2,h3,h4,p,li,blockquote,a,figcaption\) \{[^}]*overflow-wrap:anywhere;[^}]*word-break:break-word;/);
+});
+
+test("mobile tables and other intentionally wide content keep local horizontal scrolling", () => {
+  assert.match(css, /\.content-table-scroll \{[^}]*overflow-x:auto;/);
+  assert.match(css, /@media \(max-width:600px\) \{[\s\S]*?\.content-table-scroll,\.markdown-content pre,\.mermaid-preview \{[^}]*overflow-x:auto;[^}]*overscroll-behavior-inline:contain;/);
+});
