@@ -414,6 +414,7 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
   .project-card,.project-card:hover,.project-card:focus-visible { transform:none; }
   .card-project .card-media:hover img,.card-project .card-media:focus-visible img { filter:saturate(0); }
   .avatar:hover .avatar-hover-layer,.avatar:focus-visible .avatar-hover-layer { opacity:0; }
+  footer .back-top { display:none; }
   footer { height:150px; margin-top:128px; padding-bottom:60px; }
 }
 :root[data-theme="dark"] :is(.project-card,.snapshot-card)::after { opacity:.14; }
