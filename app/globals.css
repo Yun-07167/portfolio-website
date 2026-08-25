@@ -256,9 +256,11 @@ html[lang="en"] .work-card-copy :is(p,.work-card-meta),html[lang="en"] .works-fi
   .about-copy p { font-size:18px; }
   .works-page > h1 { font-size:46px; }
   .work-card { padding:10px 10px 0; }
-  .work-card-copy h2 { font-size:22px; }
+  .work-card-copy { height:auto; padding:12px 4px 16px; gap:10px; overflow:visible; }
+  .work-card-copy h2 { padding:0; font-size:22px; }
   .work-card-meta { flex-direction:column; gap:6px; }
   .work-card-meta time { border-right:0; padding-right:0; }
+  .work-card-copy > p { flex:none; margin-top:2px; line-height:1.5; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 }
 .notes-page { padding-top:216px; }
 .works-page,.notes-page,.resume-page,.about-page { position:relative; isolation:isolate; }
