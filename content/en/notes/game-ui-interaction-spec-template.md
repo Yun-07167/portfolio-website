@@ -8,8 +8,6 @@ tags:
 published: true
 ---
 
-# Game UI Interaction Design Specification
-
 > **Document name:** `[screen/system name]`  
 > **Version:** `v0.0.0`  
 > **Game version:** `[related game iteration]`  

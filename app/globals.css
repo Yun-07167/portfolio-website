@@ -304,7 +304,8 @@ html[lang="en"] .note-card-meta { letter-spacing:-.045em; }
 .markdown-content p,.markdown-content ul,.markdown-content ol,.markdown-content blockquote { margin:0 0 24px; }
 .markdown-content ul,.markdown-content ol { padding-left:1.4em; }
 .markdown-content a { color:var(--primary-900); border-bottom:1px solid currentColor; }
-.markdown-content blockquote { padding:16px 20px; border-left:4px solid var(--primary-500); background:color-mix(in srgb,var(--surface) 70%,transparent); color:var(--neutral-700); }
+.markdown-content blockquote { padding:16px 20px; border-left:4px solid var(--primary-500); background:color-mix(in srgb,var(--surface) 70%,transparent); color:var(--neutral-700); white-space:pre-line; }
+.markdown-content :not(pre) > code { padding:.08em .32em; border-radius:4px; background:color-mix(in srgb,var(--neutral-600) 14%,transparent); font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; font-size:.9em; white-space:normal; }
 .markdown-content pre { margin:0 0 28px; padding:20px; overflow:auto; background:var(--neutral-900); color:var(--background); font-size:14px; line-height:1.6; }
 .content-media { width:100%; margin:40px 0; }
 .content-media.media-wide { width:min(980px,calc(100vw - 48px)); }
