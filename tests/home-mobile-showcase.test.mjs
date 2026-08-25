@@ -12,6 +12,7 @@ test("mobile home only displays the two recommended project cards", () => {
 
 test("mobile project images preserve their full intrinsic ratio", () => {
   assert.match(mobile, /\.portfolio-stage \{ margin:60px 0 0; height:auto; \}/);
+  assert.match(mobile, /\.card-layout\.card-project \{ width:min\(88%,560px\)!important; justify-self:center; \}/);
   assert.match(mobile, /\.card-layout\.card-project \.card-drag,\.card-layout\.card-project \.card-media \{ height:auto; \}/);
   assert.match(mobile, /\.card-layout\.card-project \.card-media img \{[^}]*height:auto;[^}]*object-fit:contain/);
 });

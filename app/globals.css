@@ -395,8 +395,8 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
   .mobile-nav-layer.is-open .mobile-nav-drawer { transform:translateX(0); }
   .mobile-nav-drawer nav { display:flex; flex-direction:column; align-items:flex-start; gap:4px; }
   .mobile-nav-drawer nav > a { position:relative; width:fit-content; padding:14px 8px; font-family:var(--font-ui); font-size:26px; line-height:1.2; color:var(--neutral-800); }
-  .mobile-nav-drawer nav > a[aria-current="page"] { color:var(--neutral-900); font-weight:500; }
-  .mobile-nav-drawer nav > a[aria-current="page"]::after { content:""; position:absolute; left:8px; right:8px; bottom:8px; height:3px; background:var(--primary-500); }
+  .mobile-nav-drawer nav > a[aria-current="page"] { color:var(--neutral-900); font-weight:500; background:color-mix(in srgb,var(--primary-500) 22%,transparent); }
+  .mobile-nav-drawer nav > a[aria-current="page"]::after { content:none; }
   .mobile-contact-group { width:100%; margin-top:24px; padding-top:16px; display:grid; gap:8px; }
   .mobile-contact-group p { margin:0 0 4px; padding-inline:8px; color:var(--neutral-700); font-family:var(--font-ui); font-size:16px; }
   .mobile-contact-group a,.mobile-contact-group button { min-height:48px; border:0; padding:8px; display:flex; align-items:center; gap:12px; background:transparent; color:var(--neutral-800); font-family:var(--font-ui); font-size:16px; text-align:left; }
@@ -407,6 +407,7 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
   .portfolio-stage { margin:60px 0 0; height:auto; } .canvas { position:relative; top:auto; width:100%; height:auto; display:grid; grid-template-columns:minmax(0,1fr); gap:24px; overflow:visible; }
   .card-layout { position:relative!important; left:auto!important; top:auto!important; width:auto!important; height:auto!important; transform:none!important; }
   .card-layout.card-snapshot,.card-layout.card-decorative { display:none; }
+  .card-layout.card-project { width:min(88%,560px)!important; justify-self:center; }
   .card-layout.card-project .card-drag,.card-layout.card-project .card-media { height:auto; }
   .card-layout.card-project .card-media img { height:auto; object-fit:contain; filter:saturate(0); }
   .card-drag { pointer-events:auto; transform:none; cursor:default; touch-action:pan-y; }

@@ -33,10 +33,13 @@ test("mobile header restores pointer interaction for touch input", () => {
   assert.match(styles, /\.mobile-menu-toggle \{[^}]*touch-action:manipulation/);
 });
 
-test("mobile navigation remains above every subpage and only underlines the active label", () => {
+test("mobile navigation remains above every subpage and highlights without divider lines", () => {
   assert.match(styles, /@media \(max-width:600px\)[\s\S]*?\.subpage-shell \{ z-index:auto; \}/);
   assert.match(styles, /\.site-header \{[^}]*z-index:1000/);
   assert.match(styles, /\.mobile-nav-drawer nav > a \{[^}]*width:fit-content/);
   assert.doesNotMatch(styles, /\.mobile-nav-drawer nav > a \{[^}]*border-bottom/);
-  assert.match(styles, /nav > a\[aria-current="page"\]::after \{[^}]*left:8px; right:8px/);
+  assert.match(styles, /nav > a\[aria-current="page"\] \{[^}]*background:color-mix\(in srgb,var\(--primary-500\) 22%,transparent\)/);
+  assert.match(styles, /nav > a\[aria-current="page"\]::after \{ content:none; \}/);
+  assert.match(styles, /\.mobile-contact-group \{[^}]*padding-top:16px; display:grid/);
+  assert.doesNotMatch(styles, /\.mobile-contact-group \{[^}]*border-top/);
 });
