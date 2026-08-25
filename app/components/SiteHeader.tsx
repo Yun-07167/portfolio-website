@@ -4,6 +4,7 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 import { siteContent } from "../generated-content";
 import ModeSwitcher from "./ModeSwitcher";
+import MobileNavigation from "./MobileNavigation";
 
 export type Language = "zh" | "en";
 export type Theme = "light" | "dark";
@@ -23,7 +24,8 @@ export default function SiteHeader({ language, setLanguage, theme, setTheme, con
     { id: "about" as const, label: t.navigation.about, href: "/about", art: "/assets/about-illustration.svg" },
   ];
   return <header className={`site-header state-${hovered ?? "default"}`} onMouseLeave={() => setHovered(null)}>
-    <nav className="nav-scene" aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
+    <MobileNavigation language={language} content={t} activePage={activePage} onDialog={onDialog} controlsId="mobile-site-navigation"/>
+    <nav className="nav-scene desktop-nav-scene" aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
       <div className="home-zone" onMouseEnter={() => setHovered("home")}>
         <a className="home-link" href="/" aria-current={activePage === "home" ? "page" : undefined} aria-label={t.controls.home_label}>
           <span className="home-default"><img src="/assets/home-face.svg" alt=""/></span>

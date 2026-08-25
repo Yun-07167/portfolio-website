@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { siteContent } from "./generated-content";
 import ModeSwitcher from "./components/ModeSwitcher";
+import MobileNavigation from "./components/MobileNavigation";
 import useSitePreferences from "./components/useSitePreferences";
 
 type Language = "zh" | "en";
@@ -158,7 +159,8 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
     { id: "about" as const, label: t.navigation.about, href: "/about", art: "/assets/about-illustration.svg" },
   ];
   return <header className={`site-header state-${hovered ?? "default"}`} onMouseLeave={() => setHovered(null)}>
-    <nav className="nav-scene" aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
+    <MobileNavigation language={language} content={t} activePage="home" onDialog={onDialog} controlsId="mobile-home-navigation"/>
+    <nav className="nav-scene desktop-nav-scene" aria-label={language === "zh" ? "主导航" : "Primary navigation"}>
       <div className="home-zone" onMouseEnter={() => setHovered("home")}>
         <Link className="home-link" href="/" aria-current="page" aria-label={t.controls.home_label}>
           <span className="home-default"><img src="/assets/home-face.svg" alt=""/></span>
