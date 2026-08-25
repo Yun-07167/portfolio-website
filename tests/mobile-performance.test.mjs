@@ -31,3 +31,11 @@ test("mobile work cards defer offscreen rendering and avoid expensive layers", (
 test("mobile fixed header does not use backdrop blur", () => {
   assert.match(css, /@media \(max-width:600px\) \{[\s\S]*?\.site-header \{[^}]*background:var\(--background\);[^}]*backdrop-filter:none;/);
 });
+
+test("mobile detail media defers offscreen painting", () => {
+  assert.match(css, /@media \(max-width:600px\) \{[\s\S]*?\.markdown-content > :is\(\.content-media,\.content-drawing,\.content-mermaid,\.content-table-scroll,\.content-columns\) \{[^}]*content-visibility:auto;[^}]*contain-intrinsic-size:auto 420px;/);
+});
+
+test("mobile language control is separated without moving the theme control", () => {
+  assert.match(css, /@media \(max-width:600px\) \{[\s\S]*?\.mode-switcher \.mode-language \{ position:relative; left:-12px; \}/);
+});

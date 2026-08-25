@@ -31,5 +31,3 @@ title: 全流程游玩演示
 caption: 全流程游玩演示
 layout: wide
 :::
-
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=117132180325559&bvid=BV1Yr8T6pEMG&cid=41094286425&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>

@@ -407,6 +407,7 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
   .mobile-contact-group a,.mobile-contact-group button { min-height:48px; border:0; padding:8px; display:flex; align-items:center; gap:12px; background:transparent; color:var(--neutral-800); font-family:var(--font-ui); font-size:16px; text-align:left; }
   .mobile-contact-group img { width:28px; height:28px; object-fit:contain; filter:var(--asset-filter); }
   .mode-switcher { gap:4px; padding:5px; } .mode-switcher button { width:26px; height:26px; }
+  .mode-switcher .mode-language { position:relative; left:-12px; }
   .hero,.portfolio-stage,footer { position:relative; top:auto; left:auto; width:auto; }
   .hero { padding-top:130px; } .hero h1 { font-size:clamp(30px,7vw,46px); white-space:normal; } .hero p { width:auto; font-size:20px; }
   .portfolio-stage { margin:60px 0 0; height:auto; } .canvas { position:relative; top:auto; width:100%; height:auto; display:grid; grid-template-columns:minmax(0,1fr); gap:24px; overflow:visible; }
@@ -418,6 +419,7 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
   .card-drag { pointer-events:auto; transform:none; cursor:default; touch-action:pan-y; }
   .project-card,.project-card:hover,.project-card:focus-visible { transform:none; }
   .card-project .card-media:hover img,.card-project .card-media:focus-visible img { filter:saturate(0); }
+  .markdown-content > :is(.content-media,.content-drawing,.content-mermaid,.content-table-scroll,.content-columns) { content-visibility:auto; contain-intrinsic-size:auto 420px; }
   .avatar:hover .avatar-hover-layer,.avatar:focus-visible .avatar-hover-layer { opacity:0; }
   footer .back-top,.subpage-footer button { display:none; }
   footer { height:150px; margin-top:128px; padding-bottom:60px; }
