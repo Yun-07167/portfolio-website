@@ -193,7 +193,7 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
               </a>)}
           </div>}
         </div>
-        <a className="nav-label" href={item.href} onMouseEnter={() => setHovered(item.id)} onFocus={() => setHovered(item.id)} onBlur={() => setHovered(current => current === item.id ? null : current)} onClick={item.id === "connect" ? e => e.preventDefault() : undefined}><HeaderHoverRing navId={item.id}/>{item.label}</a>
+        <a className="nav-label" href={item.href} onMouseEnter={() => setHovered(item.id)} onFocus={() => setHovered(item.id)} onBlur={() => setHovered(current => current === item.id ? null : current)} onClick={item.id === "connect" ? e => e.preventDefault() : undefined}><HeaderHoverRing navId={item.id} active={hovered === item.id}/>{item.label}</a>
       </div>)}
     </nav>
     <ModeSwitcher language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} languageLabel={t.controls.switch_to_other_language} themeLabel={t.controls.switch_theme}/>

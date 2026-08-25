@@ -47,10 +47,11 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .nav-about .active-underline { mask-image:url("/assets/about-active-underline.svg"); }
 .nav-projects .active-underline,.nav-notes .active-underline { mask-image:url("/assets/projects-active-underline.svg"); }
 .active-underline img { display:block; width:87.8145px; height:6.87717px; max-width:none; opacity:0; }
-.drawn-ring { position:absolute; inset:0; opacity:0; clip-path:inset(0 100% 0 0); transition:opacity .08s ease,clip-path 0s .08s; pointer-events:none; }
-.drawn-ring img { position:absolute; left:50%; top:50%; width:104px; height:40px; object-fit:contain; transform:translate(-50%,-50%); filter:var(--nav-art-filter); }
-.nav-about .drawn-ring img { width:104px; height:43px; }
-.state-projects .nav-projects .drawn-ring,.state-notes .nav-notes .drawn-ring,.state-connect .nav-connect .drawn-ring,.state-resume .nav-resume .drawn-ring,.state-about .nav-about .drawn-ring { opacity:1; clip-path:inset(0); transition:opacity .04s ease,clip-path .28s cubic-bezier(.55,.05,.2,1); }
+.drawn-ring { position:absolute; inset:0; opacity:0; overflow:visible; pointer-events:none; }
+.drawn-ring-svg { position:absolute; left:50%; top:50%; display:block; width:104px; height:40px; overflow:visible; transform:translate(-50%,-50%); }
+.drawn-ring-svg > svg { display:block; width:104px; height:40px; max-width:none; overflow:visible; filter:var(--nav-art-filter); }
+.nav-about .drawn-ring-svg,.nav-about .drawn-ring-svg > svg { width:104px; height:43px; overflow:visible; }
+.state-projects .nav-projects .drawn-ring,.state-notes .nav-notes .drawn-ring,.state-connect .nav-connect .drawn-ring,.state-resume .nav-resume .drawn-ring,.state-about .nav-about .drawn-ring { opacity:1; }
 .social-actions { width:max-content; min-width:102px; display:grid; justify-items:center; gap:3px; }
 .social-action { position:relative; width:max-content; min-width:102px; height:30px; padding:0; border:0; background:transparent; display:flex; justify-content:center; align-items:center; font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; pointer-events:auto; overflow:visible; }
 .social-icon-frame { flex:0 0 30px; width:30px; height:30px; display:grid; place-items:center; }

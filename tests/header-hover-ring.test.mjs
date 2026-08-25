@@ -8,17 +8,23 @@ const ring=readFileSync(new URL("../app/components/HeaderHoverRing.tsx",import.m
 const css=readFileSync(new URL("../app/globals.css",import.meta.url),"utf8");
 
 test("all desktop headers preload the same persistent hover-ring component",()=>{
-  assert.match(home,/<HeaderHoverRing navId=\{item\.id\}\/>/);
-  assert.match(siteHeader,/<HeaderHoverRing navId=\{item\.id\}\/>/);
+  assert.match(home,/<HeaderHoverRing navId=\{item\.id\} active=\{hovered === item\.id\}\/>/);
+  assert.match(siteHeader,/<HeaderHoverRing navId=\{item\.id\} active=\{hovered === item\.id\}\/>/);
   assert.doesNotMatch(home,/hovered === item\.id && <img/);
   assert.doesNotMatch(siteHeader,/hovered === item\.id && <img/);
-  assert.match(ring,/<img src=\{navId === "about"/);
+  assert.match(ring,/void loadRing\(source\)/);
 });
 
-test("ring activation is scoped to the label state and has deterministic reveal timing",()=>{
+test("ring activation is scoped to the label and restarts the real SVG path animation",()=>{
   assert.doesNotMatch(css,/\.nav-zone:hover \.drawn-ring/);
-  assert.match(css,/\.drawn-ring \{[^}]*clip-path:inset\(0 100% 0 0\)/);
-  assert.match(css,/\.state-projects \.nav-projects \.drawn-ring[^}]*clip-path:inset\(0\);[^}]*clip-path \.28s/);
+  assert.doesNotMatch(css,/\.drawn-ring \{[^}]*clip-path/);
+  assert.match(ring,/markup\.replace\("animation:draw-ring \.5s", "animation:draw-ring \.3s"\)/);
+  assert.match(ring,/active && markup && <span className="drawn-ring-svg" dangerouslySetInnerHTML/);
   assert.match(home,/className="nav-label"[^>]*onMouseEnter=\{\(\) => setHovered\(item\.id\)\}/);
   assert.match(siteHeader,/className="nav-label"[^>]*onMouseEnter=\{\(\) => setHovered\(item\.id\)\}/);
+});
+
+test("about ring preserves its taller overflow without clipping",()=>{
+  assert.match(css,/\.drawn-ring \{[^}]*overflow:visible/);
+  assert.match(css,/\.nav-about \.drawn-ring-svg,\.nav-about \.drawn-ring-svg > svg \{[^}]*height:43px;[^}]*overflow:visible/);
 });
