@@ -17,3 +17,8 @@ test("language icon is replaced and the preference is persisted", () => {
   assert.match(preferencesSource, /localStorage\.getItem\(THEME_STORAGE_KEY\)/);
   assert.match(preferencesSource, /localStorage\.setItem\(THEME_STORAGE_KEY, theme\)/);
 });
+
+test("a shared lang query overrides the saved language", () => {
+  assert.match(preferencesSource, /new URLSearchParams\(window\.location\.search\)\.get\("lang"\)/);
+  assert.match(preferencesSource, /requestedLanguage === "zh" \|\| requestedLanguage === "en"/);
+});

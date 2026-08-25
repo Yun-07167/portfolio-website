@@ -13,9 +13,11 @@ export default function useSitePreferences() {
 
   useEffect(() => {
     queueMicrotask(() => {
+      const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
       const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
       const savedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-      if (savedLanguage === "zh" || savedLanguage === "en") setLanguage(savedLanguage);
+      if (requestedLanguage === "zh" || requestedLanguage === "en") setLanguage(requestedLanguage);
+      else if (savedLanguage === "zh" || savedLanguage === "en") setLanguage(savedLanguage);
       if (savedTheme === "light" || savedTheme === "dark") setTheme(savedTheme);
       setReady(true);
     });
