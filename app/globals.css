@@ -403,8 +403,15 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
   .mode-switcher { gap:4px; padding:5px; } .mode-switcher button { width:26px; height:26px; }
   .hero,.portfolio-stage,footer { position:relative; top:auto; left:auto; width:auto; }
   .hero { padding-top:130px; } .hero h1 { font-size:clamp(30px,7vw,46px); white-space:normal; } .hero p { width:auto; font-size:20px; }
-  .portfolio-stage { margin-top:60px; height:auto; } .canvas { position:relative; top:auto; width:auto; height:auto; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .card-layout { position:relative!important; left:auto!important; top:auto!important; width:auto!important; height:auto!important; aspect-ratio:354/196; transform:none!important; } .card-drag { pointer-events:auto; transform:none; } .card-decorative { display:none; } .project-card { transform:none; }
+  .portfolio-stage { margin-top:60px; height:auto; } .canvas { position:relative; top:auto; width:auto; height:auto; display:grid; grid-template-columns:1fr; gap:24px; }
+  .card-layout { position:relative!important; left:auto!important; top:auto!important; width:auto!important; height:auto!important; transform:none!important; }
+  .card-layout.card-snapshot,.card-layout.card-decorative { display:none; }
+  .card-layout.card-project .card-drag,.card-layout.card-project .card-media { height:auto; }
+  .card-layout.card-project .card-media img { height:auto; object-fit:contain; filter:saturate(0); }
+  .card-drag { pointer-events:auto; transform:none; cursor:default; touch-action:pan-y; }
+  .project-card,.project-card:hover,.project-card:focus-visible { transform:none; }
+  .card-project .card-media:hover img,.card-project .card-media:focus-visible img { filter:saturate(0); }
+  .avatar:hover .avatar-hover-layer,.avatar:focus-visible .avatar-hover-layer { opacity:0; }
   footer { height:150px; margin-top:128px; padding-bottom:60px; }
 }
 :root[data-theme="dark"] :is(.project-card,.snapshot-card)::after { opacity:.14; }
@@ -412,5 +419,5 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
 :root[data-theme="dark"] .work-card::after { mix-blend-mode:normal; }
 :root[data-theme="dark"] .work-card:hover::after,:root[data-theme="dark"] .work-card:focus-visible::after { opacity:.22; }
 :root[data-theme="dark"] .work-card:active::after { opacity:.38; }
-@media (max-width:560px) { .site-header { padding-inline:16px; } .hero-title-row { align-items:flex-start; gap:12px; } .avatar { --avatar-size:48px; --avatar-art-size:55.314px; --avatar-center-offset:.344px; --avatar-hover-offset:2.312px; } .hero h1 { padding:4px 0; } .canvas { grid-template-columns:1fr; } }
+@media (max-width:560px) { .site-header { padding-inline:16px; } .hero-title-row { align-items:flex-start; gap:12px; } .avatar { --avatar-size:48px; --avatar-art-size:55.314px; --avatar-center-offset:.344px; --avatar-hover-offset:2.312px; } .hero h1 { padding:4px 0; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; } .card-layout { transform:none!important; } .project-card { transform:none!important; } }
