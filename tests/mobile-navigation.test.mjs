@@ -27,3 +27,8 @@ test("home and subpages reuse the same mobile drawer", () => {
   assert.match(styles, /\.mobile-nav-drawer \{[^}]*transform:translateX\(-104%\)/);
   assert.match(styles, /\.mobile-nav-layer\.is-open \.mobile-nav-drawer \{ transform:translateX\(0\); \}/);
 });
+
+test("mobile header restores pointer interaction for touch input", () => {
+  assert.match(styles, /@media \(max-width:600px\)[\s\S]*?\.site-header \{[^}]*pointer-events:auto/);
+  assert.match(styles, /\.mobile-menu-toggle \{[^}]*touch-action:manipulation/);
+});
