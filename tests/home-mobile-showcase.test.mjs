@@ -7,10 +7,11 @@ const mobile = styles.match(/@media \(max-width:600px\) \{([\s\S]*?)\n\}/)?.[1] 
 
 test("mobile home only displays the two recommended project cards", () => {
   assert.match(mobile, /\.card-layout\.card-snapshot,\.card-layout\.card-decorative \{ display:none; \}/);
-  assert.match(mobile, /\.canvas \{[^}]*grid-template-columns:1fr/);
+  assert.match(mobile, /\.canvas \{[^}]*grid-template-columns:minmax\(0,1fr\)/);
 });
 
 test("mobile project images preserve their full intrinsic ratio", () => {
+  assert.match(mobile, /\.portfolio-stage \{ margin:60px 0 0; height:auto; \}/);
   assert.match(mobile, /\.card-layout\.card-project \.card-drag,\.card-layout\.card-project \.card-media \{ height:auto; \}/);
   assert.match(mobile, /\.card-layout\.card-project \.card-media img \{[^}]*height:auto;[^}]*object-fit:contain/);
 });
