@@ -234,7 +234,7 @@ html[lang="en"] .work-card-copy :is(p,.work-card-meta),html[lang="en"] .works-fi
   .content-page { padding-top:72px; }
   .resume-page { padding-top:72px; }
   .resume-page .content-page-title { flex-wrap:wrap; }
-  .resume-entry-heading { grid-template-columns:1fr; gap:8px; }
+  .resume-entry-heading { flex-direction:column; gap:4px; }
   .resume-entry time { padding:0; text-align:left; }
   .caption-row { flex-direction:column; gap:4px; }
   .caption-row time { text-align:left; }

@@ -18,7 +18,7 @@
     "build": "vinext build",
     "pages:build": "npm run build && node scripts/export-github-pages.mjs",
     "start": "vinext start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs tests/home-showcase-content.test.mjs tests/home-mobile-showcase.test.mjs tests/work-mobile-card.test.mjs tests/language-toggle.test.mjs tests/notes-illustration.test.mjs tests/content-body.test.mjs tests/mobile-navigation.test.mjs",
+    "test": "npm run build && node --test tests/rendered-html.test.mjs tests/home-showcase-content.test.mjs tests/home-mobile-showcase.test.mjs tests/work-mobile-card.test.mjs tests/resume-mobile.test.mjs tests/language-toggle.test.mjs tests/notes-illustration.test.mjs tests/content-body.test.mjs tests/mobile-navigation.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"
   },
