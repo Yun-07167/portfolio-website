@@ -187,7 +187,6 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
           </div>}
         </div>
         <a className="nav-label" href={item.href} onFocus={() => setHovered(item.id)} onClick={item.id === "connect" ? e => e.preventDefault() : undefined}><span className="drawn-ring">{hovered === item.id && <img src={item.id === "about" ? "/assets/connects-circle.svg" : "/assets/projects-circle.svg"} alt=""/>}</span>{item.label}</a>
-        {item.id === "notes" && <span className="nav-status-caption" aria-hidden="true">{language === "zh" ? "施工中" : "in progress"}</span>}
       </div>)}
     </nav>
     <ModeSwitcher language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} languageLabel={t.controls.switch_to_other_language} themeLabel={t.controls.switch_theme}/>

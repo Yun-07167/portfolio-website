@@ -38,8 +38,6 @@ button:focus-visible,a:focus-visible,[role="img"]:focus-visible { outline:3px so
 .nav-notes .nav-reveal { top:42px; }
 .nav-notes-illustration-frame { position:relative; display:block; width:62px; height:64px; overflow:visible; }
 .nav-notes-illustration-frame .nav-illustration { position:absolute; left:-12.48px; top:-2px; width:77.5623px; height:69.3808px; padding:0; object-fit:contain; max-width:none; }
-.nav-status-caption { position:absolute; top:150px; left:50%; width:max-content; color:var(--neutral-600); font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.25; letter-spacing:-.045em; white-space:nowrap; opacity:0; visibility:hidden; transform:translate(-50%,4px); transition:opacity .16s ease,transform .28s cubic-bezier(.22,1,.36,1),visibility 0s .28s; pointer-events:none; }
-.nav-notes:hover .nav-status-caption,.state-notes .nav-notes .nav-status-caption { opacity:1; visibility:visible; transform:translate(-50%,0); transition-delay:0s; }
 .nav-label { position:relative; width:84px; height:30px; display:grid; place-items:center; color:var(--nav-text); font-family:var(--font-ui); font-size:16px; font-weight:400; line-height:1.03; letter-spacing:-.045em; white-space:nowrap; transition:color .18s ease; }
 .nav-zone:hover .nav-label,.nav-label:focus-visible,.state-projects .nav-projects .nav-label,.state-notes .nav-notes .nav-label,.state-connect .nav-connect .nav-label,.state-resume .nav-resume .nav-label,.state-about .nav-about .nav-label { color:var(--nav-hover); }
 .nav-zone.is-active .nav-label { color:var(--neutral-900); }
