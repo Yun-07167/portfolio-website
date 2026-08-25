@@ -1,0 +1,33 @@
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import test from "node:test";
+
+const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
+const home = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+const work = readFileSync(new URL("../app/work/WorkPage.tsx", import.meta.url), "utf8");
+
+test("work-card GSAP tilt is limited to desktop fine pointers", () => {
+  assert.match(work, /matchMedia\("\(min-width: 801px\) and \(hover: hover\) and \(pointer: fine\)"\)/);
+  assert.match(work, /if \(!tiltEnabled \|\| !cardRef\.current\) return;/);
+  assert.match(work, /className=\{`work-card\$\{tiltEnabled \? " is-tilt-enabled" : ""\}`\}/);
+  assert.match(css, /\.work-card\.is-tilt-enabled \{[^}]*transform:perspective\(1100px\)[^}]*will-change:transform;/s);
+});
+
+test("home drag and tilt effects ignore touch-style pointers", () => {
+  assert.match(home, /function supportsDesktopCardEffects\(\)/);
+  assert.match(home, /matchMedia\("\(min-width: 601px\) and \(hover: hover\) and \(pointer: fine\)"\)/);
+  assert.equal((home.match(/!supportsDesktopCardEffects\(\)/g) ?? []).length, 3);
+});
+
+test("loaded image placeholders stop their pulse animation", () => {
+  assert.match(css, /\.work-card-media\.is-loaded \.work-card-placeholder \{ display:none; \}/);
+});
+
+test("mobile work cards defer offscreen rendering and avoid expensive layers", () => {
+  assert.match(css, /@media \(max-width:800px\) \{[\s\S]*?\.work-card \{[^}]*transform:none;[^}]*will-change:auto;[^}]*content-visibility:auto;[^}]*contain-intrinsic-size:auto 446px;/);
+  assert.match(css, /@media \(max-width:800px\) \{[\s\S]*?\.work-card::before,\.work-card::after \{ content:none; \}/);
+});
+
+test("mobile fixed header does not use backdrop blur", () => {
+  assert.match(css, /@media \(max-width:600px\) \{[\s\S]*?\.site-header \{[^}]*background:var\(--background\);[^}]*backdrop-filter:none;/);
+});

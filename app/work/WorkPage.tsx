@@ -28,18 +28,28 @@ function ProjectCover({ src, alt, priority = false }: { src: string; alt: string
 
 function TiltCard({ children, href }: { children: ReactNode; href:string }) {
   const cardRef = useRef<HTMLElement>(null);
+  const [tiltEnabled, setTiltEnabled] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 801px) and (hover: hover) and (pointer: fine)");
+    const syncTiltCapability = () => setTiltEnabled(media.matches);
+    syncTiltCapability();
+    media.addEventListener("change", syncTiltCapability);
+    return () => media.removeEventListener("change", syncTiltCapability);
+  }, []);
+
   const onPointerMove = (event: React.PointerEvent<HTMLElement>) => {
-    if (!cardRef.current) return;
+    if (!tiltEnabled || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
     const px = ((event.clientX - rect.left) / rect.width - .5) * 2;
     const py = ((event.clientY - rect.top) / rect.height - .5) * 2;
     gsap.to(cardRef.current, { "--work-tilt-x": `${-py * 3.5}deg`, "--work-tilt-y": `${px * 4.5}deg`, duration: .38, ease: "power3.out", overwrite: "auto" });
   };
   const resetTilt = () => {
-    if (!cardRef.current) return;
+    if (!tiltEnabled || !cardRef.current) return;
     gsap.to(cardRef.current, { "--work-tilt-x": "0deg", "--work-tilt-y": "0deg", duration: .62, ease: "power3.out", overwrite: "auto" });
   };
-  return <article ref={cardRef} className="work-card" onPointerMove={onPointerMove} onPointerLeave={resetTilt} onBlur={resetTilt}><a className="work-card-link" href={href}>{children}</a></article>;
+  return <article ref={cardRef} className={`work-card${tiltEnabled ? " is-tilt-enabled" : ""}`} onPointerMove={onPointerMove} onPointerLeave={resetTilt} onBlur={resetTilt}><a className="work-card-link" href={href}>{children}</a></article>;
 }
 
 export default function WorkPage() {

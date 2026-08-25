@@ -39,6 +39,10 @@ function getAssembledScale() {
   return Math.min(1, Math.max(MIN_ASSEMBLED_SCALE, (window.innerHeight - STAGE_SAFE_GUTTER * 2) / ASSEMBLED_HEIGHT));
 }
 
+function supportsDesktopCardEffects() {
+  return typeof window !== "undefined" && window.matchMedia("(min-width: 601px) and (hover: hover) and (pointer: fine)").matches;
+}
+
 const slotLayouts: Record<string, { initial: CardLayout; assembled: CardLayout }> = {
   "featured-left": { initial: { x: 377.5, y: 175.7, w: 250.934, h: 145.247, rot: 0 }, assembled: { x: 15.5, y: 0, w: 425, h: 246, rot: -2.2 } },
   "featured-right": { initial: { x: 595.542, y: 79.739, w: 269.935, h: 182.617, rot: 9.13 }, assembled: { x: 464.5, y: 133, w: 425, h: 246, rot: 2.1 } },
@@ -79,7 +83,7 @@ function PortfolioCard({ card, order, phase, language }: { card: Card; order: nu
   }, [canDrag, order]);
 
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!canDrag || event.button !== 0 || !dragRef.current) return;
+    if (!supportsDesktopCardEffects() || !canDrag || event.button !== 0 || !dragRef.current) return;
     const node = dragRef.current;
     const wrapper = node.parentElement;
     const boundsNode = wrapper?.parentElement;
@@ -111,14 +115,14 @@ function PortfolioCard({ card, order, phase, language }: { card: Card; order: nu
   };
 
   const onTiltMove = (event: React.PointerEvent<HTMLAnchorElement>) => {
-    if (phase !== "assembled" || card.kind !== "project" || !tiltRef.current) return;
+    if (!supportsDesktopCardEffects() || phase !== "assembled" || card.kind !== "project" || !tiltRef.current) return;
     const rect = tiltRef.current.getBoundingClientRect();
     const px = ((event.clientX - rect.left) / rect.width - .5) * 2;
     const py = ((event.clientY - rect.top) / rect.height - .5) * 2;
     gsap.to(tiltRef.current, { "--tilt-x": `${-py * 4}deg`, "--tilt-y": `${px * 5}deg`, duration: .38, ease: "power3.out", overwrite: "auto" });
   };
   const resetTilt = () => {
-    if (!tiltRef.current) return;
+    if (!supportsDesktopCardEffects() || !tiltRef.current) return;
     gsap.to(tiltRef.current, { "--tilt-x": "0deg", "--tilt-y": "0deg", duration: .62, ease: "power3.out", overwrite: "auto" });
   };
 

@@ -185,7 +185,8 @@ html[lang="en"] .resume-page :is(.resume-entry-body p,.resume-profile p,.resume-
 .works-page > h1 { width:100%; min-height:60px; margin:0; color:var(--neutral-800); font-family:var(--font-display); font-size:50px; font-weight:500; line-height:1.2; letter-spacing:-.045em; }
 .works-layout { display:grid; grid-template-columns:minmax(0,680px) 215.358px; gap:89.642px; align-items:start; margin-top:20px; }
 .works-list { display:flex; flex-direction:column; gap:24px; min-width:0; }
-.work-card { --work-tilt-x:0deg; --work-tilt-y:0deg; position:relative; isolation:isolate; width:100%; min-height:446px; padding:16px 16px 0; overflow:hidden; background:var(--work-card-surface); color:var(--neutral-800); cursor:pointer; transform:perspective(1100px) rotateX(var(--work-tilt-x)) rotateY(var(--work-tilt-y)); transform-style:preserve-3d; will-change:transform; transition:filter .16s ease; }
+.work-card { --work-tilt-x:0deg; --work-tilt-y:0deg; position:relative; isolation:isolate; width:100%; min-height:446px; padding:16px 16px 0; overflow:hidden; background:var(--work-card-surface); color:var(--neutral-800); cursor:pointer; transform:none; transition:filter .16s ease; }
+.work-card.is-tilt-enabled { transform:perspective(1100px) rotateX(var(--work-tilt-x)) rotateY(var(--work-tilt-y)); transform-style:preserve-3d; will-change:transform; }
 .work-card::before { content:""; position:absolute; z-index:0; inset:0; background:var(--page-texture) center / 384px 384px repeat; opacity:.64; pointer-events:none; }
 .work-card > * { position:relative; z-index:1; }
 .work-card-link { display:block; color:inherit; }
@@ -200,7 +201,7 @@ html[lang="en"] .resume-page :is(.resume-entry-body p,.resume-profile p,.resume-
 .work-card-media.is-loaded .work-card-cover { opacity:1; }
 .work-card-placeholder { position:absolute; z-index:1; inset:0; display:grid; place-items:center; background:#2a2a2a; }
 .work-card-placeholder img { width:64px; height:64px; opacity:.65; filter:invert(1); animation:work-placeholder-pulse 1.4s ease-in-out infinite; }
-.work-card-media.is-loaded .work-card-placeholder { visibility:hidden; }
+.work-card-media.is-loaded .work-card-placeholder { display:none; }
 .work-card-media.is-error .work-card-placeholder img { animation:none; opacity:.85; }
 @keyframes work-placeholder-pulse { 0%,100% { opacity:.35; transform:scale(.96); } 50% { opacity:.8; transform:scale(1); } }
 .work-card-copy { height:122px; padding:8px 0; overflow:hidden; display:flex; flex-direction:column; gap:4px; }
@@ -244,7 +245,9 @@ html[lang="en"] .work-card-copy :is(p,.work-card-meta),html[lang="en"] .works-fi
   .works-filters { position:static; order:-1; }
   .year-options { flex-flow:row wrap; gap:8px; }
   .year-options button { width:auto; min-height:36px; border:1px solid var(--neutral-600); }
-  .work-card { min-height:0; }
+  .work-card { min-height:0; transform:none; transform-style:flat; will-change:auto; filter:none; content-visibility:auto; contain-intrinsic-size:auto 446px; }
+  .work-card::before,.work-card::after { content:none; }
+  .work-card:hover,.work-card:focus-visible,.work-card:active { filter:none; }
   .work-card-media { height:auto; aspect-ratio:648/306; }
 }
 @media (max-width:560px) {
@@ -381,7 +384,7 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
 @media (max-width:600px) {
   .page-shell { min-height:auto; padding:0 24px; }
   .subpage-shell { z-index:auto; }
-  .site-header { position:fixed; z-index:1000; top:0; left:0; right:0; height:72px; padding:12px 24px; align-items:center; background:color-mix(in srgb,var(--background) 88%,transparent); backdrop-filter:blur(10px); overflow:visible; pointer-events:auto; }
+  .site-header { position:fixed; z-index:1000; top:0; left:0; right:0; height:72px; padding:12px 24px; align-items:center; background:var(--background); backdrop-filter:none; overflow:visible; pointer-events:auto; }
   .desktop-nav-scene { display:none; }
   .mobile-nav-shell { display:block; pointer-events:auto; }
   .mobile-menu-toggle { position:relative; z-index:130; width:44px; height:44px; border:0; padding:10px 8px; display:flex; flex-direction:column; justify-content:center; gap:6px; background:transparent; touch-action:manipulation; }
