@@ -7,6 +7,7 @@ import Link from "next/link";
 import { siteContent } from "./generated-content";
 import ModeSwitcher from "./components/ModeSwitcher";
 import MobileNavigation from "./components/MobileNavigation";
+import HeaderHoverRing from "./components/HeaderHoverRing";
 import useSitePreferences from "./components/useSitePreferences";
 
 type Language = "zh" | "en";
@@ -171,7 +172,7 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
           <span className="home-hover"><img src="/assets/home-hover-transparent.png" alt=""/></span>
         </Link>
       </div>
-      {nav.map(item => <div className={`nav-zone nav-${item.id}`} key={item.id} onMouseEnter={() => setHovered(item.id)}>
+      {nav.map(item => <div className={`nav-zone nav-${item.id}`} key={item.id} onMouseLeave={() => setHovered(current => current === item.id ? null : current)}>
         <div className="nav-reveal">
           {item.id === "notes" ? (
             <span className="nav-notes-illustration-frame" aria-hidden="true">
@@ -192,7 +193,7 @@ function Header({ language, setLanguage, theme, setTheme, content, onDialog }: {
               </a>)}
           </div>}
         </div>
-        <a className="nav-label" href={item.href} onFocus={() => setHovered(item.id)} onClick={item.id === "connect" ? e => e.preventDefault() : undefined}><span className="drawn-ring">{hovered === item.id && <img src={item.id === "about" ? "/assets/connects-circle.svg" : "/assets/projects-circle.svg"} alt=""/>}</span>{item.label}</a>
+        <a className="nav-label" href={item.href} onMouseEnter={() => setHovered(item.id)} onFocus={() => setHovered(item.id)} onBlur={() => setHovered(current => current === item.id ? null : current)} onClick={item.id === "connect" ? e => e.preventDefault() : undefined}><HeaderHoverRing navId={item.id}/>{item.label}</a>
       </div>)}
     </nav>
     <ModeSwitcher language={language} setLanguage={setLanguage} theme={theme} setTheme={setTheme} languageLabel={t.controls.switch_to_other_language} themeLabel={t.controls.switch_theme}/>
