@@ -24,12 +24,14 @@ test("renders Figma content generated from Markdown", async () => {
   assert.doesNotMatch(html, /填写邮箱地址|hello@example\.com|请在这里替换正式二维码/);
 });
 
-test("renders the Chinese Notes empty state when all Chinese entries are unpublished", async () => {
+test("renders published Chinese notes", async () => {
   const response = await render("/notes");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /目前还没有发布笔记/);
+  assert.match(html, /Unity UI 命名规则与文件规范/);
+  assert.match(html, /游戏界面交互设计说明文档模板/);
   assert.match(html, /笔记筛选/);
+  assert.doesNotMatch(html, /目前还没有发布笔记/);
   assert.doesNotMatch(html, /游戏 UI 中的即时反馈与节奏/);
 });
 
