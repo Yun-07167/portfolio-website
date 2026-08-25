@@ -23,6 +23,6 @@ test("mobile home disables hover, tilt and drag presentation", () => {
   assert.match(mobile, /\.avatar:hover \.avatar-hover-layer,\.avatar:focus-visible \.avatar-hover-layer \{ opacity:0; \}/);
 });
 
-test("mobile footer hides the back-to-top arrow", () => {
-  assert.match(mobile, /footer \.back-top \{ display:none; \}/);
+test("every mobile footer hides the back-to-top arrow", () => {
+  assert.match(mobile, /footer \.back-top,\.subpage-footer button \{ display:none; \}/);
 });
