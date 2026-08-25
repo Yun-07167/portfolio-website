@@ -60,7 +60,10 @@ export default function MobileNavigation({ language, content, activePage, onDial
       <button className="mobile-nav-backdrop" type="button" tabIndex={open ? 0 : -1} aria-label={closeLabel} onClick={close}/>
       <div ref={drawerRef} className="mobile-nav-drawer">
         <nav id={controlsId} aria-label={language === "zh" ? "移动端主导航" : "Mobile primary navigation"}>
-          {navItems.map(item => <a key={item.id} href={item.href} aria-current={activePage === item.id ? "page" : undefined} tabIndex={open ? 0 : -1} onClick={close}>{item.label}</a>)}
+          {navItems.map(item => {
+            const isActive = activePage === item.id;
+            return <a key={item.id} className={isActive ? "is-active" : undefined} href={item.href} aria-current={isActive ? "page" : undefined} tabIndex={open ? 0 : -1} onClick={close}>{item.label}</a>;
+          })}
           <div className="mobile-contact-group">
             <p>{content.navigation.contact}</p>
             {content.contact_options.map(option => option.action === "dialog"

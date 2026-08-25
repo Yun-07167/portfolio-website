@@ -11,6 +11,8 @@ test("mobile navigation exposes synchronized disclosure semantics", () => {
   assert.match(source, /aria-expanded=\{open\}/);
   assert.match(source, /aria-controls=\{controlsId\}/);
   assert.match(source, /<nav id=\{controlsId\}/);
+  assert.match(source, /className=\{isActive \? "is-active" : undefined\}/);
+  assert.match(source, /aria-current=\{isActive \? "page" : undefined\}/);
 });
 
 test("mobile navigation supports every requested close path and focus return", () => {
@@ -38,8 +40,8 @@ test("mobile navigation remains above every subpage and highlights without divid
   assert.match(styles, /\.site-header \{[^}]*z-index:1000/);
   assert.match(styles, /\.mobile-nav-drawer nav > a \{[^}]*width:fit-content/);
   assert.doesNotMatch(styles, /\.mobile-nav-drawer nav > a \{[^}]*border-bottom/);
-  assert.match(styles, /nav > a\[aria-current="page"\] \{[^}]*background:color-mix\(in srgb,var\(--primary-500\) 22%,transparent\)/);
-  assert.match(styles, /nav > a\[aria-current="page"\]::after \{ content:none; \}/);
+  assert.match(styles, /nav > a\.is-active \{[^}]*background:color-mix\(in srgb,var\(--primary-500\) 22%,transparent\)/);
+  assert.match(styles, /nav > a\.is-active::after \{ content:none; \}/);
   assert.match(styles, /\.mobile-contact-group \{[^}]*padding-top:16px; display:grid/);
   assert.doesNotMatch(styles, /\.mobile-contact-group \{[^}]*border-top/);
 });
