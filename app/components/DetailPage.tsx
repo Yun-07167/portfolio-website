@@ -10,21 +10,25 @@ type ProjectItem={slug:string;title:string;summary:string;cover:string;cover_alt
 type NoteItem={slug:string;title:string;published_at:string;tags:readonly string[];body:string};
 
 export default function DetailPage({ kind, slug }:{ kind:"project"|"note"; slug:string }) {
-  const { language,setLanguage,theme,setTheme }=useSitePreferences();
+  const { language,setLanguage,theme,setTheme,ready }=useSitePreferences();
   const [dialogOption,setDialogOption]=useState<ContactOption|null>(null);
   const content=siteContent[language];
   const activePage=kind==="project"?"projects":"notes";
-  const project=kind==="project"?content.work.projects.find(entry=>entry.slug===slug) as ProjectItem|undefined:undefined;
-  const note=kind==="note"?content.notes.entries.find(entry=>entry.slug===slug) as NoteItem|undefined:undefined;
-  const item=project??note;
   const alternateContent=siteContent[language==="zh"?"en":"zh"];
+  const currentProject=kind==="project"?content.work.projects.find(entry=>entry.slug===slug) as ProjectItem|undefined:undefined;
+  const currentNote=kind==="note"?content.notes.entries.find(entry=>entry.slug===slug) as NoteItem|undefined:undefined;
+  const alternateProject=kind==="project"?alternateContent.work.projects.find(entry=>entry.slug===slug) as ProjectItem|undefined:undefined;
+  const alternateNote=kind==="note"?alternateContent.notes.entries.find(entry=>entry.slug===slug) as NoteItem|undefined:undefined;
+  const project=currentProject??(!ready?alternateProject:undefined);
+  const note=currentNote??(!ready?alternateNote:undefined);
+  const item=project??note;
   const hasAlternate=kind==="project"
     ? alternateContent.work.projects.some(entry=>entry.slug===slug)
     : alternateContent.notes.entries.some(entry=>entry.slug===slug);
 
   useEffect(()=>{
-    if(!item&&hasAlternate) window.location.assign(`${kind==="project"?"/work":"/notes"}?translation=missing`);
-  },[hasAlternate,item,kind]);
+    if(ready&&!item&&hasAlternate) window.location.assign(`${kind==="project"?"/work":"/notes"}?translation=missing`);
+  },[hasAlternate,item,kind,ready]);
   const setDetailLanguage:Dispatch<SetStateAction<"zh"|"en">>=(update)=>{
     const next=typeof update==="function"?update(language):update;
     const nextContent=siteContent[next];

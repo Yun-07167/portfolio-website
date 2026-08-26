@@ -24,6 +24,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const preferenceScript = `try{const l=localStorage.getItem("portfolio-language");const t=localStorage.getItem("portfolio-theme");if(l==="zh"||l==="en")document.documentElement.lang=l==="zh"?"zh-CN":"en";if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch{}`;
+  const preferenceScript = `try{const q=new URLSearchParams(location.search).get("lang");const s=localStorage.getItem("portfolio-language");const l=q==="zh"||q==="en"?q:s;const t=localStorage.getItem("portfolio-theme");if(l==="zh"||l==="en"){document.documentElement.lang=l==="zh"?"zh-CN":"en";if(l==="en")document.documentElement.setAttribute("data-restoring-preferences","")}if(t==="light"||t==="dark")document.documentElement.dataset.theme=t;setTimeout(()=>document.documentElement.removeAttribute("data-restoring-preferences"),2000)}catch{}`;
   return <html lang="zh-CN" suppressHydrationWarning><head><link rel="icon" type="image/png" href="/assets/avatar.png"/><link rel="shortcut icon" type="image/png" href="/assets/avatar.png"/><link rel="apple-touch-icon" href="/assets/avatar.png"/><script dangerouslySetInnerHTML={{ __html: preferenceScript }}/></head><body>{children}</body></html>;
 }
