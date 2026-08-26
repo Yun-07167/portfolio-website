@@ -17,4 +17,7 @@ tag_labels:
   gamejam: "Game Jam"
   game-design: "游戏设计"
   unity: "Unity"
+  graphic-design: "平面设计"
+  marketing: "市场宣传"
+  merchandise-design: "周边设计"
 ---
