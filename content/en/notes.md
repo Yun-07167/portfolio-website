@@ -14,6 +14,7 @@ tag_labels:
   game-ui: "Game UI"
   case-study: "Case Study"
   indie-game: "Indie Game"
+  marketing: "Marketing"
   workflow: "Workflow"
   unity: "Unity"
 ---

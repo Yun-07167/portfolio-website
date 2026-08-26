@@ -8,14 +8,14 @@ tags:
 published: true
 ---
 :::image
-src: /assets/assets/notes/nms/P02-04.png
-alt: 
+src: /assets/notes/nms/P02-04.webp
+alt: No Man's Sky localised marketing campaign visual overview
 caption: 
 layout: wide
 :::
 :::image
-src: /assets/assets/notes/nms/P02-05.png
-alt: 
+src: /assets/notes/nms/P02-05.webp
+alt: No Man's Sky localised marketing campaign materials and outcomes
 caption: 
 layout: wide
 :::
