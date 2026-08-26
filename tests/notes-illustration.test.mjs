@@ -22,3 +22,7 @@ test("Notes navigation no longer displays an in-progress caption", () => {
   assert.doesNotMatch(page, /施工中|in progress|nav-status-caption/);
   assert.doesNotMatch(styles, /nav-status-caption/);
 });
+
+test("dark note-card hover keeps text dark against the primary background", () => {
+  assert.match(styles, /:root\[data-theme="dark"\] \.note-card:hover,[\s\S]*?\.note-card:focus-within \.note-card-meta li \{ color:#141414; \}/);
+});

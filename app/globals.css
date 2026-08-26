@@ -435,6 +435,10 @@ html[data-theme="dark"] .drawing-picture .drawing-dark { display:block!important
 :root[data-theme="dark"] .work-card::after { mix-blend-mode:normal; }
 :root[data-theme="dark"] .work-card:hover::after,:root[data-theme="dark"] .work-card:focus-visible::after { opacity:.22; }
 :root[data-theme="dark"] .work-card:active::after { opacity:.38; }
+:root[data-theme="dark"] .note-card:hover,
+:root[data-theme="dark"] .note-card:focus-within,
+:root[data-theme="dark"] .note-card:hover .note-card-meta li,
+:root[data-theme="dark"] .note-card:focus-within .note-card-meta li { color:#141414; }
 @media (max-width:560px) { .site-header { padding-inline:16px; } .hero-title-row { align-items:flex-start; gap:12px; } .avatar { --avatar-size:48px; --avatar-art-size:55.314px; --avatar-center-offset:.344px; --avatar-hover-offset:2.312px; } .hero h1 { padding:4px 0; } }
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; } .card-layout { transform:none!important; } .project-card { transform:none!important; } }
 html[data-restoring-preferences] body {
