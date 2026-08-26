@@ -7,5 +7,4 @@ tags:
   - interaction-design
 published: false
 ---
-
 Sample content for previewing the notes list, summarizing trade-offs between information density, production cost, and visual expression.
