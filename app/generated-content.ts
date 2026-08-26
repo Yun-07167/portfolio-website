@@ -197,7 +197,7 @@ export const siteContent = {
           "cover": "/assets/projects/sos-graphics/sos-graphics_cover.webp",
           "cover_alt": "星之海",
           "home_thumbnail": "/assets/projects/sos-graphics/sos-graphics_cover.webp",
-          "year": 2022,
+          "year": 2023,
           "tags": [
             "indie-game",
             "graphic-design",
@@ -487,7 +487,7 @@ export const siteContent = {
           "cover": "/assets/projects/sos-graphics/sos-graphics_cover.webp",
           "cover_alt": "sos",
           "home_thumbnail": "/assets/projects/sos-graphics/sos-graphics_cover.webp",
-          "year": 2022,
+          "year": 2023,
           "tags": [
             "indie-game",
             "graphic-design",

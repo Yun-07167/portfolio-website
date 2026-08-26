@@ -5,7 +5,7 @@ summary: Including landing page design, h5 app, merchandise production and marke
 cover: /assets/projects/sos-graphics/sos-graphics_cover.webp
 cover_alt: sos
 home_thumbnail: /assets/projects/sos-graphics/sos-graphics_cover.webp
-year: 2022
+year: 2023
 tags:
   - indie-game
   - graphic-design
