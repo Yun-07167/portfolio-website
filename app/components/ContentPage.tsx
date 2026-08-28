@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import { siteContent } from "../generated-content";
 import SiteHeader, { type ContactOption, type Language } from "./SiteHeader";
 import useSitePreferences from "./useSitePreferences";
+import MarkdownContent from "./MarkdownContent";
 
 type PageKind = "resume" | "about";
 
@@ -54,7 +55,7 @@ function Resume({ language }: { language: Language }) {
 function About({ language }: { language: Language }) {
   const about = siteContent[language].about;
   return <div className="content-page about-page">{about.sections.map(section => <section key={section.id} className="about-section">
-    <h1>{section.title}</h1><div className="about-copy"><Paragraphs text={section.body}/></div>
+    <h1>{section.title}</h1><div className="about-copy"><MarkdownContent markdown={section.body}/></div>
     {section.id === "about-site" && <img className="about-site-illustration" src="/assets/about-site-illustration.svg" alt=""/>}
   </section>)}</div>;
 }
