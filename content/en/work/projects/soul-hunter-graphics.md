@@ -38,12 +38,6 @@ caption: Rulebook layout and mockups
 layout: wide
 :::
 :::image
-src: /assets/projects/soul-hunter/details/bag.webp
-alt: Soul Hunter branded paper bag design
-caption: Branded paper bag design
-layout: wide
-:::
-:::image
 src: /assets/projects/soul-hunter/details/marketing-visuals.webp
 alt: Social media promotional graphics for the Soul Hunter campaign
 caption: Social media visuals

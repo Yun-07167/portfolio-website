@@ -37,12 +37,6 @@ caption: 《屋仙》系列模组规则书排版和样机展示
 layout: wide
 :::
 :::image
-src: /assets/projects/soul-hunter/details/bag.webp
-alt: 《狩魂者》品牌纸袋设计
-caption: 纸袋设计
-layout: wide
-:::
-:::image
 src: /assets/projects/soul-hunter/details/marketing-visuals.webp
 alt: 《狩魂者》众筹活动社交媒体宣传素材
 caption: 社媒平面素材
