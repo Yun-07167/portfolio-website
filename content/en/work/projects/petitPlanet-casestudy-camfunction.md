@@ -10,7 +10,7 @@ tags:
   - interaction-design
   - case-study
 published: true
-order: 10
+order: 17
 ---
 Petit Planet is a 3D life-simulation game planned for PC, mobile, and other platforms. It is currently still in development.  
   
