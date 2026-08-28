@@ -19,12 +19,6 @@ order: 36
 [《狩魂者》摩点众筹页面](https://zhongchou.modian.com/item/148856.html)
 
 :::image
-src: /assets/projects/soul-hunter/details/box-01.webp
-alt: 《狩魂者》产品包装盒设计
-caption: 包装盒设计
-layout: wide
-:::
-:::image
 src: /assets/projects/soul-hunter/details/box-02.webp
 alt: 《狩魂者》附加产品包装与盒装样机
 caption: 包装盒设计

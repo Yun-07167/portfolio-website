@@ -18,13 +18,6 @@ Soul Hunter is a tabletop role-playing game adapted from a popular Chinese web n
 Find out more about Soul Hunter TRPG:
 [Soul Hunter crowdfunding page on Modian](https://zhongchou.modian.com/item/148856.html)
 
-
-:::image
-src: /assets/projects/soul-hunter/details/box-01.webp
-alt: Soul Hunter product box and packaging design
-caption: Product packaging design
-layout: wide
-:::
 :::image
 src: /assets/projects/soul-hunter/details/box-02.webp
 alt: Additional Soul Hunter product packaging and box mockups
