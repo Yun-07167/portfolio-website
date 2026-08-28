@@ -4,6 +4,7 @@ import matter from "gray-matter";
 import { loadHomeShowcase } from "./home-showcase-data.mjs";
 import { loadProjectLocale, serializePublishedProjects, validateProjectParity } from "./project-data.mjs";
 import { loadNoteLocale, serializePublishedNotes, validateNoteParity } from "./note-data.mjs";
+import { loadAboutLocale } from "./about-data.mjs";
 
 const root = resolve(import.meta.dirname, "..");
 
@@ -57,7 +58,7 @@ async function readLocale(locale, projects, noteEntries) {
     readFrontMatter(`${base}/home.md`),
     readFrontMatter(`${base}/work.md`),
     readFrontMatter(`${base}/resume.md`),
-    readFrontMatter(`${base}/about.md`),
+    loadAboutLocale(locale),
     readFrontMatter(`${base}/notes.md`),
   ]);
 
