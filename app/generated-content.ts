@@ -70,7 +70,8 @@ export const siteContent = {
         "unity": "Unity",
         "graphic-design": "平面设计",
         "marketing": "市场宣传",
-        "merchandise-design": "周边设计"
+        "merchandise-design": "周边设计",
+        "trpg": "TRPG"
       },
       "projects": [
         {
@@ -207,6 +208,23 @@ export const siteContent = {
           "published": true,
           "order": 35,
           "body": ":::image\nsrc: /assets/projects/sos-graphics/details/P02-01.webp\nalt: 《星之海》平面宣传材料展示一\ncaption:\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/sos-graphics/details/P02-02.webp\nalt: 《星之海》平面宣传材料展示二\ncaption:\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/sos-graphics/details/P02-03.webp\nalt: 《星之海》平面宣传材料展示三\ncaption:\nlayout: wide\n:::"
+        },
+        {
+          "slug": "soul-hunter-graphics",
+          "title": "为 TRPG《狩魂者》设计的平面宣传材料",
+          "summary": "包含商品详情页、活动 Banner、包装盒、角色卡、书籍排版及样机设计",
+          "cover": "/assets/projects/soul-hunter/soul-hunter-cover.webp",
+          "cover_alt": "为 TRPG《狩魂者》设计的平面宣传材料合集",
+          "home_thumbnail": "/assets/projects/soul-hunter/soul-hunter-cover.webp",
+          "year": 2025,
+          "tags": [
+            "graphic-design",
+            "merchandise-design",
+            "trpg"
+          ],
+          "published": true,
+          "order": 36,
+          "body": "《狩魂者》是一款基于网络小说改编的 TRPG。我深度参与了这款游戏的众筹活动，提供产品包装盒、平面宣传材料和角色卡设计等服务，辅助客户成功获得超过 80 万元人民币的众筹。\n\n详细了解《狩魂者》：\n[《狩魂者》摩点众筹页面](https://zhongchou.modian.com/item/148856.html)\n\n:::image\nsrc: /assets/projects/soul-hunter/details/box-01.webp\nalt: 《狩魂者》产品包装盒设计\ncaption: 包装盒设计\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/box-02.webp\nalt: 《狩魂者》附加产品包装与盒装样机\ncaption: 包装盒设计\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/book.webp\nalt: 《屋仙》系列模组规则书排版与样机\ncaption: 《屋仙》系列模组规则书排版和样机展示\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/bag.webp\nalt: 《狩魂者》品牌纸袋设计\ncaption: 纸袋设计\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/marketing-visuals.webp\nalt: 《狩魂者》众筹活动社交媒体宣传素材\ncaption: 社媒平面素材\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/banner.webp\nalt: 《狩魂者》众筹活动宣传 Banner\ncaption: 活动banner\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/soul-hunter-character-sheet.webp\nalt: 《狩魂者》角色卡设计\ncaption: 角色卡设计\nlayout: wide\n:::"
         }
       ]
     },
@@ -461,7 +479,8 @@ export const siteContent = {
         "unity": "Unity",
         "graphic-design": "Graphic Design",
         "marketing": "Marketing",
-        "merchandise-design": "Merchandise Design"
+        "merchandise-design": "Merchandise Design",
+        "trpg": "TRPG"
       },
       "projects": [
         {
@@ -514,6 +533,23 @@ export const siteContent = {
           "published": true,
           "order": 10,
           "body": "When route planning and strategic resource management were introduced mid-production, the map travel experience expanded significantly.  \nThe previous interface could not support the new route-planning features.\n\n:::columns\nratio: 1:1\n\n:::column\n:::image\nsrc: /assets/projects/undying-map/details/legacy-map.webp\nalt: The legacy map presented locations and details on a fixed canvas\ncaption: Previous design mockup\nlayout: wide\n:::\n:::\n:::column\n:::image\nsrc: /assets/projects/undying-map/details/undying-map_userflow_en_01.png\nlocalized: true\nalt: User flow for the previous map interface\ncaption: Comparison of the previous and redesigned flows\nlayout: wide\n:::\n:::\n:::\n\n| New system requirement | Previous interface | Gap |\n| --- | --- | --- |\n| Let players plan a route manually and observe cost changes in real time | No route-planning interaction framework | Insufficient information (usability issue) |\n| Let players evaluate whether the vehicle has enough storage before departure | No storage-state feedback | Missing interaction pattern (ease-of-use issue) |\n| Show randomized locations whenever the map opens and let players decide whether to visit them | No logic for handling random events | Missing interaction pattern (ease-of-use issue) |\n| Support an unknown number of future maps and possible DLC | The bounded map places every location on one large PNG | Location count cannot scale (extensibility issue) |\n\n## 02. Design goals\n\n**Goal 1: Help players understand the cost of the current route**\nPlayers can select a route tile by tile with the directional controls, observe cost values changing in real time, and decide whether to explore hidden locations along the way.\n\n**Goal 2: Give players the information required to make a decision**\nBefore selecting “Confirm Travel,” players can review complete destination intelligence—such as resources and danger—as well as vehicle status, including remaining storage, durability cost, and fuel.\n\n**Goal 3: Allow the map to support more locations**\n\n## 03. Core design decisions\n\n### 3.1 Make route planning a visible action–feedback loop\n\nPlayers use the directional controls to move an arrowed route line one tile at a time while exploring the grid map.\n\n:::image\nsrc: /assets/projects/undying-map/details/undying-map_status_en_01.png\nlocalized: true\nalt: Route-planning states and destination details in the redesigned grid map\ncaption:\nlayout: wide\n:::\n\n:::image\nsrc: /assets/projects/undying-map/details/route-planning.webp\nalt: Route planning and destination details on the redesigned grid map\ncaption: Preview of the redesigned interface\nlayout: wide\n:::\n\n### 3.2 Information Presentation\n\n###### New Map User Flow\n:::image\nsrc: /assets/projects/undying-map/details/undying-map_userflow_sc_02.png\nalt: User flow for the redesigned map\ncaption: Redesigned user flow\nlayout: wide\n:::\n\n:::columns\nratio: 1:1\n\n:::column\n###### Vehicle Information\nWhen a player plans a route to a destination, vehicle durability, fuel, and time costs update in real time. The player can also open the vehicle storage panel to inspect the available slots.\n:::image\nsrc: /assets/projects/undying-map/details/undying-map_vehicle_01.png\nalt: Vehicle status and storage information panel\ncaption: Vehicle status is brought into the departure decision, reducing the frustration of discovering insufficient storage after setting out.\nlayout: wide\n:::\n:::\n\n:::column\n###### Destination Information\nDestination information is presented in layers from top to bottom:  \nname and distance/direction; location image in locked or unlocked state; danger level; available resources; and a short location description.\n:::image\nsrc: /assets/projects/undying-map/details/undying-map_destinationInfo_01.png\nalt: Destination name, distance, danger, and resource panel\ncaption: Destination information is layered from identity and risk to potential reward.\nlayout: standard\n:::\n:::\n:::\n\n### 3.3 Replace a fixed map image with data coordinates\n\nThe previous map painted every location onto one fixed-size PNG. The redesign places locations on an extensible coordinate grid. New maps or DLC can add location data and adjacency rules without being constrained by a single image.\n\n:::columns\nratio: 1:1\n\n:::column\n:::image\nsrc: /assets/projects/undying-map/details/undying-map_oldversion_01.png\nalt: Previous map design mockup\ncaption: Previous design\nlayout: wide\n:::\n:::\n\n:::column\n:::image\nsrc: /assets/projects/undying-map/details/undying-map_newversion_01.png\nalt: Redesigned map interface mockup\ncaption: Redesigned interface\nlayout: wide\n:::\n:::\n:::\n\n## 04. Validation and reflection\n\n**Goal 1: Help players understand the cost of the current route**\n- Tile-by-tile directional input and live costs in the lower-left corner created a complete action–feedback loop.\n- The design team felt that the redesigned system offered more player participation.\n- Playtesting showed that the live cost display in the lower-left corner was easy to miss. A later iteration added icon-and-value cost indicators around each location marker.\n\n**Goal 2: Give players the information required to make a decision**\n- Progressive disclosure covers the complete decision chain: inspect a destination, review its resources, confirm storage, and depart.\n- Vehicle storage is surfaced numerically before departure, while players can still open the storage panel to inspect individual items. This helps prevent the frustration of discovering insufficient capacity after setting out.\n- The information density of the destination panel still needs further player feedback.\n\n**Goal 3: Allow the map to support more locations**\n- The grid system can add locations dynamically through coordinate data without changing the interface structure.\n- Compared with the previous fixed PNG, the extensibility limitation has been resolved.\n\n*All artwork in this project is original; some location images are screenshots from the game.*"
+        },
+        {
+          "slug": "soul-hunter-graphics",
+          "title": "Graphic Design for the Soul Hunter TRPG",
+          "summary": "Product pages, campaign banners, packaging, character sheets, rulebook layouts, and mockups",
+          "cover": "/assets/projects/soul-hunter/soul-hunter-cover.webp",
+          "cover_alt": "A collection of promotional graphics created for the Soul Hunter TRPG",
+          "home_thumbnail": "/assets/projects/soul-hunter/soul-hunter-cover.webp",
+          "year": 2025,
+          "tags": [
+            "graphic-design",
+            "merchandise-design",
+            "trpg"
+          ],
+          "published": true,
+          "order": 12,
+          "body": "Soul Hunter is a tabletop role-playing game adapted from a popular Chinese web novel. I was deeply involved in its crowdfunding campaign on Modian, a Chinese crowdfunding platform, providing product packaging, promotional graphics, and character sheet design. The campaign successfully raised approximately USD 12,000.\n\nFind out more about Soul Hunter TRPG:\n[Soul Hunter crowdfunding page on Modian](https://zhongchou.modian.com/item/148856.html)\n\n\n:::image\nsrc: /assets/projects/soul-hunter/details/box-01.webp\nalt: Soul Hunter product box and packaging design\ncaption: Product packaging design\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/box-02.webp\nalt: Additional Soul Hunter product packaging and box mockups\ncaption: Product packaging design\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/book.webp\nalt: Rulebook page layouts and printed book mockups\ncaption: Rulebook layout and mockups\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/bag.webp\nalt: Soul Hunter branded paper bag design\ncaption: Branded paper bag design\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/marketing-visuals.webp\nalt: Social media promotional graphics for the Soul Hunter campaign\ncaption: Social media visuals\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/banner.webp\nalt: Promotional banners for the Soul Hunter crowdfunding campaign\ncaption: Campaign banners\nlayout: wide\n:::\n:::image\nsrc: /assets/projects/soul-hunter/details/soul-hunter-character-sheet.webp\nalt: Character sheet designed for the Soul Hunter TRPG\ncaption: Character sheet design\nlayout: wide\n:::"
         },
         {
           "slug": "destiny2-casestudy-hud",

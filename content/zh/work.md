@@ -20,4 +20,5 @@ tag_labels:
   graphic-design: "平面设计"
   marketing: "市场宣传"
   merchandise-design: "周边设计"
+  trpg: "TRPG"
 ---

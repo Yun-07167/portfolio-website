@@ -20,4 +20,5 @@ tag_labels:
   graphic-design: "Graphic Design"
   marketing: "Marketing"
   merchandise-design: "Merchandise Design"
+  trpg: "TRPG"
 ---
